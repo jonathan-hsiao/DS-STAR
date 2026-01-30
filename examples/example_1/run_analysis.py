@@ -16,8 +16,7 @@ def _load_env() -> None:
 
 _load_env()
 
-from ds_star import DSStar
-from ds_star.pipeline.ds_star import DSStarConfig
+from ds_star import DSStar, DSStarConfig
 
 # Path to data directory (relative to this script)
 DATA_DIR = Path(__file__).resolve().parent / "data"

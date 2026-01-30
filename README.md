@@ -12,8 +12,7 @@ poetry install
 ## Usage
 
 ```python
-from ds_star import DSStar
-from ds_star.pipeline.ds_star import DSStarConfig
+from ds_star import DSStar, DSStarConfig
 
 config = DSStarConfig(
     llm_provider="gemini",

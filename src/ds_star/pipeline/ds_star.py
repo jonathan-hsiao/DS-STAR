@@ -1,3 +1,5 @@
+import uuid
+from datetime import datetime, timezone
 from typing import Optional
 from dataclasses import dataclass
 from pathlib import Path
@@ -17,6 +19,7 @@ from ds_star.llm_providers.providers import (
     OpenAIProvider,
 )
 from ds_star.pipeline.code_runner import CodeRunner
+from ds_star.pipeline.logger import PipelineLogger
 from ds_star.models.models import (
     DataSummary, 
     CodeRunnerResults, 
@@ -73,6 +76,12 @@ class DSStar:
             router=RouterAgent(self.llm_provider),
             verifier=VerifierAgent(self.llm_provider),
         )
+
+    def _generate_run_id(self) -> str:
+        # hybrid run_id: timestamp (sortable) + short random (unique)
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        suffix = uuid.uuid4().hex[:8]
+        return f"{ts}-{suffix}"
 
     def _analyze_data_files(self, data_directory: str) -> list[DataSummary]:
         # Find data files in the data directory
@@ -157,11 +166,17 @@ class DSStar:
             self,
             question: str,
             data_directory: str,
+            output_directory: str,
             guidelines: Optional[str] = None,
         ) -> tuple[str, str]:
 
+        # Generate run ID and initialize logger
+        run_id = self._generate_run_id()
+        logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
+
         # Analyze the data files
         data_summaries = self._analyze_data_files(data_directory)
+        logger.log_data_summaries(data_summaries) # log data summaries
 
         # Generate the initial plan
         plan = self.agents.planner.initialize_plan(question=question, data_summaries=data_summaries)
@@ -175,6 +190,7 @@ class DSStar:
         results = self._run_solution_code(code=code, data_summaries=data_summaries)
         code = results.code
         self.plan_code_history.cumulative_code[-1] = code
+        logger.log_plan(plan=plan, code=code, iteration=0) # log initial successfully coded plan
 
         # Refinement loop
         for i in range(self.config.max_iterations):
@@ -215,6 +231,7 @@ class DSStar:
             results = self._run_solution_code(code=code, data_summaries=data_summaries)
             code = results.code
             self.plan_code_history.cumulative_code[-1] = code
+            logger.log_plan(plan=plan, code=code, iteration=i+1) # log successfully coded updated plan
 
         # Finalize solution code
         final_solution_code = self.agents.finalizer.finalize_solution_code(
@@ -225,7 +242,17 @@ class DSStar:
             guidelines=guidelines,
         )
 
-        # Execute the finalized code
+        # Execute the finalized code (with debug loop)
         final_solution_result = self._run_solution_code(code=final_solution_code, data_summaries=data_summaries)
+        final_solution_code = final_solution_result.code
 
+        # Log final solution
+        logger.log_final_solution(
+            question=question,
+            plan=plan,
+            code=final_solution_code,
+            output=final_solution_result.output,
+        )
+
+        logger.log_run_end()
         return final_solution_code, final_solution_result.output
