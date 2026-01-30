@@ -24,6 +24,7 @@ ds_star_pipeline = DSStar(config=config)
 code, output = ds_star_pipeline.run_analysis(
     question="Your question about the data",
     data_directory="/path/to/data",
+    output_directory="/path/to/outputs",
     guidelines="Optional instructions for the final output.",
 )
 ```

@@ -20,7 +20,7 @@ from ds_star import DSStar, DSStarConfig
 
 # Path to data directory (relative to this script)
 DATA_DIR = Path(__file__).resolve().parent / "data"
-
+OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 
 def main() -> None:
     config = DSStarConfig(
@@ -35,6 +35,7 @@ def main() -> None:
     code, output = agent.run_analysis(
         question=question,
         data_directory=str(DATA_DIR),
+        output_directory=str(OUTPUT_DIR),
         guidelines="Print only the final numeric answer, no explanation.",
     )
 

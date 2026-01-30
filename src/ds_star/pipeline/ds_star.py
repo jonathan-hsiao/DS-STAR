@@ -139,11 +139,11 @@ class DSStar:
 
     def _remove_plan_steps(self, plan: list[str], code: str, router_response: RouterResponse) -> tuple[list[str], str]:
         """Apply router remove_step decision; return (updated_plan, updated_code)."""
-        # No changes if not removing step
+        # No changes if router response does not specify removing a step
         if router_response.decision != "remove_step" or router_response.step_to_remove is None:
             return plan, code
 
-        # If removing the first of plan, reset plan and code
+        # If removing the first step, reset the entire plan and code
         if router_response.step_to_remove == 1:
             self.plan_code_history.plan_steps = []
             self.plan_code_history.cumulative_code = []
@@ -154,7 +154,7 @@ class DSStar:
         # Invalid index to remove, do nothing
         if idx < 0 or idx >= len(plan):
             return plan, code
-        # Remove the step and everything after it, reset plan and code
+        # Remove the step and everything after it, reset plan and code to the previous step
         code_history = self.plan_code_history.cumulative_code
         rewinded_plan = plan[:idx]
         rewinded_code_history = code_history[:idx]
@@ -205,7 +205,7 @@ class DSStar:
             if is_verified:
                 break
 
-            # Route
+            # Route (add step or remove steps)
             router_response = self.agents.router.route(
                 plan=plan,
                 results=results.output,
