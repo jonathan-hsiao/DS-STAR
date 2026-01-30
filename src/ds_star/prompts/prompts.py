@@ -173,11 +173,11 @@ Your task is to write solution code to print out the answer of the question foll
 
 
 PROMPT__DEBUGGER_SUMMARIZE = """# Error report:
-{bug}
+{error}
 
 # Your task
 - Remove all unnecessary parts of the above error report.
-- We are now running {filename}.py. Do not remove where the error occurred."""
+- Do not remove where the error occurred."""
 
 
 PROMPT__DEBUGGER_FIX_ANALYZER = """# Code with an error:
@@ -186,7 +186,7 @@ PROMPT__DEBUGGER_FIX_ANALYZER = """# Code with an error:
 ```
 
 # Error:
-{bug}
+{error}
 
 # Your task:
 - Please revise the code to fix the error.
@@ -205,12 +205,12 @@ PROMPT__DEBUGGER_FIX_SOLUTION = """# Given data:
 ```
 
 # Error:
-{bug}
+{error}
 
 # Your task:
 - Please revise the code to fix the error.
 - Provide the improved, self-contained Python script again.
-- Note that you only have {data_filenames} available.
+- Note that you only have the given data files available.
 - There should be no additional headings or text in your response.
 - Do not include dummy contents since we will debug if error occurs.
 - All files/documents are in `data/` directory."""

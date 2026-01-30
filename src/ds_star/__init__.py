@@ -1,6 +1,6 @@
 """DS-Star: Implementation of Google's DS-Star paper."""
 
-from src.ds_star.pipeline.ds_star import DSStar
+from ds_star.pipeline.ds_star import DSStar
 
 __version__ = "0.1.0"
 __all__ = ["DSStar"]

@@ -45,7 +45,7 @@ class GeminiProvider(BaseProvider):
             model=self.model,
             contents=prompt,
         )
-        return response.txt
+        return response.text
 
 
 class OpenAIProvider(BaseProvider):
