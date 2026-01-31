@@ -20,19 +20,25 @@ from ds_star import DSStar, DSStarConfig
 
 # Path to data directory (relative to this script)
 DATA_DIR = Path(__file__).resolve().parent / "data"
-OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
+OUTPUT_DIR = Path(__file__).resolve().parent / "output"
 
 def main() -> None:
     config = DSStarConfig(
-        llm_provider="gemini",
-        llm_model="gemini-2.5-pro",
-        llm_api_key=os.environ.get("GEMINI_API_KEY"),
-        max_iterations=3,
+        # llm_provider="gemini",
+        # llm_model="gemini-2.5-pro",
+        # llm_api_key=os.environ.get("GEMINI_API_KEY"),
+        llm_provider="openai",
+        llm_model="gpt-5.2",
+        llm_api_key=os.environ.get("OPENAI_API_KEY"),
+        max_iterations = 5,
+        max_debug_attempts = 3,
+        execution_timeout_seconds = 600,
     )
-    agent = DSStar(config=config)
+    dsstar_pipeline = DSStar(config=config)
 
     question = "What is the total value of all products (quantity * price)?"
-    code, output = agent.run_analysis(
+
+    code, output = dsstar_pipeline.run_analysis(
         question=question,
         data_directory=str(DATA_DIR),
         output_directory=str(OUTPUT_DIR),

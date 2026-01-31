@@ -18,10 +18,13 @@ config = DSStarConfig(
     llm_provider="gemini",
     llm_model="gemini-2.5-pro",
     llm_api_key="your-api-key",  # or set GEMINI_API_KEY / OPENAI_API_KEY in the environment
+    max_iterations = 5,
+    max_debug_attempts = 3,
+    execution_timeout_seconds = 600,
 )
-ds_star_pipeline = DSStar(config=config)
+dsstar_pipeline = DSStar(config=config)
 
-code, output = ds_star_pipeline.run_analysis(
+code, output = dsstar_pipeline.run_analysis(
     question="Your question about the data",
     data_directory="/path/to/data",
     output_directory="/path/to/outputs",

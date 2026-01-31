@@ -1,0 +1,290 @@
+run_id: 20260131-003637-9e45bfea
+
+
+--- Data file #1: sales.csv ---
+Summary:
+=== Detected STRUCTURED (DELIMITED) DATA ===
+File: /Users/jonathan/github/DS-STAR/examples/example_1/data/sales.csv
+Size: 67 bytes
+Detected delimiter: ','
+Detected quotechar: '"'
+
+=== Basic shape ===
+Rows: 3
+Columns: 3
+
+=== Column names ===
+  1. product
+  2. quantity
+  3. price
+
+=== Dtypes ===
+- product: string
+- quantity: Int64
+- price: Float64
+
+=== Missing values (count) ===
+(No missing values detected)
+
+=== Descriptive statistics (numeric) ===
+          count       mean       std   min    25%   50%   75%   max
+quantity    3.0  16.666667  7.637626  10.0   12.5  15.0  20.0  25.0
+price       3.0   1.083333  0.381881  0.75  0.875   1.0  1.25   1.5
+
+=== Descriptive statistics (non-numeric) ===
+- product: unique=3, missing=0
+  Top values:
+    'apple': 1
+    'banana': 1
+    'orange': 1
+
+=== Content ===
+  product  quantity  price
+0   apple        10    1.5
+1  banana        25   0.75
+2  orange        15    1.0
+
+Code:
+#!/usr/bin/env python3
+"""
+sales_csv_inspector.py
+
+Loads, prints, and describes the content of `sales.csv` from the `data/` directory.
+
+Fix: robustly locate the `data/` directory and `sales.csv` even when the script is
+run from a temp location (some runners) or when CWD differs. No try/except is used.
+"""
+
+from pathlib import Path
+import csv
+import pandas as pd
+
+
+def candidate_base_dirs() -> list[Path]:
+    """
+    Build a list of plausible base directories to search from.
+    Priority:
+    1) Directory containing this script (when available)
+    2) Current working directory
+    3) Parents of current working directory (helps when invoked from subdirs)
+    """
+    bases: list[Path] = []
+
+    if "__file__" in globals():
+        bases.append(Path(__file__).resolve().parent)
+
+    cwd = Path.cwd().resolve()
+    bases.append(cwd)
+    bases.extend(list(cwd.parents))
+
+    # Deduplicate while preserving order
+    seen = set()
+    uniq: list[Path] = []
+    for b in bases:
+        if b not in seen:
+            seen.add(b)
+            uniq.append(b)
+    return uniq
+
+
+def locate_data_dir() -> Path:
+    """
+    Find the nearest directory that contains a `data/` directory.
+    """
+    for base in candidate_base_dirs():
+        d = base / "data"
+        if d.is_dir():
+            return d.resolve()
+    # If not found, default to CWD/data (for error message clarity)
+    return (Path.cwd().resolve() / "data").resolve()
+
+
+def locate_sales_csv(data_dir: Path) -> Path:
+    """
+    Locate sales.csv in the given data directory.
+    Prefer exact `sales.csv`, otherwise allow case-insensitive match.
+    """
+    exact = data_dir / "sales.csv"
+    if exact.is_file():
+        return exact.resolve()
+
+    for p in data_dir.glob("*.csv"):
+        if p.name.lower() == "sales.csv":
+            return p.resolve()
+
+    return exact.resolve()
+
+
+DATA_DIR = locate_data_dir()
+FILE_PATH = locate_sales_csv(DATA_DIR)
+
+
+def is_probably_structured_csv(path: Path, sample_lines: int = 50) -> bool:
+    """Heuristic: detect delimiter consistency across a small sample of lines."""
+    text = path.read_text(encoding="utf-8", errors="replace")
+    lines = [ln for ln in text.splitlines() if ln.strip()][:sample_lines]
+    if len(lines) < 2:
+        return False
+
+    candidates = [",", ";", "\t", "|"]
+
+    def score_delim(delim: str) -> float:
+        counts = [ln.count(delim) for ln in lines]
+        nonzero_ratio = sum(c > 0 for c in counts) / len(counts)
+
+        from collections import Counter
+
+        freq = Counter(counts)
+        _, mode_freq = freq.most_common(1)[0]
+        consistency = mode_freq / len(counts)
+
+        return nonzero_ratio * 0.7 + consistency * 0.3
+
+    best_score, best_delim = max((score_delim(d), d) for d in candidates)
+    return best_score >= 0.75 and best_delim is not None
+
+
+def sniff_dialect(path: Path, sample_bytes: int = 20000) -> csv.Dialect:
+    """Use csv.Sniffer to infer delimiter/quote settings."""
+    data = path.read_bytes()[:sample_bytes].decode("utf-8", errors="replace")
+    sniffer = csv.Sniffer()
+    return sniffer.sniff(data, delimiters=[",", ";", "\t", "|"])
+
+
+def print_unstructured_preview(path: Path, max_chars: int = 20000, max_lines: int = 200) -> None:
+    print("=== Detected UNSTRUCTURED / TEXT-LIKE CONTENT ===")
+    raw = path.read_text(encoding="utf-8", errors="replace")
+
+    lines = raw.splitlines()
+    total_lines = len(lines)
+    total_chars = len(raw)
+
+    print(f"File: {path.resolve()}")
+    print(f"Size: {path.stat().st_size} bytes")
+    print(f"Total lines: {total_lines}")
+    print(f"Total characters: {total_chars}")
+    print()
+
+    preview_lines = lines[:max_lines]
+    preview_text = "\n".join(preview_lines)
+    if len(preview_text) > max_chars:
+        preview_text = preview_text[:max_chars] + "\n... (truncated by char limit) ..."
+
+    print("=== Content preview (first lines) ===")
+    print(preview_text)
+    if total_lines > max_lines:
+        print(f"\n... (truncated to first {max_lines} lines) ...")
+
+
+def print_structured_report(path: Path) -> None:
+    dialect = sniff_dialect(path)
+    delim_display = dialect.delimiter if dialect.delimiter != "\t" else "\\t"
+    print("=== Detected STRUCTURED (DELIMITED) DATA ===")
+    print(f"File: {path.resolve()}")
+    print(f"Size: {path.stat().st_size} bytes")
+    print(f"Detected delimiter: {delim_display!r}")
+    print(f"Detected quotechar: {dialect.quotechar!r}")
+    print()
+
+    df = pd.read_csv(
+        path,
+        sep=dialect.delimiter,
+        quotechar=dialect.quotechar,
+        engine="python",
+        dtype_backend="numpy_nullable",
+    )
+
+    print("=== Basic shape ===")
+    print(f"Rows: {df.shape[0]}")
+    print(f"Columns: {df.shape[1]}")
+    print()
+
+    print("=== Column names ===")
+    for i, c in enumerate(df.columns, start=1):
+        print(f"{i:>3}. {c}")
+    print()
+
+    print("=== Dtypes ===")
+    for c in df.columns:
+        print(f"- {c}: {df[c].dtype}")
+    print()
+
+    print("=== Missing values (count) ===")
+    na = df.isna().sum().sort_values(ascending=False)
+    for c, n in na.items():
+        if n > 0:
+            print(f"- {c}: {int(n)}")
+    if int(na.sum()) == 0:
+        print("(No missing values detected)")
+    print()
+
+    print("=== Descriptive statistics (numeric) ===")
+    numeric = df.select_dtypes(include=["number"])
+    if numeric.shape[1] > 0:
+        with pd.option_context("display.max_columns", 20, "display.width", 120):
+            print(numeric.describe().transpose())
+    else:
+        print("(No numeric columns detected)")
+    print()
+
+    print("=== Descriptive statistics (non-numeric) ===")
+    non_numeric = df.select_dtypes(exclude=["number"])
+    if non_numeric.shape[1] > 0:
+        for c in non_numeric.columns:
+            s = df[c]
+            nunique = s.nunique(dropna=True)
+            nmissing = int(s.isna().sum())
+            print(f"- {c}: unique={int(nunique)}, missing={nmissing}")
+            vc = s.value_counts(dropna=True).head(5)
+            if len(vc) > 0:
+                print("  Top values:")
+                for k, v in vc.items():
+                    print(f"    {repr(k)}: {int(v)}")
+            else:
+                print("  (No non-missing values)")
+    else:
+        print("(No non-numeric columns detected)")
+    print()
+
+    rows, cols = df.shape
+    print("=== Content ===")
+    max_cells_full_print = 500
+    if rows * max(cols, 1) <= max_cells_full_print and rows <= 200:
+        with pd.option_context("display.max_rows", 500, "display.max_columns", 200, "display.width", 200):
+            print(df)
+    else:
+        with pd.option_context("display.max_rows", 60, "display.max_columns", 30, "display.width", 200):
+            print("Preview (first 20 rows):")
+            print(df.head(20))
+            print("\nPreview (last 20 rows):")
+            print(df.tail(20))
+            if rows > 40:
+                print("\nRandom sample (10 rows):")
+                print(df.sample(n=min(10, rows), random_state=0))
+        print(
+            f"\n(Full dataset not printed due to size: {rows} rows x {cols} cols. "
+            "Adjust thresholds in the script if needed.)"
+        )
+
+
+def main() -> None:
+    if not DATA_DIR.is_dir() or not FILE_PATH.exists():
+        searched = "\n".join(f"- {b}" for b in candidate_base_dirs())
+        raise FileNotFoundError(
+            "Expected `sales.csv` in the `data/` directory.\n"
+            f"Resolved data dir: {DATA_DIR}\n"
+            f"Looked for: {FILE_PATH}\n"
+            f"Working dir: {Path.cwd().resolve()}\n"
+            "Base directory candidates searched for `data/`:\n"
+            f"{searched}\n"
+            f"Data dir exists: {DATA_DIR.exists()}\n"
+        )
+
+    if is_probably_structured_csv(FILE_PATH):
+        print_structured_report(FILE_PATH)
+    else:
+        print_unstructured_preview(FILE_PATH)
+
+
+if __name__ == "__main__":
+    main()

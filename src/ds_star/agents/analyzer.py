@@ -19,7 +19,7 @@ class AnalyzerAgent:
             response = self.llm_provider.generate_response(prompt)
             code = extract_code_from_llm_response(response)
 
-        # Execute the analyzer code
+        # Uses run cwd set at start of run_analysis (same as data_file.parent.parent)
         results = self.code_runner.run_code(code)
         
         if results.success:

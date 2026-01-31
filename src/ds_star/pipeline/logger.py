@@ -1,8 +1,23 @@
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
 from ds_star.models.models import DataSummary
 from ds_star.pipeline.utils import format_plan_for_prompt
+
+
+def _setup_console_logger() -> logging.Logger:
+    """Return the package logger, configured for console output if it has no handlers."""
+    logger = logging.getLogger(__name__)
+    if not logger.handlers:
+        logger.setLevel(logging.INFO)
+        h = logging.StreamHandler()
+        h.setLevel(logging.INFO)
+        h.setFormatter(logging.Formatter("%(message)s"))
+        logger.addHandler(h)
+    return logger
+
+_logger = _setup_console_logger()
 
 
 class PipelineLogger:
@@ -74,3 +89,8 @@ class PipelineLogger:
             f"run_id: {self.run_id}\nstarted_at: {self._started_at}\nended_at: {ended_at}\n",
             encoding="utf-8",
         )
+
+
+    def info(self, msg: str, *args, **kwargs) -> None:
+        """Console logging wrapper; forwards to the standard logging logger."""
+        _logger.info(msg, *args, **kwargs)

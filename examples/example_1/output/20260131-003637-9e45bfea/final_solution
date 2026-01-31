@@ -1,0 +1,22 @@
+run_id: 20260131-003637-9e45bfea
+
+Question:
+What is the total value of all products (quantity * price)?
+
+Plan:
+Step #1: Load `sales.csv` into a dataframe and compute a new column `value = quantity * price` for each product.
+
+Step #2: Sum the `value` column across all rows to get the total value of all products.
+
+Code:
+import os
+import pandas as pd
+
+csv_path = os.path.join("data", "sales.csv")
+df = pd.read_csv(csv_path)
+
+total_value = (df["quantity"] * df["price"]).sum()
+print(total_value)
+
+Output:
+48.75

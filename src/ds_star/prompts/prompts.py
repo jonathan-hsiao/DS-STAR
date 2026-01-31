@@ -154,7 +154,7 @@ Your task is to write solution code to print out the answer of the question foll
 ```
 
 # Execution result of reference code:
-{result}
+{results}
 
 # Question:
 {question}

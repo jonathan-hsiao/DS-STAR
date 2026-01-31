@@ -45,11 +45,17 @@ def format_data_summaries_for_prompt(data_summaries: list[DataSummary]) -> str:
         for i, summary in enumerate(data_summaries)
     ])
 
-def format_plan_for_prompt(plan: list[str], split_latest_step: bool = False) -> str:
+def _strip_step_prefix(step: str) -> str:
+    """Remove a leading 'Step #N:' or 'Step N:' so we don't double-prefix when the LLM echoes it."""
+    return re.sub(r"^\s*Step\s*#?\s*\d+\s*:\s*", "", step).strip() or step
+
+
+def format_plan_for_prompt(plan: list[str], split_latest_step: bool = False) -> tuple[str, str | None]:
     """Format a list of plan steps as a text string for use in a prompt.
 
     Each step is formatted as:
     - Step #N: <step>
+    Strips any leading 'Step #N:' from step text so we don't double-prefix when the LLM echoes it.
     """
     if split_latest_step:
         current_plan = plan[:-1]
@@ -59,9 +65,9 @@ def format_plan_for_prompt(plan: list[str], split_latest_step: bool = False) -> 
         latest_step = None
 
     current_plan_str = "\n\n".join([
-        f"Step #{i+1}: {step}"
+        f"Step #{i+1}: {_strip_step_prefix(step)}"
         for i, step in enumerate(current_plan)
     ])
-    latest_step_str = f"Step #{len(plan)}: {latest_step}" if latest_step else None
+    latest_step_str = f"Step #{len(plan)}: {_strip_step_prefix(latest_step)}" if latest_step else None
 
     return current_plan_str, latest_step_str

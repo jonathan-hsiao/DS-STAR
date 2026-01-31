@@ -2,6 +2,7 @@ import sys
 import subprocess
 import tempfile
 from pathlib import Path
+from typing import Optional
 
 from ds_star.models.models import CodeRunnerResults
 
@@ -11,9 +12,12 @@ class CodeRunner:
 
     def __init__(self, timeout_seconds: int = 600):
         self.timeout_seconds = timeout_seconds
+        # Working directory for run_code when cwd is not passed. Set at start of run_analysis.
+        self.cwd: Optional[Path] = None
 
-    def run_code(self, code: str) -> CodeRunnerResults:
-        """Execute code in a subprocess; capture stdout, stderr, and exit code; enforce timeout."""
+    def run_code(self, code: str, cwd: Optional[str | Path] = None) -> CodeRunnerResults:
+        """Execute code in a subprocess; capture stdout, stderr, and exit code; enforce timeout.
+        Uses cwd argument if given, else self.cwd (set at start of run_analysis so paths like data/file.csv resolve)."""
         if not code or not code.strip():
             return CodeRunnerResults(
                 code=code,
@@ -23,6 +27,8 @@ class CodeRunner:
                 timeout_exceeded=False,
                 exit_code=None,
             )
+
+        effective_cwd = Path(cwd) if cwd is not None else self.cwd
 
         with tempfile.NamedTemporaryFile(
             mode="w",
@@ -41,6 +47,7 @@ class CodeRunner:
                 timeout=self.timeout_seconds,
                 encoding="utf-8",
                 errors="replace",
+                cwd=str(effective_cwd) if effective_cwd is not None else None,
             )
             stdout = result.stdout or ""
             stderr = result.stderr or ""

@@ -54,8 +54,8 @@ class DSStar:
     def __init__(self, config: DSStarConfig):
         self.config = config
         self.llm_provider = self._initialize_llm_provider()
-        self.agents = self._initialize_agents()
         self.code_runner = CodeRunner(timeout_seconds=self.config.execution_timeout_seconds)
+        self.agents = self._initialize_agents()
         self.plan_code_history = PlanCodeHistory(plan_steps=[], cumulative_code=[])
 
     def _initialize_llm_provider(self) -> BaseProvider:
@@ -121,7 +121,7 @@ class DSStar:
         return data_summaries
 
     def _run_solution_code(self, code: str, data_summaries: list[DataSummary]) -> CodeRunnerResults:
-        # Execute solution code with debug loop
+        # Uses run cwd set at start of run_analysis (thread-safe via contextvar)
         results = self.code_runner.run_code(code)
         if results.error:
             for i in range(self.config.max_debug_attempts):
@@ -174,9 +174,14 @@ class DSStar:
         run_id = self._generate_run_id()
         logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
 
+        # Set cwd so generated code can use "data/<file>"; run_code uses this when cwd is not passed.
+        self.code_runner.cwd = Path(data_directory).parent
+        logger.info("Starting run_id=%s with cwd=%s", run_id, self.code_runner.cwd)
+
         # Analyze the data files
         data_summaries = self._analyze_data_files(data_directory)
-        logger.log_data_summaries(data_summaries) # log data summaries
+        logger.log_data_summaries(data_summaries)
+        logger.info("Created data summaries for %d file(s).", len(data_summaries))
 
         # Generate the initial plan
         plan = self.agents.planner.initialize_plan(question=question, data_summaries=data_summaries)
@@ -190,10 +195,12 @@ class DSStar:
         results = self._run_solution_code(code=code, data_summaries=data_summaries)
         code = results.code
         self.plan_code_history.cumulative_code[-1] = code
-        logger.log_plan(plan=plan, code=code, iteration=0) # log initial successfully coded plan
+        logger.log_plan(plan=plan, code=code, iteration=0)
+        logger.info("Created initial plan and code with successful execution.")
 
         # Refinement loop
         for i in range(self.config.max_iterations):
+            logger.info("Starting refinement iteration %d.", i + 1)
 
             # Verify current plan, code, and results
             is_verified = self.agents.verifier.verify_plan(
@@ -203,6 +210,7 @@ class DSStar:
                 question=question,
             )
             if is_verified:
+                logger.info("Plan and code verified successfully.")
                 break
 
             # Route (add step or remove steps)
@@ -231,7 +239,8 @@ class DSStar:
             results = self._run_solution_code(code=code, data_summaries=data_summaries)
             code = results.code
             self.plan_code_history.cumulative_code[-1] = code
-            logger.log_plan(plan=plan, code=code, iteration=i+1) # log successfully coded updated plan
+            logger.log_plan(plan=plan, code=code, iteration=i+1)
+            logger.info("Updated plan and code with successful execution (iteration %d).", i + 1)
 
         # Finalize solution code
         final_solution_code = self.agents.finalizer.finalize_solution_code(
@@ -243,8 +252,11 @@ class DSStar:
         )
 
         # Execute the finalized code (with debug loop)
-        final_solution_result = self._run_solution_code(code=final_solution_code, data_summaries=data_summaries)
+        final_solution_result = self._run_solution_code(
+            code=final_solution_code, data_summaries=data_summaries
+        )
         final_solution_code = final_solution_result.code
+        logger.info("Finalized solution code with successful execution.")
 
         # Log final solution
         logger.log_final_solution(
@@ -255,4 +267,5 @@ class DSStar:
         )
 
         logger.log_run_end()
+        logger.info("Completed run_id=%s.", run_id)
         return final_solution_code, final_solution_result.output
