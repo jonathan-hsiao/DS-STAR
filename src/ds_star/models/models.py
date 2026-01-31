@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from pathlib import Path
 
+
 @dataclass
 class DataSummary:
     data_file: Path
@@ -24,6 +25,7 @@ class RouterResponse:
     step_to_remove: Optional[int] = None
 
 @dataclass
-class PlanCodeHistory:
+class AnalysisHistory:
     plan_steps: list[str]
     cumulative_code: list[str]
+    cumulative_results: list[CodeRunnerResults]

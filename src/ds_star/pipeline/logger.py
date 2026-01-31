@@ -55,12 +55,12 @@ class PipelineLogger:
             lines.append("")
         self._data_summaries_log.write_text("\n".join(lines), encoding="utf-8")
 
-    def log_plan(self, plan: list[str], code: str, iteration: int) -> None:
+    def log_plan(self, plan: list[str], code: str, results: str, iteration: int) -> None:
         """Append plan and code to plan_log. iteration=0 for initial plan, else iteration number."""
         header = self._run_id_header if iteration == 0 else ""
         section = "Initial plan" if iteration == 0 else f"--- Iteration {iteration} ---"
-        plan_str = "\n".join(f"Step {i+1}: {step}" for i, step in enumerate(plan))
-        block = f"{header}{section}\n\nPlan:\n{plan_str}\n\nCode:\n{code}\n\n"
+        plan_str, _ = format_plan_for_prompt(plan)
+        block = f"{header}{section}\n\nPlan:\n{plan_str}\n\nCode:\n{code}\n\nResults:\n{results}\n\n"
         with self._plan_log.open("a", encoding="utf-8") as f:
             f.write(block)
 

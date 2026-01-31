@@ -17,7 +17,8 @@ class CodeRunner:
 
     def run_code(self, code: str, cwd: Optional[str | Path] = None) -> CodeRunnerResults:
         """Execute code in a subprocess; capture stdout, stderr, and exit code; enforce timeout.
-        Uses cwd argument if given, else self.cwd (set at start of run_analysis so paths like data/file.csv resolve)."""
+        Uses cwd argument if given, else self.cwd. 
+        If neither is given, subprocess runs in parent process's cwd."""
         if not code or not code.strip():
             return CodeRunnerResults(
                 code=code,

@@ -66,6 +66,7 @@ Your task is to implement the plan with the given data.
 
 # Your task:
 - Implement the plan with the given data.
+- Use print() for any important values that should appear in the execution output.
 - Your response should be a single markdown Python code (wrapped in ```).
 - There should be no additional headings or text in your response."""
 
@@ -91,6 +92,7 @@ Your task is to implement the latest plan step with the given data.
 - Implement the latest plan step with the given data.
 - The implementation should be done based on the base code.
 - The base code is an implementation of the previous plan steps.
+- Use print() for any important values that should appear in the execution output.
 - Your response should be a single markdown Python code (wrapped in ```).
 - There should be no additional headings or text in your response."""
 

@@ -1,0 +1,622 @@
+run_id: 20260131-044238-f7171f51
+
+
+--- Data file #1: inventory.csv ---
+Summary:
+
+=== RAW FILE STATS (first chunk) ===
+Path: /Users/jonathan/github/DS-STAR/examples/example_1/data/inventory.csv
+Size: 153 bytes
+Lines read for inspection: 7 (max 2000)
+First non-empty line (truncated): 'product,category,quantity,price'
+
+Detected delimiter: ','
+
+=== BASIC INFO ===
+Shape: 6 rows x 4 columns
+
+=== COLUMN NAMES ===
+  1. 'product'
+  2. 'category'
+  3. 'quantity'
+  4. 'price'
+
+=== COLUMN SUMMARY (dtype, missing, unique, hints) ===
+- 'product': dtype=string, missing=0, unique=6, hints=-
+- 'category': dtype=string, missing=0, unique=3, hints=-
+- 'quantity': dtype=string, missing=0, unique=6, hints=numeric-like
+- 'price': dtype=string, missing=0, unique=6, hints=numeric-like
+
+=== DESCRIBE (numeric) ===
+(No numeric columns detected.)
+
+=== DESCRIBE (object/categorical) ===
+
+Column: 'product'
+Top values:
+  'apple': 1
+  'banana': 1
+  'orange': 1
+  'bread': 1
+  'milk': 1
+  'cheese': 1
+Sample unique values:
+  'apple'
+  'banana'
+  'orange'
+  'bread'
+  'milk'
+  'cheese'
+
+Column: 'category'
+Top values:
+  'fruit': 3
+  'dairy': 2
+  'bakery': 1
+Sample unique values:
+  'fruit'
+  'bakery'
+  'dairy'
+
+Column: 'quantity'
+Top values:
+  '10': 1
+  '25': 1
+  '15': 1
+  '8': 1
+  '12': 1
+  '5': 1
+Sample unique values:
+  '10'
+  '25'
+  '15'
+  '8'
+  '12'
+  '5'
+
+Column: 'price'
+Top values:
+  '1.50': 1
+  '0.75': 1
+  '1.00': 1
+  '2.50': 1
+  '3.00': 1
+  '4.50': 1
+Sample unique values:
+  '1.50'
+  '0.75'
+  '1.00'
+  '2.50'
+  '3.00'
+  '4.50'
+
+=== CONTENT PREVIEW ===
+product category quantity price
+  apple    fruit       10  1.50
+ banana    fruit       25  0.75
+ orange    fruit       15  1.00
+  bread   bakery        8  2.50
+   milk    dairy       12  3.00
+ cheese    dairy        5  4.50
+
+=== FULL CONTENT (or limited if large) ===
+product category quantity price
+  apple    fruit       10  1.50
+ banana    fruit       25  0.75
+ orange    fruit       15  1.00
+  bread   bakery        8  2.50
+   milk    dairy       12  3.00
+ cheese    dairy        5  4.50
+
+Code:
+#!/usr/bin/env python3
+"""
+inventory_inspector.py
+
+Loads and describes the content of `data/inventory.csv`, handling both structured
+(tabular) and unstructured (single-column / irregular) CSV-like text.
+
+No try/except is used by design (per requirements).
+"""
+
+import os
+import csv
+import re
+from collections import Counter
+
+import pandas as pd
+
+
+def is_numeric_series(s: pd.Series) -> bool:
+    if s.empty:
+        return False
+    coerced = pd.to_numeric(s, errors="coerce")
+    non_null = s.notna().sum()
+    if non_null == 0:
+        return False
+    return (coerced.notna().sum() / non_null) >= 0.9
+
+
+def is_datetime_series(s: pd.Series) -> bool:
+    if s.empty:
+        return False
+    coerced = pd.to_datetime(s, errors="coerce", infer_datetime_format=True)
+    non_null = s.notna().sum()
+    if non_null == 0:
+        return False
+    return (coerced.notna().sum() / non_null) >= 0.9
+
+
+def summarize_dataframe(df: pd.DataFrame, max_rows_show: int = 15, max_cols_show: int = 30):
+    print("\n=== BASIC INFO ===")
+    print(f"Shape: {df.shape[0]} rows x {df.shape[1]} columns")
+
+    print("\n=== COLUMN NAMES ===")
+    for i, col in enumerate(df.columns, 1):
+        print(f"{i:>3}. {col!r}")
+
+    print("\n=== COLUMN SUMMARY (dtype, missing, unique, hints) ===")
+    for col in df.columns:
+        s = df[col]
+        missing = int(s.isna().sum())
+        unique = int(s.nunique(dropna=True))
+        dtype = str(s.dtype)
+
+        hints = []
+        if is_numeric_series(s):
+            hints.append("numeric-like")
+        if is_datetime_series(s):
+            hints.append("datetime-like")
+        if df.shape[0] > 0 and (missing / df.shape[0]) > 0.95:
+            hints.append("mostly-missing")
+
+        hint_str = (", ".join(hints)) if hints else "-"
+        print(f"- {col!r}: dtype={dtype}, missing={missing}, unique={unique}, hints={hint_str}")
+
+    print("\n=== DESCRIBE (numeric) ===")
+    num_df = df.select_dtypes(include="number")
+    if num_df.shape[1] > 0:
+        print(num_df.describe(include="all").transpose())
+    else:
+        print("(No numeric columns detected.)")
+
+    print("\n=== DESCRIBE (object/categorical) ===")
+    obj_cols = [c for c in df.columns if df[c].dtype == "object" or str(df[c].dtype).startswith("string")]
+    if obj_cols:
+        show_cols = obj_cols[: min(10, len(obj_cols))]
+        for c in show_cols:
+            s = df[c].dropna().astype(str)
+            print(f"\nColumn: {c!r}")
+            if s.empty:
+                print("(All values missing.)")
+                continue
+            vc = s.value_counts().head(10)
+            print("Top values:")
+            for k, v in vc.items():
+                ks = k if len(k) <= 200 else (k[:200] + "…")
+                print(f"  {ks!r}: {int(v)}")
+            uniq = s.unique()
+            sample = uniq[: min(10, len(uniq))]
+            print("Sample unique values:")
+            for val in sample:
+                vs = val if len(val) <= 200 else (val[:200] + "…")
+                print(f"  {vs!r}")
+        if len(obj_cols) > 10:
+            print(f"\n(Only first 10 object-like columns summarized; total object-like columns: {len(obj_cols)})")
+    else:
+        print("(No object/categorical columns detected.)")
+
+    print("\n=== CONTENT PREVIEW ===")
+    preview_df = df
+    if df.shape[1] > max_cols_show:
+        preview_df = df.iloc[:, :max_cols_show]
+        print(f"(Preview limited to first {max_cols_show} columns out of {df.shape[1]})")
+
+    n_show = min(max_rows_show, df.shape[0])
+    if n_show > 0:
+        print(preview_df.head(n_show).to_string(index=False))
+    else:
+        print("(No rows.)")
+
+    if df.shape[0] > n_show:
+        print(f"\n(Preview limited to first {n_show} rows out of {df.shape[0]})")
+
+
+def read_raw_stats(path: str, max_lines: int = 2000):
+    size = os.path.getsize(path)
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        lines = []
+        for i, line in enumerate(f):
+            lines.append(line.rstrip("\n"))
+            if i + 1 >= max_lines:
+                break
+
+    non_empty = [ln for ln in lines if ln.strip() != ""]
+    first_nonempty = non_empty[0] if non_empty else ""
+    print("\n=== RAW FILE STATS (first chunk) ===")
+    print(f"Path: {os.path.abspath(path)}")
+    print(f"Size: {size} bytes")
+    print(f"Lines read for inspection: {len(lines)} (max {max_lines})")
+    print(f"First non-empty line (truncated): {first_nonempty[:300]!r}")
+
+
+def sniff_delimiter(path: str, sample_bytes: int = 100_000) -> str:
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        sample = f.read(sample_bytes)
+
+    sample_nonempty = "\n".join([ln for ln in sample.splitlines() if ln.strip()][:50]).strip()
+    if not sample_nonempty:
+        return ","
+
+    dialect = csv.Sniffer().sniff(sample_nonempty, delimiters=[",", ";", "\t", "|"])
+    return dialect.delimiter
+
+
+def load_as_dataframe(path: str, delimiter: str) -> pd.DataFrame:
+    df = pd.read_csv(
+        path,
+        sep=delimiter,
+        engine="python",
+        dtype="string",
+        keep_default_na=True,
+        na_values=["", "NA", "N/A", "null", "None"],
+    )
+    return df
+
+
+def maybe_unstructured_single_column(df: pd.DataFrame) -> bool:
+    if df.shape[1] != 1:
+        return False
+    col = df.columns[0]
+    s = df[col].dropna().astype(str)
+    if s.empty:
+        return True
+    pat = re.compile(r"[,\t;|]")
+    ratio = s.str.contains(pat).mean()
+    return ratio > 0.3
+
+
+def print_unstructured_view(path: str, max_lines_show: int = 50):
+    print("\n=== UNSTRUCTURED CONTENT (raw text preview) ===")
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        for i, line in enumerate(f):
+            if i >= max_lines_show:
+                break
+            print(line.rstrip("\n"))
+
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        chunk = f.read(200_000)
+    tokens = re.findall(r"\b\w+\b", chunk.lower())
+    print("\n=== UNSTRUCTURED TOKEN STATS (first 200KB) ===")
+    print(f"Token count: {len(tokens)}")
+    top = Counter(tokens).most_common(20)
+    print("Top 20 tokens:")
+    for tok, cnt in top:
+        print(f"  {tok!r}: {cnt}")
+
+
+def resolve_inventory_path() -> str:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    candidates = [
+        os.path.join(script_dir, "data", "inventory.csv"),
+        os.path.join(os.getcwd(), "data", "inventory.csv"),
+        os.path.join(script_dir, "inventory.csv"),
+        os.path.join(os.getcwd(), "inventory.csv"),
+    ]
+    for p in candidates:
+        if os.path.isfile(p):
+            return p
+    return candidates[0]  # will raise downstream if missing
+
+
+def main():
+    path = resolve_inventory_path()
+
+    read_raw_stats(path)
+
+    delimiter = sniff_delimiter(path)
+    print(f"\nDetected delimiter: {delimiter!r}")
+
+    df = load_as_dataframe(path, delimiter=delimiter)
+
+    if maybe_unstructured_single_column(df):
+        print("\nDetected likely unstructured / single-column data.")
+        summarize_dataframe(df, max_rows_show=15, max_cols_show=30)
+        print_unstructured_view(path, max_lines_show=80)
+    else:
+        summarize_dataframe(df, max_rows_show=20, max_cols_show=40)
+
+        print("\n=== FULL CONTENT (or limited if large) ===")
+        if df.shape[0] <= 200 and df.shape[1] <= 50:
+            print(df.to_string(index=False))
+        else:
+            print("(Dataset large; printing first 50 rows + 10 random rows.)")
+            print("\n--- First 50 rows ---")
+            print(df.head(50).to_string(index=False))
+            print("\n--- 10 random rows (deterministic) ---")
+            sample_n = min(10, df.shape[0])
+            print(df.sample(n=sample_n, random_state=0).to_string(index=False))
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #2: discounts.csv ---
+Summary:
+
+FILE
+====
+Path: /Users/jonathan/github/DS-STAR/examples/example_1/data/discounts.csv
+Size: 74 bytes
+
+PARSING GUESS
+=============
+Encoding guess: utf-8
+Delimiter guess: ','
+
+RAW PREVIEW (first 20 lines)
+============================
+01: product,discount_pct
+02: apple,10
+03: banana,0
+04: orange,5
+05: bread,15
+06: milk,0
+07: cheese,20
+
+STRUCTURE HEURISTICS
+====================
+First row fields count: 2
+First row fields: ['product', 'discount_pct']
+Header likely present: True
+
+DATAFRAME OVERVIEW
+==================
+Shape: 6 rows x 2 columns
+Column names:
+['product', 'discount_pct']
+
+DTYPES & NON-NULL COUNTS
+========================
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 2 columns):
+ #   Column        Non-Null Count  Dtype 
+---  ------        --------------  ----- 
+ 0   product       6 non-null      string
+ 1   discount_pct  6 non-null      Int64 
+dtypes: Int64(1), string(1)
+memory usage: 234.0 bytes
+
+MISSING VALUES (top 30 columns by missing count)
+================================================
+product         0
+discount_pct    0
+
+DUPLICATES
+==========
+Duplicate rows (exact match across all columns): 0
+
+NUMERIC SUMMARY (describe)
+==========================
+              count      mean       std  min   25%  50%    75%   max
+discount_pct    6.0  8.333333  8.164966  0.0  1.25  7.5  13.75  20.0
+
+CATEGORICAL/OBJECT-LIKE COLUMNS (top value counts, limited)
+===========================================================
+
+Column: product
+product
+apple     1
+banana    1
+orange    1
+bread     1
+milk      1
+cheese    1
+
+EXAMPLES (structured preview)
+=============================
+
+Head:
+product  discount_pct
+  apple            10
+ banana             0
+ orange             5
+  bread            15
+   milk             0
+ cheese            20
+
+CONTENT OUTPUT
+==============
+Printing entire content (file is small enough):
+
+product  discount_pct
+  apple            10
+ banana             0
+ orange             5
+  bread            15
+   milk             0
+ cheese            20
+
+Code:
+#!/usr/bin/env python3
+"""
+Inspect and describe the content of `data/discounts.csv`.
+
+- Works for both structured (tabular) and unstructured (single-column / messy) CSV-like files.
+- Prints essential info: file size, encoding guess, delimiter guess, column names (if any),
+  row/column counts, dtype summary, missingness, duplicates, basic numeric stats, and examples.
+- Prints content preview (head/tail) and, if file is small enough, prints the entire file.
+- No try/except blocks.
+"""
+
+from pathlib import Path
+import csv
+import io
+import re
+import pandas as pd
+
+
+def read_bytes(path: Path, n: int) -> bytes:
+    with path.open("rb") as f:
+        return f.read(n)
+
+
+def detect_encoding(raw: bytes) -> str:
+    # Minimal, dependency-free encoding guesser
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return "utf-8-sig"
+    raw.decode("utf-8")
+    return "utf-8"
+
+
+def guess_delimiter(text_sample: str) -> str:
+    sniffer = csv.Sniffer()
+    dialect = sniffer.sniff(text_sample, delimiters=[",", ";", "\t", "|"])
+    return dialect.delimiter
+
+
+def looks_like_header(fields) -> bool:
+    non_empty = [f for f in fields if f.strip() != ""]
+    if not non_empty:
+        return False
+    numeric_like = 0
+    for f in non_empty:
+        s = f.strip().strip('"').strip("'")
+        if re.fullmatch(r"[-+]?\d+(\.\d+)?", s):
+            numeric_like += 1
+    return numeric_like <= max(1, int(0.3 * len(non_empty)))
+
+
+def print_section(title: str):
+    line = "=" * len(title)
+    print(f"\n{title}\n{line}")
+
+
+def main():
+    path = Path("data") / "discounts.csv"
+    size_bytes = path.stat().st_size
+
+    print_section("FILE")
+    print(f"Path: {path.resolve()}")
+    print(f"Size: {size_bytes:,} bytes")
+
+    raw = read_bytes(path, min(size_bytes, 256_000))
+    encoding = detect_encoding(raw)
+    text_sample = raw.decode(encoding, errors="strict")
+
+    sample_for_sniff = text_sample[:50_000]
+    delimiter = guess_delimiter(sample_for_sniff)
+
+    print_section("PARSING GUESS")
+    print(f"Encoding guess: {encoding}")
+    print(f"Delimiter guess: {repr(delimiter)}")
+
+    with path.open("r", encoding=encoding, newline="") as f:
+        first_lines = []
+        for _ in range(20):
+            line = f.readline()
+            if line == "":
+                break
+            first_lines.append(line.rstrip("\n"))
+
+    print_section("RAW PREVIEW (first 20 lines)")
+    if first_lines:
+        for i, line in enumerate(first_lines, 1):
+            print(f"{i:02d}: {line}")
+    else:
+        print("(empty file)")
+
+    first_row_fields = next(csv.reader([first_lines[0]], delimiter=delimiter)) if first_lines else []
+    header_present = looks_like_header(first_row_fields)
+
+    print_section("STRUCTURE HEURISTICS")
+    print(f"First row fields count: {len(first_row_fields)}")
+    print(f"First row fields: {first_row_fields}")
+    print(f"Header likely present: {header_present}")
+
+    header_arg = 0 if header_present else None
+
+    df = pd.read_csv(
+        path,
+        encoding=encoding,
+        sep=delimiter,
+        header=header_arg,
+        dtype_backend="numpy_nullable",
+        engine="python",
+    )
+
+    print_section("DATAFRAME OVERVIEW")
+    print(f"Shape: {df.shape[0]:,} rows x {df.shape[1]:,} columns")
+    if header_present:
+        print("Column names:")
+        print(list(df.columns))
+    else:
+        print("No header detected. Assigned column names:")
+        print(list(df.columns))
+
+    print_section("DTYPES & NON-NULL COUNTS")
+    info_buf = io.StringIO()
+    df.info(buf=info_buf, show_counts=True)
+    print(info_buf.getvalue().rstrip())
+
+    print_section("MISSING VALUES (top 30 columns by missing count)")
+    missing = df.isna().sum().sort_values(ascending=False)
+    if df.shape[1] > 0:
+        top_missing = missing.head(min(30, len(missing)))
+        print(top_missing.to_string())
+    else:
+        print("(no columns)")
+
+    print_section("DUPLICATES")
+    dup_count = df.duplicated().sum()
+    print(f"Duplicate rows (exact match across all columns): {int(dup_count):,}")
+
+    print_section("NUMERIC SUMMARY (describe)")
+    num_desc = df.describe(include=["number"]).T
+    if len(num_desc) == 0:
+        print("(no numeric columns detected)")
+    else:
+        print(num_desc.to_string())
+
+    print_section("CATEGORICAL/OBJECT-LIKE COLUMNS (top value counts, limited)")
+    cat_cols = [c for c in df.columns if not pd.api.types.is_numeric_dtype(df[c])]
+    if not cat_cols:
+        print("(no non-numeric columns detected)")
+    else:
+        max_cols = min(10, len(cat_cols))
+        for c in cat_cols[:max_cols]:
+            print(f"\nColumn: {c}")
+            vc = df[c].astype("string").value_counts(dropna=False).head(10)
+            print(vc.to_string())
+        if len(cat_cols) > max_cols:
+            print(f"\n... ({len(cat_cols) - max_cols} more non-numeric columns not shown)")
+
+    print_section("EXAMPLES (structured preview)")
+    max_rows_preview = 10
+    if df.shape[0] == 0:
+        print("(no rows)")
+    else:
+        print("\nHead:")
+        print(df.head(max_rows_preview).to_string(index=False))
+        if df.shape[0] > max_rows_preview:
+            print("\nTail:")
+            print(df.tail(max_rows_preview).to_string(index=False))
+        if df.shape[0] > 50:
+            print("\nRandom sample (10 rows):")
+            print(df.sample(10, random_state=0).to_string(index=False))
+
+    print_section("CONTENT OUTPUT")
+    if size_bytes <= 200_000 and df.shape[0] <= 5_000:
+        print("Printing entire content (file is small enough):\n")
+        print(df.to_string(index=False))
+    else:
+        print("File seems large; printing limited content:")
+        print("\n--- HEAD (first 50 rows) ---")
+        print(df.head(50).to_string(index=False))
+        print("\n--- TAIL (last 50 rows) ---")
+        print(df.tail(50).to_string(index=False))
+
+
+if __name__ == "__main__":
+    main()

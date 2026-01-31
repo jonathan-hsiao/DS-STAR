@@ -24,7 +24,7 @@ from ds_star.models.models import (
     DataSummary, 
     CodeRunnerResults, 
     RouterResponse,
-    PlanCodeHistory,
+    AnalysisHistory,
 )
 
 
@@ -56,7 +56,8 @@ class DSStar:
         self.llm_provider = self._initialize_llm_provider()
         self.code_runner = CodeRunner(timeout_seconds=self.config.execution_timeout_seconds)
         self.agents = self._initialize_agents()
-        self.plan_code_history = PlanCodeHistory(plan_steps=[], cumulative_code=[])
+        # Set at start of each run_analysis(); None when no run in progress.
+        self.analysis_history: Optional[AnalysisHistory] = None
 
     def _initialize_llm_provider(self) -> BaseProvider:
         if self.config.llm_provider == "gemini":
@@ -137,30 +138,40 @@ class DSStar:
                 raise ValueError(f"Failed to run solution code: {code} {results.error}")
         return results
 
-    def _remove_plan_steps(self, plan: list[str], code: str, router_response: RouterResponse) -> tuple[list[str], str]:
-        """Apply router remove_step decision; return (updated_plan, updated_code)."""
+    def _remove_plan_steps(
+            self,
+            plan: list[str],
+            code: str,
+            results: CodeRunnerResults,
+            router_response: RouterResponse,
+        ) -> tuple[list[str], str, Optional[CodeRunnerResults]]:
+        """Apply router remove_step decision; return (updated_plan, updated_code, updated_results)."""
         # No changes if router response does not specify removing a step
         if router_response.decision != "remove_step" or router_response.step_to_remove is None:
-            return plan, code
+            return plan, code, results
 
         # If removing the first step, reset the entire plan and code
         if router_response.step_to_remove == 1:
-            self.plan_code_history.plan_steps = []
-            self.plan_code_history.cumulative_code = []
-            return [], ""
+            self.analysis_history.plan_steps = []
+            self.analysis_history.cumulative_code = []
+            self.analysis_history.cumulative_results = []
+            return [], "", None
 
         # step_to_remove is 1-based; convert to 0-based index
         idx = router_response.step_to_remove - 1
         # Invalid index to remove, do nothing
         if idx < 0 or idx >= len(plan):
-            return plan, code
+            return plan, code, results
         # Remove the step and everything after it, reset plan and code to the previous step
-        code_history = self.plan_code_history.cumulative_code
+        code_history = self.analysis_history.cumulative_code
+        results_history = self.analysis_history.cumulative_results
         rewinded_plan = plan[:idx]
         rewinded_code_history = code_history[:idx]
-        self.plan_code_history.plan_steps = rewinded_plan
-        self.plan_code_history.cumulative_code = rewinded_code_history
-        return rewinded_plan, rewinded_code_history[-1]
+        rewinded_results_history = results_history[:idx]
+        self.analysis_history.plan_steps = rewinded_plan
+        self.analysis_history.cumulative_code = rewinded_code_history
+        self.analysis_history.cumulative_results = rewinded_results_history
+        return rewinded_plan, rewinded_code_history[-1], rewinded_results_history[-1]
 
     def run_analysis(
             self,
@@ -170,9 +181,12 @@ class DSStar:
             guidelines: Optional[str] = None,
         ) -> tuple[str, str]:
 
-        # Generate run ID and initialize logger
+        # Generate run ID, initialize logger and history tracker
         run_id = self._generate_run_id()
         logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
+        self.analysis_history = AnalysisHistory(
+            plan_steps=[], cumulative_code=[], cumulative_results=[]
+        )
 
         # Set cwd so generated code can use "data/<file>"; run_code uses this when cwd is not passed.
         self.code_runner.cwd = Path(data_directory).parent
@@ -185,17 +199,19 @@ class DSStar:
 
         # Generate the initial plan
         plan = self.agents.planner.initialize_plan(question=question, data_summaries=data_summaries)
-        self.plan_code_history.plan_steps = plan
 
         # Code the initial plan
         code = self.agents.coder.code_initial_plan(plan=plan, data_summaries=data_summaries)
-        self.plan_code_history.cumulative_code.append(code)
 
         # Execute the initial plan (with debug loop)
         results = self._run_solution_code(code=code, data_summaries=data_summaries)
         code = results.code
-        self.plan_code_history.cumulative_code[-1] = code
-        logger.log_plan(plan=plan, code=code, iteration=0)
+
+        # Save history and log
+        self.analysis_history.plan_steps = plan
+        self.analysis_history.cumulative_code.append(code)
+        self.analysis_history.cumulative_results.append(results)
+        logger.log_plan(plan=plan, code=code, results=results.output, iteration=0)
         logger.info("Created initial plan and code with successful execution.")
 
         # Refinement loop
@@ -220,26 +236,33 @@ class DSStar:
                 question=question,
                 data_summaries=data_summaries,
             )
-            plan, code = self._remove_plan_steps(plan=plan, code=code, router_response=router_response)
+            plan, code, results = self._remove_plan_steps(
+                plan=plan,
+                code=code,
+                results=results,
+                router_response=router_response,
+            )
 
             # Update the plan with next step
             plan = self.agents.planner.update_plan(
                 question=question,
                 data_summaries=data_summaries,
                 current_plan=plan,
-                results=results.output,
+                results=results.output if results is not None else "",
             )
-            self.plan_code_history.plan_steps = plan
 
             # Code the updated plan with next step
             code = self.agents.coder.code_plan(plan=plan, data_summaries=data_summaries, base_code=code)
-            self.plan_code_history.cumulative_code.append(code)
 
             # Execute the updated plan (with debug loop)
             results = self._run_solution_code(code=code, data_summaries=data_summaries)
             code = results.code
-            self.plan_code_history.cumulative_code[-1] = code
-            logger.log_plan(plan=plan, code=code, iteration=i+1)
+
+            # Save history and log
+            self.analysis_history.plan_steps = plan
+            self.analysis_history.cumulative_code.append(code)
+            self.analysis_history.cumulative_results.append(results)
+            logger.log_plan(plan=plan, code=code, results=results.output, iteration=i+1)
             logger.info("Updated plan and code with successful execution (iteration %d).", i + 1)
 
         # Finalize solution code

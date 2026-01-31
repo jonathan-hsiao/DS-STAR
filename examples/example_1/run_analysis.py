@@ -36,13 +36,15 @@ def main() -> None:
     )
     dsstar_pipeline = DSStar(config=config)
 
-    question = "What is the total value of all products (quantity * price)?"
+    question = (
+        "What is the total value of all products after applying each product's discount?"
+    )
 
     code, output = dsstar_pipeline.run_analysis(
         question=question,
         data_directory=str(DATA_DIR),
         output_directory=str(OUTPUT_DIR),
-        guidelines="Print only the final numeric answer, no explanation.",
+        guidelines="Print only the final numeric answer (total discounted value), no explanation.",
     )
 
     print("Question:", question)
