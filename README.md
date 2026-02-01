@@ -18,12 +18,18 @@ poetry install
 
 ### Directory layout
 
-Generated code runs with **cwd = parent of your data folder**, so it expects files under `data/` and writes solution and logs to a sibling `output/` folder.
+Generated code runs with **cwd = parent of your data folder**, so it expects files under `data/` and writes solution and logs to `output/<run_id>/` (one subfolder per run_analysis call; `run_id` = timestamp + short random suffix).
 
 ```
 your_project/
 ├── data/          # All data files in this folder are analyzed
-└── output/        # Outputs: final_solution.md, plan_log, data_summaries_log, metadata
+│   └── ...
+└── output/
+    └── <run_id>/  # e.g. 20260201-052732-a682a54f
+        ├── final_solution.md
+        ├── plan_log
+        ├── data_summaries_log
+        └── metadata
 ```
 
 ### Minimal Python script
@@ -46,8 +52,8 @@ code, output = pipeline.run_analysis(
     data_directory="/path/to/data",
     output_directory="/path/to/output",
     guidelines="Optional format instructions for the final answer.",
-)
     reuse_data_summaries=True, # skip summary generation for questions using same data
+)
 ```
 
 ### Examples

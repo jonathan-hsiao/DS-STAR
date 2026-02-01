@@ -1,3 +1,10 @@
 run_id: 20260201-054049-586f44e2
 started_at: 2026-02-01T05:40:49.604655+00:00
 ended_at: 2026-02-01T05:44:30.767545+00:00
+config:
+  llm_provider: openai
+  llm_model: gpt-5.2
+  llm_api_key: ***
+  max_iterations: 8
+  max_debug_attempts: 3
+  execution_timeout_seconds: 600

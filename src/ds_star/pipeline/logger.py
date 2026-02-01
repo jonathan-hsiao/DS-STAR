@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any, Optional
 
 from ds_star.models.models import DataSummary
 from ds_star.pipeline.utils import format_plan_for_prompt
@@ -37,12 +38,22 @@ class PipelineLogger:
         # Start each run with a fresh plan_log
         self._plan_log.write_text("", encoding="utf-8")
 
-        # Write metadata with start timestamp
-        self._started_at = datetime.now(timezone.utc).isoformat()
-        self._metadata.write_text(
-            f"run_id: {run_id}\nstarted_at: {self._started_at}\nended_at:\n",
-            encoding="utf-8",
-        )
+    def log_initial_metadata(self, config: Optional[dict[str, Any]] = None) -> None:
+        """Write metadata file with start timestamp and optional config (api_key redacted)."""
+        started_at = datetime.now(timezone.utc).isoformat()
+        meta_lines = [
+            f"run_id: {self.run_id}",
+            f"started_at: {started_at}",
+            "ended_at:",
+        ]
+        if config:
+            meta_lines.append("config:")
+            for k, v in config.items():
+                if "api_key" in k.lower():
+                    meta_lines.append(f"  {k}: ***" if v else f"  {k}: (not set)")
+                else:
+                    meta_lines.append(f"  {k}: {v}")
+        self._metadata.write_text("\n".join(meta_lines), encoding="utf-8")
 
     def log_data_summaries(self, data_summaries: list[DataSummary]) -> None:
         """Write data summaries to data_summaries_log."""
@@ -85,12 +96,16 @@ class PipelineLogger:
         self._final_solution.write_text("\n".join(sections), encoding="utf-8")
 
     def log_run_end(self) -> None:
-        """Update metadata with end timestamp."""
+        """Update metadata file with end timestamp (preserves existing content)."""
         ended_at = datetime.now(timezone.utc).isoformat()
-        self._metadata.write_text(
-            f"run_id: {self.run_id}\nstarted_at: {self._started_at}\nended_at: {ended_at}\n",
-            encoding="utf-8",
-        )
+        content = self._metadata.read_text(encoding="utf-8")
+        # Replace the ended_at line (with or without a value) with the final timestamp
+        lines = content.splitlines()
+        new_lines = [
+            f"ended_at: {ended_at}" if line.startswith("ended_at:") else line
+            for line in lines
+        ]
+        self._metadata.write_text("\n".join(new_lines), encoding="utf-8")
 
     def log_analyzer_failure(self, data_file_name: str, error: str, code: str) -> None:
         """Write analyzer failure (error + code) for a data file to the output directory."""

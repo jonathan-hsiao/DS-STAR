@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime, timezone
 from typing import Optional
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from ds_star.agents import (
@@ -193,6 +193,7 @@ class DSStar:
         # Generate run ID, initialize logger and history tracker
         run_id = self._generate_run_id()
         self.logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
+        self.logger.log_initial_metadata(config=asdict(self.config))
         self.analysis_history = AnalysisHistory(
             plan_steps=[], cumulative_code=[], cumulative_results=[]
         )
