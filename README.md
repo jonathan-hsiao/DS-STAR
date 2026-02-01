@@ -45,8 +45,9 @@ code, output = pipeline.run_analysis(
     question="Your question about the data",
     data_directory="/path/to/data",
     output_directory="/path/to/output",
-    guidelines="Optional format instructions for the final answer."
+    guidelines="Optional format instructions for the final answer.",
 )
+    reuse_data_summaries=True, # skip summary generation for questions using same data
 ```
 
 ### Examples
