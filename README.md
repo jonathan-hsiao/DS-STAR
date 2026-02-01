@@ -22,7 +22,7 @@ Generated code runs with **cwd = parent of your data folder**, so it expects fil
 
 ```
 your_project/
-├── data/          # All data files in this folder are analyzed
+├── data/          # All files in this folder are analyzed
 │   └── ...
 └── output/
     └── <run_id>/  # e.g. 20260201-052732-a682a54f
