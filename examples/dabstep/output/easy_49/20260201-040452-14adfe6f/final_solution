@@ -1,0 +1,40 @@
+run_id: 20260201-040452-14adfe6f
+
+Question:
+What is the top country (ip_country) for fraud? A. NL, B. BE, C. ES, D. FR
+
+Plan:
+Step #1: Load **payments.csv** and compute the count (or rate) of `has_fraudulent_dispute = True` grouped by `ip_country`, then compare the totals for **NL, BE, ES, FR** to identify which has the most fraud.
+
+Code:
+import pandas as pd
+
+# Load payments.csv (relative to data/ directory)
+payments_path = "data/payments.csv"
+df = pd.read_csv(payments_path)
+
+# Ensure boolean parsing is correct
+if df["has_fraudulent_dispute"].dtype != bool:
+    df["has_fraudulent_dispute"] = (
+        df["has_fraudulent_dispute"]
+        .astype(str)
+        .str.lower()
+        .map({"true": True, "false": False})
+    )
+
+# Compute fraudulent dispute counts by ip_country
+grp = df.groupby("ip_country", dropna=False).agg(
+    fraud_txns=("has_fraudulent_dispute", "sum")
+)
+
+# Identify top country by fraud count
+top_country = grp["fraud_txns"].idxmax()
+
+options = {"NL": "A", "BE": "B", "ES": "C", "FR": "D"}
+if top_country in options:
+    print(f"{options[top_country]}. {top_country}")
+else:
+    print("Not Applicable")
+
+Output:
+A. NL

@@ -32,14 +32,14 @@ class PipelineLogger:
         self._data_summaries_log = self.output_dir / "data_summaries_log"
         self._plan_log = self.output_dir / "plan_log"
         self._final_solution = self.output_dir / "final_solution"
-        self._run_metadata = self.output_dir / "run_metadata"
+        self._metadata = self.output_dir / "metadata"
 
         # Start each run with a fresh plan_log
         self._plan_log.write_text("", encoding="utf-8")
 
-        # Write run_metadata with start timestamp
+        # Write metadata with start timestamp
         self._started_at = datetime.now(timezone.utc).isoformat()
-        self._run_metadata.write_text(
+        self._metadata.write_text(
             f"run_id: {run_id}\nstarted_at: {self._started_at}\nended_at:\n",
             encoding="utf-8",
         )
@@ -83,13 +83,30 @@ class PipelineLogger:
         self._final_solution.write_text(content, encoding="utf-8")
 
     def log_run_end(self) -> None:
-        """Update run_metadata with end timestamp."""
+        """Update metadata with end timestamp."""
         ended_at = datetime.now(timezone.utc).isoformat()
-        self._run_metadata.write_text(
+        self._metadata.write_text(
             f"run_id: {self.run_id}\nstarted_at: {self._started_at}\nended_at: {ended_at}\n",
             encoding="utf-8",
         )
 
+    def log_analyzer_failure(self, data_file_name: str, error: str, code: str) -> None:
+        """Write analyzer failure (error + code) for a data file to the output directory."""
+        # Sanitize filename for the log file name (e.g. payments-readme.md -> payments-readme_md)
+        safe_name = data_file_name.replace(".", "_")
+        path = self.output_dir / f"analyzer_failure_{safe_name}.txt"
+        path.write_text(
+            f"{self._run_id_header}Data file: {data_file_name}\n\nError:\n{error}\n\nCode:\n{code}",
+            encoding="utf-8",
+        )
+
+    def log_solution_failure(self, error: str, code: str) -> None:
+        """Write solution run failure (error + code) to the output directory."""
+        path = self.output_dir / "solution_failure"
+        path.write_text(
+            f"{self._run_id_header}Error:\n{error}\n\nCode:\n{code}",
+            encoding="utf-8",
+        )
 
     def info(self, msg: str, *args, **kwargs) -> None:
         """Console logging wrapper; forwards to the standard logging logger."""

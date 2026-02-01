@@ -1,0 +1,30 @@
+run_id: 20260201-020319-0159c9cf
+
+Question:
+What is the total value of all products after applying each product's discount?
+
+Plan:
+Step #1: Load `inventory.csv` and `discounts.csv` into dataframes and join them on `product` so each row has `quantity`, `price`, and `discount_pct` together.
+
+Step #2: Convert `discount_pct` to numeric, compute `discounted_total = quantity * price * (1 - discount_pct/100)` for each product, then sum `discounted_total` across all rows to get the overall total value after discounts.
+
+Code:
+import os
+import pandas as pd
+
+DATA_DIR = "data"
+inventory_path = os.path.join(DATA_DIR, "inventory.csv")
+discounts_path = os.path.join(DATA_DIR, "discounts.csv")
+
+inventory = pd.read_csv(inventory_path)
+discounts = pd.read_csv(discounts_path)
+
+discounts["discount_pct"] = pd.to_numeric(discounts["discount_pct"], errors="coerce")
+
+df = inventory.merge(discounts, on="product", how="left")
+df["discounted_total"] = df["quantity"] * df["price"] * (1 - df["discount_pct"] / 100)
+
+print(df["discounted_total"].sum())
+
+Output:
+117.5

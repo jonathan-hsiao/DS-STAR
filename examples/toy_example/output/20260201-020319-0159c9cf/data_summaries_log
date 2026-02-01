@@ -1,0 +1,420 @@
+run_id: 20260201-020319-0159c9cf
+
+
+--- Data file #1: inventory.csv ---
+Summary:
+
+=== Structured data detected (tabular) ===
+Shape: 6 rows x 4 columns
+
+Column names:
+['product', 'category', 'quantity', 'price']
+
+Dtypes:
+product      object
+category     object
+quantity      int64
+price       float64
+dtype: object
+
+Missing values per column:
+product     0
+category    0
+quantity    0
+price       0
+dtype: int64
+
+Basic describe (numeric):
+          count       mean       std   min    25%   50%     75%   max
+quantity    6.0  12.500000  7.007139  5.00  8.500  11.0  14.250  25.0
+price       6.0   2.208333  1.417892  0.75  1.125   2.0   2.875   4.5
+
+Basic describe (non-numeric):
+         count unique    top freq
+product      6      6  apple    1
+category     6      3  fruit    3
+
+=== Content preview ===
+
+Full content (fits within limits):
+product category  quantity  price
+  apple    fruit        10   1.50
+ banana    fruit        25   0.75
+ orange    fruit        15   1.00
+  bread   bakery         8   2.50
+   milk    dairy        12   3.00
+ cheese    dairy         5   4.50
+
+Code:
+#!/usr/bin/env python3
+"""
+Single-file script to load and describe the content of `data/inventory.csv`.
+
+- Handles both structured (CSV-like) and unstructured (text-like) files.
+- Prints essential information (columns, dtypes, missingness, shape).
+- Prints the content (with safeguards: full output for small files; samples for large files).
+- No try/except blocks (per requirement).
+"""
+
+from pathlib import Path
+import csv
+import pandas as pd
+
+
+def is_mostly_one_column(sample_lines, delimiter=","):
+    """Heuristic: if parsing with csv gives 1 column for most lines, it's likely unstructured."""
+    reader = csv.reader(sample_lines, delimiter=delimiter)
+    row_lengths = [len(row) for row in reader if row]
+    if not row_lengths:
+        return True
+    one_col_ratio = sum(1 for n in row_lengths if n <= 1) / len(row_lengths)
+    return one_col_ratio >= 0.8
+
+
+def sniff_delimiter(sample_text):
+    """Try to infer delimiter using csv.Sniffer; fall back to comma."""
+    sniffer = csv.Sniffer()
+    dialect = sniffer.sniff(sample_text, delimiters=[",", ";", "\t", "|", ":"])
+    return dialect.delimiter
+
+
+def describe_structured(df: pd.DataFrame):
+    print("\n=== Structured data detected (tabular) ===")
+    print(f"Shape: {df.shape[0]} rows x {df.shape[1]} columns")
+
+    print("\nColumn names:")
+    print(list(df.columns))
+
+    print("\nDtypes:")
+    print(df.dtypes)
+
+    print("\nMissing values per column:")
+    print(df.isna().sum())
+
+    print("\nBasic describe (numeric):")
+    if df.select_dtypes(include="number").shape[1] > 0:
+        print(df.describe(include="number").transpose())
+    else:
+        print("No numeric columns detected.")
+
+    print("\nBasic describe (non-numeric):")
+    non_num = df.select_dtypes(exclude="number")
+    if non_num.shape[1] > 0:
+        print(non_num.describe(include="all").transpose())
+    else:
+        print("No non-numeric columns detected.")
+
+    # Print content: full if small, otherwise head/tail/sample
+    max_full_rows = 200
+    max_full_cols = 50
+    pd.set_option("display.max_columns", max_full_cols)
+    pd.set_option("display.width", 160)
+    pd.set_option("display.max_colwidth", 80)
+
+    print("\n=== Content preview ===")
+    if df.shape[0] <= max_full_rows and df.shape[1] <= max_full_cols:
+        print("\nFull content (fits within limits):")
+        print(df.to_string(index=False))
+    else:
+        print("\nDataset is large; printing examples only.")
+        print("\nHead (first 10 rows):")
+        print(df.head(10).to_string(index=False))
+        print("\nTail (last 10 rows):")
+        print(df.tail(10).to_string(index=False))
+
+        sample_n = min(10, df.shape[0])
+        if sample_n > 0:
+            print(f"\nRandom sample ({sample_n} rows):")
+            print(df.sample(n=sample_n, random_state=42).to_string(index=False))
+
+
+def describe_unstructured(text: str, path: Path):
+    print("\n=== Unstructured data detected (text-like) ===")
+    lines = text.splitlines()
+    print(f"File: {path}")
+    print(f"Characters: {len(text)}")
+    print(f"Lines: {len(lines)}")
+
+    non_empty = [ln for ln in lines if ln.strip()]
+    print(f"Non-empty lines: {len(non_empty)}")
+
+    # Show first/last lines and some middle samples if large
+    print("\n=== Content ===")
+    max_lines_full = 200
+    if len(lines) <= max_lines_full:
+        print(text)
+    else:
+        head_n = 50
+        tail_n = 50
+        print(f"(File has many lines; printing first {head_n} and last {tail_n} lines.)\n")
+        print("----- BEGIN: FIRST LINES -----")
+        print("\n".join(lines[:head_n]))
+        print("----- END: FIRST LINES -----\n")
+        print("----- BEGIN: LAST LINES -----")
+        print("\n".join(lines[-tail_n:]))
+        print("----- END: LAST LINES -----")
+
+
+def main():
+    data_dir = Path("data")
+    path = data_dir / "inventory.csv"
+
+    raw_bytes = path.read_bytes()
+    text = raw_bytes.decode("utf-8", errors="replace")
+
+    # Take a small sample for delimiter sniffing / structure detection
+    sample_lines = text.splitlines()[:200]
+    sample_text = "\n".join(sample_lines)
+
+    # Decide structured vs unstructured
+    delimiter = sniff_delimiter(sample_text)
+    tabular_like = not is_mostly_one_column(sample_lines, delimiter=delimiter)
+
+    if tabular_like:
+        df = pd.read_csv(path, sep=delimiter, engine="python")
+        describe_structured(df)
+    else:
+        describe_unstructured(text, path)
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #2: discounts.csv ---
+Summary:
+=== FILE ===
+/Users/jonathan/github/DS-STAR/examples/toy_example/data/discounts.csv
+
+=== BASIC STRUCTURE ===
+Rows: 6
+Columns: 2
+
+=== COLUMN NAMES ===
+['product', 'discount_pct']
+
+=== PREVIEW (first 5 rows) ===
+product discount_pct
+  apple           10
+ banana            0
+ orange            5
+  bread           15
+   milk            0
+
+=== DATA TYPES (currently loaded as strings) ===
+product         object
+discount_pct    object
+
+=== MISSING VALUES (count per column) ===
+product         0
+discount_pct    0
+
+=== DUPLICATE ROWS ===
+Duplicate rows: 0
+
+=== FORMAT HEURISTIC ===
+Likely structured: False
+
+=== BASIC DESCRIPTIVE STATS (by column; treating everything as text) ===
+             count unique    top freq
+product          6      6  apple    1
+discount_pct     6      5      0    2
+
+=== UNIQUE VALUE COUNTS (top 10 columns by cardinality) ===
+product         6
+discount_pct    5
+
+=== TOP VALUES PER COLUMN (up to 5 most frequent; limited columns) ===
+
+--- Column: product ---
+product
+apple     1
+banana    1
+orange    1
+bread     1
+milk      1
+
+--- Column: discount_pct ---
+discount_pct
+0     2
+10    1
+5     1
+15    1
+20    1
+
+=== FULL CONTENT (entire DataFrame) ===
+product discount_pct
+  apple           10
+ banana            0
+ orange            5
+  bread           15
+   milk            0
+ cheese           20
+
+Code:
+#!/usr/bin/env python3
+"""
+inspect_discounts.py
+
+Loads and describes the content of `discounts.csv` from the `data/` directory.
+- Handles both structured CSVs and "unstructured" single-column/text-like CSVs.
+- Prints essential information (shape, column names, dtypes, missingness, duplicates).
+- Prints the content (full if small; otherwise a representative sample + head/tail).
+"""
+
+from pathlib import Path
+import sys
+import pandas as pd
+
+
+def is_likely_unstructured(df: pd.DataFrame) -> bool:
+    """Heuristic: treat as unstructured if it is basically one text column."""
+    if df.shape[1] == 1:
+        col = df.columns[0]
+        s = df[col].astype(str)
+        avg_len = s.str.len().mean() if len(s) else 0
+        uniq_ratio = s.nunique(dropna=True) / max(len(s), 1)
+        return (avg_len >= 30) or (uniq_ratio >= 0.9)
+    return False
+
+
+def print_df_content(df: pd.DataFrame, max_cells_full_print: int = 20_000) -> None:
+    """
+    Print the content of the CSV.
+    If it's small enough, print entire DataFrame.
+    Otherwise, print examples (head/tail + random sample).
+    """
+    rows, cols = df.shape
+    total_cells = rows * cols
+
+    pd.set_option("display.max_columns", None)
+    pd.set_option("display.max_colwidth", 200)
+    pd.set_option("display.width", 140)
+
+    if total_cells <= max_cells_full_print:
+        pd.set_option("display.max_rows", None)
+        print("\n=== FULL CONTENT (entire DataFrame) ===")
+        print(df.to_string(index=False))
+        return
+
+    pd.set_option("display.max_rows", 50)
+    head_n = min(20, rows)
+    tail_n = min(20, rows)
+    sample_n = min(20, rows)
+
+    print("\n=== CONTENT (too large to print entirely) ===")
+    print(f"Showing head({head_n}), tail({tail_n}), and a random sample({sample_n}).")
+
+    print(f"\n--- HEAD ({head_n}) ---")
+    print(df.head(head_n).to_string(index=False))
+
+    if rows > head_n:
+        print(f"\n--- TAIL ({tail_n}) ---")
+        print(df.tail(tail_n).to_string(index=False))
+
+    print(f"\n--- RANDOM SAMPLE ({sample_n}) ---")
+    print(df.sample(n=sample_n, random_state=42).to_string(index=False))
+
+
+def resolve_input_path(filename: str = "discounts.csv") -> Path:
+    """
+    Resolve the input CSV path, assuming all files are in `data/`.
+    Tries:
+      1) ./data/<filename> (relative to current working directory)
+      2) <script_dir>/data/<filename> (relative to this script)
+    """
+    cwd_candidate = Path("data") / filename
+    if cwd_candidate.exists():
+        return cwd_candidate
+
+    script_dir = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+    script_candidate = script_dir / "data" / filename
+    if script_candidate.exists():
+        return script_candidate
+
+    raise FileNotFoundError(
+        f"Could not find '{filename}'. Tried:\n"
+        f"- {cwd_candidate.resolve()}\n"
+        f"- {script_candidate.resolve()}"
+    )
+
+
+def main() -> None:
+    try:
+        path = resolve_input_path("discounts.csv")
+    except FileNotFoundError as e:
+        print(str(e), file=sys.stderr)
+        sys.exit(1)
+
+    df = pd.read_csv(
+        path,
+        dtype=str,
+        keep_default_na=True,
+        na_values=["", "NA", "NaN", "null", "NULL"],
+    )
+
+    print("=== FILE ===")
+    print(path.resolve())
+
+    print("\n=== BASIC STRUCTURE ===")
+    print(f"Rows: {df.shape[0]}")
+    print(f"Columns: {df.shape[1]}")
+
+    print("\n=== COLUMN NAMES ===")
+    print(list(df.columns))
+
+    print("\n=== PREVIEW (first 5 rows) ===")
+    print(df.head(5).to_string(index=False))
+
+    print("\n=== DATA TYPES (currently loaded as strings) ===")
+    print(df.dtypes.to_string())
+
+    print("\n=== MISSING VALUES (count per column) ===")
+    missing = df.isna().sum().sort_values(ascending=False)
+    print(missing.to_string())
+
+    print("\n=== DUPLICATE ROWS ===")
+    print(f"Duplicate rows: {df.duplicated().sum()}")
+
+    unstructured = is_likely_unstructured(df)
+    print("\n=== FORMAT HEURISTIC ===")
+    print("Likely unstructured:" if unstructured else "Likely structured:", unstructured)
+
+    if not unstructured:
+        print("\n=== BASIC DESCRIPTIVE STATS (by column; treating everything as text) ===")
+        desc = df.describe(include="all").transpose()
+        if desc.shape[0] > 40:
+            print("Too many columns to print full describe(); showing first 20 and last 20.")
+            print("\n--- DESCRIBE (first 20 columns) ---")
+            print(desc.head(20).to_string())
+            print("\n--- DESCRIBE (last 20 columns) ---")
+            print(desc.tail(20).to_string())
+        else:
+            print(desc.to_string())
+
+        print("\n=== UNIQUE VALUE COUNTS (top 10 columns by cardinality) ===")
+        nunique = df.nunique(dropna=True).sort_values(ascending=False)
+        print(nunique.head(10).to_string())
+
+        print("\n=== TOP VALUES PER COLUMN (up to 5 most frequent; limited columns) ===")
+        cols_to_show = list(nunique.head(8).index)
+        for c in cols_to_show:
+            print(f"\n--- Column: {c} ---")
+            vc = df[c].value_counts(dropna=False).head(5)
+            print(vc.to_string())
+    else:
+        col = df.columns[0]
+        s = df[col].astype(str)
+        lengths = s.str.len()
+        print("\n=== UNSTRUCTURED TEXT SUMMARY ===")
+        print(f"Text column: {col}")
+        print("\n--- LENGTH STATS ---")
+        print(lengths.describe().to_string())
+        print("\n--- EXAMPLES (first 10 non-empty lines) ---")
+        non_empty = df[df[col].notna() & (df[col].astype(str).str.strip() != "")]
+        print(non_empty.head(10).to_string(index=False))
+
+    print_df_content(df)
+
+
+if __name__ == "__main__":
+    main()

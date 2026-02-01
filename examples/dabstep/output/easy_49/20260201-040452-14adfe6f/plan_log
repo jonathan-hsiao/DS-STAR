@@ -1,0 +1,69 @@
+run_id: 20260201-040452-14adfe6f
+
+Initial plan
+
+Plan:
+Step #1: Load **payments.csv** and compute the count (or rate) of `has_fraudulent_dispute = True` grouped by `ip_country`, then compare the totals for **NL, BE, ES, FR** to identify which has the most fraud.
+
+Code:
+import pandas as pd
+
+# Load payments.csv
+payments_path = "/Users/jonathan/github/DS-STAR/examples/dabstep/data/payments.csv"
+df = pd.read_csv(payments_path)
+
+# Ensure boolean parsing is correct (defensive in case of string booleans)
+if df["has_fraudulent_dispute"].dtype != bool:
+    df["has_fraudulent_dispute"] = df["has_fraudulent_dispute"].astype(str).str.lower().map({"true": True, "false": False})
+
+# Compute counts and rates of fraudulent disputes grouped by ip_country
+grp = df.groupby("ip_country", dropna=False).agg(
+    total_txns=("psp_reference", "size"),
+    fraud_txns=("has_fraudulent_dispute", "sum"),
+)
+grp["fraud_rate"] = grp["fraud_txns"] / grp["total_txns"]
+
+# Focus countries
+focus = ["NL", "BE", "ES", "FR"]
+focus_tbl = grp.loc[grp.index.isin(focus)].copy().sort_values(["fraud_txns", "fraud_rate"], ascending=[False, False])
+
+print("Fraud counts and rates by ip_country (focus: NL, BE, ES, FR):")
+print(focus_tbl)
+
+# Identify which has most fraud (by absolute count)
+if not focus_tbl.empty:
+    top_by_count = focus_tbl["fraud_txns"].idxmax()
+    print("\nCountry with MOST fraudulent disputes (by COUNT):", top_by_count)
+    print("Fraud txns:", int(focus_tbl.loc[top_by_count, "fraud_txns"]))
+    print("Total txns:", int(focus_tbl.loc[top_by_count, "total_txns"]))
+    print("Fraud rate:", float(focus_tbl.loc[top_by_count, "fraud_rate"]))
+
+# Also show top by rate among focus (useful comparison)
+focus_tbl_rate = grp.loc[grp.index.isin(focus)].copy().sort_values("fraud_rate", ascending=False)
+if not focus_tbl_rate.empty:
+    top_by_rate = focus_tbl_rate["fraud_rate"].idxmax()
+    print("\nCountry with HIGHEST fraud rate (by RATE):", top_by_rate)
+    print("Fraud rate:", float(focus_tbl_rate.loc[top_by_rate, "fraud_rate"]))
+    print("Fraud txns:", int(focus_tbl_rate.loc[top_by_rate, "fraud_txns"]))
+    print("Total txns:", int(focus_tbl_rate.loc[top_by_rate, "total_txns"]))
+
+Results:
+Fraud counts and rates by ip_country (focus: NL, BE, ES, FR):
+            total_txns  fraud_txns  fraud_rate
+ip_country                                    
+NL               29760        2955    0.099294
+BE               22976        2493    0.108505
+FR               14209         843    0.059329
+ES                7107         407    0.057267
+
+Country with MOST fraudulent disputes (by COUNT): NL
+Fraud txns: 2955
+Total txns: 29760
+Fraud rate: 0.09929435483870967
+
+Country with HIGHEST fraud rate (by RATE): BE
+Fraud rate: 0.10850452646239554
+Fraud txns: 2493
+Total txns: 22976
+
+

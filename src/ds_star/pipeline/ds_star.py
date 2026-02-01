@@ -58,6 +58,8 @@ class DSStar:
         self.agents = self._initialize_agents()
         # Set at start of each run_analysis(); None when no run in progress.
         self.analysis_history: Optional[AnalysisHistory] = None
+        self.logger: Optional[PipelineLogger] = None
+        self.data_summaries: Optional[list[DataSummary]] = None
 
     def _initialize_llm_provider(self) -> BaseProvider:
         if self.config.llm_provider == "gemini":
@@ -116,13 +118,18 @@ class DSStar:
                     if not data_summary.error:
                         break
                 if data_summary.error:
-                    raise ValueError(f"Failed to analyze data file: {data_file.resolve()} {data_summary.error}")
+                    self.logger.log_analyzer_failure(
+                        data_file_name=data_file.name,
+                        error=data_summary.error,
+                        code=data_summary.code,
+                    )
+                    raise ValueError(f"Failed to analyze data file: {data_file.resolve()}\n\nError:\n{data_summary.error}")
             data_summaries.append(data_summary)
 
         return data_summaries
 
     def _run_solution_code(self, code: str, data_summaries: list[DataSummary]) -> CodeRunnerResults:
-        # Uses run cwd set at start of run_analysis (thread-safe via contextvar)
+        # Run code with debug loop
         results = self.code_runner.run_code(code)
         if results.error:
             for i in range(self.config.max_debug_attempts):
@@ -135,7 +142,8 @@ class DSStar:
                 if not results.error:
                     break
             if results.error:
-                raise ValueError(f"Failed to run solution code: {code} {results.error}")
+                self.logger.log_solution_failure(error=results.error, code=results.code)
+                raise ValueError(f"Failed to run solution code\n\nError:\n{results.error}")
         return results
 
     def _remove_plan_steps(
@@ -178,24 +186,30 @@ class DSStar:
             question: str,
             data_directory: str,
             output_directory: str,
+            reuse_data_summaries: bool = True,
             guidelines: Optional[str] = None,
         ) -> tuple[str, str]:
 
         # Generate run ID, initialize logger and history tracker
         run_id = self._generate_run_id()
-        logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
+        self.logger = PipelineLogger(output_directory=output_directory, run_id=run_id)
         self.analysis_history = AnalysisHistory(
             plan_steps=[], cumulative_code=[], cumulative_results=[]
         )
 
         # Set cwd so generated code can use "data/<file>"; run_code uses this when cwd is not passed.
         self.code_runner.cwd = Path(data_directory).parent
-        logger.info("Starting run_id=%s with cwd=%s", run_id, self.code_runner.cwd)
+        self.logger.info("Starting run_id=%s with cwd=%s", run_id, self.code_runner.cwd)
 
         # Analyze the data files
-        data_summaries = self._analyze_data_files(data_directory)
-        logger.log_data_summaries(data_summaries)
-        logger.info("Created data summaries for %d file(s).", len(data_summaries))
+        if reuse_data_summaries and self.data_summaries is not None:
+            data_summaries = self.data_summaries
+            self.logger.info("Reused data summaries for %d file(s).", len(data_summaries))
+        else:
+            data_summaries = self._analyze_data_files(data_directory=data_directory)
+            self.data_summaries = data_summaries
+            self.logger.info("Created data summaries for %d file(s).", len(data_summaries))
+        self.logger.log_data_summaries(data_summaries)
 
         # Generate the initial plan
         plan = self.agents.planner.initialize_plan(question=question, data_summaries=data_summaries)
@@ -211,12 +225,12 @@ class DSStar:
         self.analysis_history.plan_steps = plan
         self.analysis_history.cumulative_code.append(code)
         self.analysis_history.cumulative_results.append(results)
-        logger.log_plan(plan=plan, code=code, results=results.output, iteration=0)
-        logger.info("Created initial plan and code with successful execution.")
+        self.logger.log_plan(plan=plan, code=code, results=results.output, iteration=0)
+        self.logger.info("Created initial plan and code with successful execution.")
 
         # Refinement loop
         for i in range(self.config.max_iterations):
-            logger.info("Starting refinement iteration %d.", i + 1)
+            self.logger.info("Starting refinement iteration %d.", i + 1)
 
             # Verify current plan, code, and results
             is_verified = self.agents.verifier.verify_plan(
@@ -226,7 +240,7 @@ class DSStar:
                 question=question,
             )
             if is_verified:
-                logger.info("Plan and code verified successfully.")
+                self.logger.info("Plan and code verified successfully.")
                 break
 
             # Route (add step or remove steps)
@@ -255,15 +269,17 @@ class DSStar:
             code = self.agents.coder.code_plan(plan=plan, data_summaries=data_summaries, base_code=code)
 
             # Execute the updated plan (with debug loop)
-            results = self._run_solution_code(code=code, data_summaries=data_summaries)
+            results = self._run_solution_code(
+                code=code, data_summaries=data_summaries
+            )
             code = results.code
 
             # Save history and log
             self.analysis_history.plan_steps = plan
             self.analysis_history.cumulative_code.append(code)
             self.analysis_history.cumulative_results.append(results)
-            logger.log_plan(plan=plan, code=code, results=results.output, iteration=i+1)
-            logger.info("Updated plan and code with successful execution (iteration %d).", i + 1)
+            self.logger.log_plan(plan=plan, code=code, results=results.output, iteration=i+1)
+            self.logger.info("Updated plan and code with successful execution (iteration %d).", i + 1)
 
         # Finalize solution code
         final_solution_code = self.agents.finalizer.finalize_solution_code(
@@ -276,19 +292,20 @@ class DSStar:
 
         # Execute the finalized code (with debug loop)
         final_solution_result = self._run_solution_code(
-            code=final_solution_code, data_summaries=data_summaries
+            code=final_solution_code,
+            data_summaries=data_summaries,
         )
         final_solution_code = final_solution_result.code
-        logger.info("Finalized solution code with successful execution.")
+        self.logger.info("Finalized solution code with successful execution.")
 
         # Log final solution
-        logger.log_final_solution(
+        self.logger.log_final_solution(
             question=question,
             plan=plan,
             code=final_solution_code,
             output=final_solution_result.output,
         )
 
-        logger.log_run_end()
-        logger.info("Completed run_id=%s.", run_id)
+        self.logger.log_run_end()
+        self.logger.info("Completed run_id=%s.", run_id)
         return final_solution_code, final_solution_result.output

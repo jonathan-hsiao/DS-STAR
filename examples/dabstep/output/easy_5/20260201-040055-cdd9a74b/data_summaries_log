@@ -1,0 +1,2842 @@
+run_id: 20260201-040055-cdd9a74b
+
+
+--- Data file #1: fees.json ---
+Summary:
+Loading JSON file: /Users/jonathan/github/DS-STAR/examples/dabstep/data/fees.json
+File size: 531118 bytes
+
+=== High-level summary ===
+list of length 1000
+Item types (first 200): {'dict': 200}
+First item summary:
+  dict with 12 keys
+  Keys preview: ['ID', 'card_scheme', 'account_type', 'capture_delay', 'monthly_fraud_level', 'monthly_volume', 'merchant_category_code', 'is_credit', 'aci', 'fixed_amount', 'rate', 'intracountry']
+  - 'ID' ->     int: 1
+  - 'card_scheme' ->     str: 'TransactPlus'
+  - 'account_type' ->     list of length 0
+    Item types (first 0): {}
+
+=== Structured data detected: list of objects (rows) ===
+Rows: 1000
+Columns (12): ['ID', 'account_type', 'aci', 'capture_delay', 'card_scheme', 'fixed_amount', 'intracountry', 'is_credit', 'merchant_category_code', 'monthly_fraud_level', 'monthly_volume', 'rate']
+
+Previewing first 5 row(s):
+
+Row 0:
+{
+  "ID": 1,
+  "card_scheme": "TransactPlus",
+  "account_type": [],
+  "capture_delay": null,
+  "monthly_fraud_level": null,
+  "monthly_volume": null,
+  "merchant_category_code": [
+    8000,
+    8011,
+    8021,
+    8031,
+    8041,
+    7299,
+    9399,
+    8742
+  ],
+  "is_credit": false,
+  "aci": [
+    "C",
+    "B"
+  ],
+  "fixed_amount": 0.1,
+  "rate": 19,
+  "intracountry": null
+}
+
+Row 1:
+{
+  "ID": 2,
+  "card_scheme": "GlobalCard",
+  "account_type": [],
+  "capture_delay": null,
+  "monthly_fraud_level": ">8.3%",
+  "monthly_volume": null,
+  "merchant_category_code": [
+    3000,
+    3001,
+    3002,
+    3003,
+    7011,
+    7032,
+    7512,
+    7513
+  ],
+  "is_credit": null,
+  "aci": [
+    "B"
+  ],
+  "fixed_amount": 0.13,
+  "rate": 86,
+  "intracountry": 0.0
+}
+
+Row 2:
+{
+  "ID": 3,
+  "card_scheme": "TransactPlus",
+  "account_type": [],
+  "capture_delay": ">5",
+  "monthly_fraud_level": null,
+  "monthly_volume": null,
+  "merchant_category_code": [
+    4111,
+    4121,
+    4131,
+    4411,
+    4511,
+    4789,
+    7513,
+    7523
+  ],
+  "is_credit": true,
+  "aci": [
+    "C",
+    "A"
+  ],
+  "fixed_amount": 0.09,
+  "rate": 16,
+  "intracountry": 0.0
+}
+
+Row 3:
+{
+  "ID": 4,
+  "card_scheme": "NexPay",
+  "account_type": [],
+  "capture_delay": null,
+  "monthly_fraud_level": null,
+  "monthly_volume": null,
+  "merchant_category_code": [
+    8062,
+    8011,
+    8021,
+    7231,
+    7298,
+    7991,
+    8049
+  ],
+  "is_credit": null,
+  "aci": [
+    "C",
+    "A"
+  ],
+  "fixed_amount": 0.11,
+  "rate": 25,
+  "intracountry": 1.0
+}
+
+Row 4:
+{
+  "ID": 5,
+  "card_scheme": "GlobalCard",
+  "account_type": [],
+  "capture_delay": "<3",
+  "monthly_fraud_level": null,
+  "monthly_volume": ">5m",
+  "merchant_category_code": [
+    5411,
+    5412,
+    5499,
+    5912,
+    5812,
+    5813,
+    5911,
+    5983
+  ],
+  "is_credit": false,
+  "aci": [],
+  "fixed_amount": 0.13,
+  "rate": 69,
+  "intracountry": null
+}
+
+=== Full JSON content (list) ===
+[
+  {
+    "ID": 1,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      8000,
+      8011,
+      8021,
+      8031,
+      8041,
+      7299,
+      9399,
+      8742
+    ],
+    "is_credit": false,
+    "aci": [
+      "C",
+      "B"
+    ],
+    "fixed_amount": 0.1,
+    "rate": 19,
+    "intracountry": null
+  },
+  {
+    "ID": 2,
+    "card_scheme": "GlobalCard",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": ">8.3%",
+    "monthly_volume": null,
+    "merchant_category_code": [
+      3000,
+      3001,
+      3002,
+      3003,
+      7011,
+      7032,
+      7512,
+      7513
+    ],
+    "is_credit": null,
+    "aci": [
+      "B"
+    ],
+    "fixed_amount": 0.13,
+    "rate": 86,
+    "intracountry": 0.0
+  },
+  {
+    "ID": 3,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": ">5",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      4111,
+      4121,
+      4131,
+      4411,
+      4511,
+      4789,
+      7513,
+      7523
+    ],
+    "is_credit": true,
+    "aci": [
+      "C",
+      "A"
+    ],
+    "fixed_amount": 0.09,
+    "rate": 16,
+    "intracountry": 0.0
+  },
+  {
+    "ID": 4,
+    "card_scheme": "NexPay",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      8062,
+      8011,
+      8021,
+      7231,
+      7298,
+      7991,
+      8049
+    ],
+    "is_credit": null,
+    "aci": [
+      "C",
+      "A"
+    ],
+    "fixed_amount": 0.11,
+    "rate": 25,
+    "intracountry": 1.0
+  },
+  {
+    "ID": 5,
+    "card_scheme": "GlobalCard",
+    "account_type": [],
+    "capture_delay": "<3",
+    "monthly_fraud_level": null,
+    "monthly_volume": ">5m",
+    "merchant_category_code": [
+      5411,
+      5412,
+      5499,
+      5912,
+      5812,
+      5813,
+      5911,
+      5983
+    ],
+    "is_credit": false,
+    "aci": [],
+    "fixed_amount": 0.13,
+    "rate": 69,
+    "intracountry": null
+  },
+  {
+    "ID": 6,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": ">5",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      5411,
+      5412,
+      5499,
+      5912,
+      5812,
+      5813,
+      5911,
+      5983
+    ],
+    "is_credit": true,
+    "aci": [
+      "B"
+    ],
+    "fixed_amount": 0.03,
+    "rate": 24,
+    "intracountry": null
+  },
+  {
+    "ID": 7,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": "manual",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      4111,
+      4121,
+      4131,
+      4411,
+      4511,
+      4789,
+      7513,
+      7523
+    ],
+    "is_credit": false,
+    "aci": [
+      "A"
+    ],
+    "fixed_amount": 0.0,
+    "rate": 71,
+    "intracountry": null
+  },
+  {
+    "ID": 8,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      8000,
+      8011,
+      8021,
+      8031,
+      8041,
+      7299,
+      9399,
+      8742
+    ],
+    "is_credit": false,
+    "aci": [
+      "A",
+      "B",
+      "C"
+    ],
+    "fixed_amount": 0.12,
+    "rate": 60,
+    "intracountry": null
+  },
+  {
+    "ID": 9,
+    "card_scheme": "NexPay",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": "<100k",
+    "merchant_category_code": [
+      8000,
+      8011,
+      8021,
+      8031,
+      8041,
+      7299,
+      9399,
+      8742
+    ],
+    "is_credit": false,
+    "aci": [],
+    "fixed_amount": 0.05,
+    "rate": 23,
+    "intracountry": 1.0
+  },
+  {
+    "ID": 10,
+    "card_scheme": "GlobalCard",
+    "account_type": [],
+    "capture_delay": "immediate",
+    "monthly_fraud_level": null,
+    "monthly_volume": ">5m",
+    "merchant_category_code": [
+      5814,
+      5815,
+      5816,
+      7832,
+      7922,
+      7995,
+      7999,
+      5813
+    ],
+    "is_credit": null,
+    "aci": [
+      "B"
+    ],
+    "fixed_amount": 0.12,
+    "rate": 59,
+    "intracountry": 0.0
+  },
+  {
+    "ID": 11,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      8000,
+      8011,
+      8021,
+      8031,
+      8041,
+      7299,
+      9399,
+      8742
+    ],
+    "is_credit": true,
+    "aci": [
+      "C",
+      "A"
+    ],
+    "fixed_amount": 0.0,
+    "rate": 54,
+    "intracountry": null
+  },
+  {
+    "ID": 12,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      5411,
+      5412,
+      5499,
+      5912,
+      5812,
+      5813,
+      5911,
+      5983
+    ],
+    "is_credit": null,
+    "aci": [
+      "C",
+      "B"
+    ],
+    "fixed_amount": 0.01,
+    "rate": 40,
+    "intracountry": null
+  },
+  {
+    "ID": 13,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": "immediate",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      3000,
+      3001,
+      3002,
+      3003,
+      7011,
+      7032,
+      7512,
+      7513
+    ],
+    "is_credit": true,
+    "aci": [
+      "C"
+    ],
+    "fixed_amount": 0.06,
+    "rate": 74,
+    "intracountry": null
+  },
+  {
+    "ID": 14,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": ">5",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      5814,
+      5815,
+      5816,
+      7832,
+      7922,
+      7995,
+      7999,
+      5813
+    ],
+    "is_credit": false,
+    "aci": [
+      "C",
+      "B"
+    ],
+    "fixed_amount": 0.03,
+    "rate": 78,
+    "intracountry": null
+  },
+  {
+    "ID": 15,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": "manual",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      4111,
+      4121,
+      4131,
+      4411,
+      4511,
+      4789,
+      7513,
+      7523
+    ],
+    "is_credit": true,
+    "aci": [
+      "A",
+      "B",
+      "C"
+    ],
+    "fixed_amount": 0.12,
+    "rate": 65,
+    "intracountry": 1.0
+  },
+  {
+    "ID": 16,
+    "card_scheme": "SwiftCharge",
+    "account_type": [
+      "H"
+    ],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [],
+    "is_credit": false,
+    "aci": [
+      "B"
+    ],
+    "fixed_amount": 0.06,
+    "rate": 81,
+    "intracountry": null
+  },
+  {
+    "ID": 17,
+    "card_scheme": "SwiftCharge",
+    "account_type": [],
+    "capture_delay": ">5",
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [],
+    "is_credit": true,
+    "aci": [
+      "A"
+    ],
+    "fixed_amount": 0.09,
+    "rate": 60,
+    "intracountry": null
+  },
+  {
+    "ID": 18,
+    "card_scheme": "GlobalCard",
+    "account_type": [],
+    "capture_delay": null,
+    "monthly_fraud_level": null,
+    "monthly_volume": null,
+    "merchant_category_code": [
+      8062,
+      8011,
+      8021,
+      7231,
+      7298,
+      7991,
+      8049
+    ],
+    "is_credit": false,
+    "aci": [
+      "C",
+      "A"
+    ],
+    "fixed_amount": 0.01,
+    "rate": 14,
+    "intracountry": null
+  },
+  {
+    "ID": 19,
+    "card_scheme": "TransactPlus",
+    "account_type": [],
+    "capture_delay": "immediate",
+    "monthly_fraud_level": null,
+    "monthly_volume": "100k-1m",
+    "merchant_category_code": [
+      5411,
+      5412,
+      5499,
+      5912,
+      5812,
+      5813,
+      5911,
+      5983
+    ],
+    "is_credit": false,
+    "aci": [
+      "E"
+    ],
+    "fixed_amount": 0.06,
+    "rate": 32,
+    "intracountry": 1.0
+  },
+  {
+    "ID": 20,
+    "card_scheme": "TransactPlus",
+  
+
+...(truncated: printed 8000 of 421062 chars)
+
+Code:
+#!/usr/bin/env python3
+"""
+Load and describe the content of fees.json.
+
+- Works with both structured (list of dicts / dict of records) and unstructured JSON.
+- Prints essential information (types, keys/columns, sizes).
+- Prints the content of fees.json (either fully if small, or a readable truncated preview if large).
+- No try/except by request.
+
+Notes:
+- All files/documents are in the `data/` directory (relative to the current working directory).
+- You may pass an optional path argument; if it's relative and not found, it will be
+  resolved relative to the current working directory and then to `data/`.
+"""
+
+import json
+import os
+import sys
+from collections.abc import Mapping, Sequence
+
+PREVIEW_ITEMS = 5
+PREVIEW_CHARS = 8000
+MAX_FULL_PRINT_CHARS = 20000
+
+
+def is_primitive(x):
+    return x is None or isinstance(x, (str, int, float, bool))
+
+
+def summarize_value(x, depth=0, max_depth=2):
+    indent = "  " * depth
+    t = type(x).__name__
+
+    if is_primitive(x):
+        s = repr(x)
+        if len(s) > 200:
+            s = s[:200] + "...(truncated)"
+        return f"{indent}{t}: {s}"
+
+    if depth >= max_depth:
+        if isinstance(x, Mapping):
+            return f"{indent}{t} with {len(x)} keys (max depth reached)"
+        if isinstance(x, Sequence) and not isinstance(x, (str, bytes, bytearray)):
+            return f"{indent}{t} of length {len(x)} (max depth reached)"
+        return f"{indent}{t}"
+
+    if isinstance(x, Mapping):
+        keys = list(x.keys())
+        keys_preview = keys[:20]
+        lines = [f"{indent}{t} with {len(keys)} keys"]
+        lines.append(f"{indent}Keys preview: {keys_preview}" + ("" if len(keys) <= 20 else " ..."))
+        for k in keys_preview[:3]:
+            lines.append(f"{indent}- {repr(k)} -> {summarize_value(x[k], depth + 1, max_depth)}")
+        return "\n".join(lines)
+
+    if isinstance(x, Sequence) and not isinstance(x, (str, bytes, bytearray)):
+        lines = [f"{indent}{t} of length {len(x)}"]
+        sample = list(x[: min(len(x), 200)])
+        type_counts = {}
+        for item in sample:
+            type_counts[type(item).__name__] = type_counts.get(type(item).__name__, 0) + 1
+        lines.append(f"{indent}Item types (first {len(sample)}): {type_counts}")
+        if len(x) > 0:
+            lines.append(f"{indent}First item summary:\n{summarize_value(x[0], depth + 1, max_depth)}")
+        return "\n".join(lines)
+
+    return f"{indent}{t}"
+
+
+def infer_columns_from_list_of_dicts(rows):
+    cols = set()
+    for r in rows:
+        if isinstance(r, Mapping):
+            cols.update(r.keys())
+    return sorted(cols, key=lambda x: str(x))
+
+
+def print_structured_table_preview(rows, cols):
+    print("\n=== Structured data detected: list of objects (rows) ===")
+    print(f"Rows: {len(rows)}")
+    print(f"Columns ({len(cols)}): {cols}")
+
+    preview_n = min(PREVIEW_ITEMS, len(rows))
+    print(f"\nPreviewing first {preview_n} row(s):")
+    for i in range(preview_n):
+        r = rows[i]
+        if not isinstance(r, Mapping):
+            print(f"\nRow {i}: (non-dict) {summarize_value(r)}")
+            continue
+        txt = json.dumps(r, ensure_ascii=False, indent=2)
+        if len(txt) > 2000:
+            txt = txt[:2000] + "\n...(truncated)"
+        print(f"\nRow {i}:\n{txt}")
+
+
+def print_structured_dict_of_records_preview(obj):
+    print("\n=== Structured data detected: dict (record container) ===")
+    keys = list(obj.keys())
+    print(f"Top-level keys: {len(keys)}")
+    print(f"Keys preview: {keys[:20]}" + ("" if len(keys) <= 20 else " ..."))
+
+    sample_keys = keys[: min(len(keys), 200)]
+    dict_value_count = sum(1 for k in sample_keys if isinstance(obj[k], Mapping))
+    seq_value_count = sum(
+        1
+        for k in sample_keys
+        if isinstance(obj[k], Sequence) and not isinstance(obj[k], (str, bytes, bytearray))
+    )
+
+    print(
+        f"Value-type scan (first {len(sample_keys)} keys): "
+        f"dict-like={dict_value_count}, sequence-like={seq_value_count}"
+    )
+
+    if dict_value_count >= max(1, int(0.6 * len(sample_keys))):
+        rows = [obj[k] for k in sample_keys if isinstance(obj[k], Mapping)]
+        cols = infer_columns_from_list_of_dicts(rows)
+        print(f"\nInferred columns from dict values ({len(cols)}): {cols}")
+        preview_n = min(PREVIEW_ITEMS, len(keys))
+        print(f"\nPreviewing first {preview_n} record(s) (as key -> value):")
+        for i, k in enumerate(keys[:preview_n]):
+            v = obj[k]
+            txt = json.dumps(v, ensure_ascii=False, indent=2) if isinstance(v, (Mapping, list)) else repr(v)
+            if len(txt) > 2000:
+                txt = txt[:2000] + "\n...(truncated)"
+            print(f"\nRecord {i} key={repr(k)}:\n{txt}")
+    else:
+        print("\nTop-level dict does not look like a uniform record set. Showing summary:")
+        print(summarize_value(obj, max_depth=3))
+
+
+def print_full_or_truncated_json(obj, label="Content"):
+    txt = json.dumps(obj, ensure_ascii=False, indent=2)
+    print(f"\n=== {label} ===")
+    if len(txt) <= MAX_FULL_PRINT_CHARS:
+        print(txt)
+    else:
+        print(txt[:PREVIEW_CHARS])
+        print(f"\n...(truncated: printed {min(PREVIEW_CHARS, len(txt))} of {len(txt)} chars)")
+
+
+def resolve_input_path(arg_path: str | None) -> str:
+    """
+    Resolution order (no try/except; we just return the best candidate path):
+    1) If arg_path is None: default to `data/fees.json` relative to CWD.
+    2) If arg_path is absolute: use as-is.
+    3) If arg_path is relative:
+       - use as-is if it exists from CWD
+       - else try `data/<arg_path>` from CWD
+    """
+    cwd = os.getcwd()
+
+    if arg_path is None:
+        return os.path.join(cwd, "data", "fees.json")
+
+    if os.path.isabs(arg_path):
+        return arg_path
+
+    if os.path.exists(arg_path):
+        return arg_path
+
+    return os.path.join(cwd, "data", arg_path)
+
+
+def main():
+    arg = sys.argv[1] if len(sys.argv) > 1 else None
+    path = resolve_input_path(arg)
+
+    print(f"Loading JSON file: {path}")
+    size = os.path.getsize(path)
+    print(f"File size: {size} bytes")
+
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    print("\n=== High-level summary ===")
+    print(summarize_value(data, max_depth=3))
+
+    if isinstance(data, list):
+        if len(data) > 0 and all(isinstance(x, Mapping) for x in data[: min(len(data), 50)]):
+            cols = infer_columns_from_list_of_dicts(data)
+            print_structured_table_preview(data, cols)
+            print_full_or_truncated_json(data, label="Full JSON content (list)")
+        else:
+            print("\n=== Unstructured list ===")
+            print(f"Length: {len(data)}")
+            if len(json.dumps(data, ensure_ascii=False)) <= MAX_FULL_PRINT_CHARS:
+                print_full_or_truncated_json(data, label="Full JSON content (list)")
+            else:
+                print(f"\nPreviewing first {min(PREVIEW_ITEMS, len(data))} item(s):")
+                for i, item in enumerate(data[: min(PREVIEW_ITEMS, len(data))]):
+                    txt = json.dumps(item, ensure_ascii=False, indent=2) if not is_primitive(item) else repr(item)
+                    if len(txt) > 2000:
+                        txt = txt[:2000] + "\n...(truncated)"
+                    print(f"\nItem {i}:\n{txt}")
+                print_full_or_truncated_json(data, label="JSON content (truncated preview)")
+    elif isinstance(data, dict):
+        print_structured_dict_of_records_preview(data)
+        print_full_or_truncated_json(data, label="Full JSON content (dict)")
+    else:
+        print("\n=== Primitive / scalar JSON ===")
+        print(repr(data))
+        print("\n=== Full JSON content ===")
+        print(json.dumps(data, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #2: merchant_data.json ---
+Summary:
+Reading: /Users/jonathan/github/DS-STAR/examples/dabstep/data/merchant_data.json
+
+=== Raw JSON Content (pretty-printed) ===
+[
+  {
+    "merchant": "Crossfit_Hanna",
+    "capture_delay": "manual",
+    "acquirer": [
+      "gringotts",
+      "the_savings_and_loan_bank",
+      "bank_of_springfield",
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Martinis_Fine_Steakhouse",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "dagoberts_geldpakhuis",
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Belles_cookbook_store",
+    "capture_delay": "1",
+    "acquirer": [
+      "lehman_brothers"
+    ],
+    "merchant_category_code": 5942,
+    "account_type": "R"
+  },
+  {
+    "merchant": "Golfclub_Baron_Friso",
+    "capture_delay": "2",
+    "acquirer": [
+      "medici"
+    ],
+    "merchant_category_code": 7993,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Rafa_AI",
+    "capture_delay": "7",
+    "acquirer": [
+      "tellsons_bank"
+    ],
+    "merchant_category_code": 7372,
+    "account_type": "D"
+  },
+  {
+    "merchant": "Eggnest",
+    "capture_delay": "manual",
+    "acquirer": [
+      "the_savings_and_loan_bank",
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 5814,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Gym_Pro",
+    "capture_delay": "1",
+    "acquirer": [
+      "gringotts",
+      "medici"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Gourmet_Bites",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Book_Haven",
+    "capture_delay": "manual",
+    "acquirer": [
+      "the_savings_and_loan_bank",
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 5942,
+    "account_type": "R"
+  },
+  {
+    "merchant": "City_Golf_Club",
+    "capture_delay": "7",
+    "acquirer": [
+      "medici",
+      "tellsons_bank"
+    ],
+    "merchant_category_code": 7993,
+    "account_type": "F"
+  },
+  {
+    "merchant": "SmartAI_Hub",
+    "capture_delay": "2",
+    "acquirer": [
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 7372,
+    "account_type": "D"
+  },
+  {
+    "merchant": "Sunny_Side_Cafe",
+    "capture_delay": "1",
+    "acquirer": [
+      "lehman_brothers",
+      "gringotts"
+    ],
+    "merchant_category_code": 5814,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Pilates_Place",
+    "capture_delay": "manual",
+    "acquirer": [
+      "dagoberts_geldpakhuis"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "The_Steakhouse",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "the_savings_and_loan_bank",
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Tech_Trainers",
+    "capture_delay": "7",
+    "acquirer": [
+      "medici",
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 8299,
+    "account_type": "S"
+  },
+  {
+    "merchant": "Yoga_Masters",
+    "capture_delay": "2",
+    "acquirer": [
+      "gringotts"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Urban_Eats",
+    "capture_delay": "manual",
+    "acquirer": [
+      "tellsons_bank",
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Read_and_Co",
+    "capture_delay": "1",
+    "acquirer": [
+      "dagoberts_geldpakhuis"
+    ],
+    "merchant_category_code": 5942,
+    "account_type": "R"
+  },
+  {
+    "merchant": "Luxury_Tee_Times",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "gringotts",
+      "medici"
+    ],
+    "merchant_category_code": 7993,
+    "account_type": "F"
+  },
+  {
+    "merchant": "InnovateX",
+    "capture_delay": "7",
+    "acquirer": [
+      "bank_of_springfield"
+    ],
+    "merchant_category_code": 7372,
+    "account_type": "D"
+  },
+  {
+    "merchant": "Sunny_Nest",
+    "capture_delay": "manual",
+    "acquirer": [
+      "lehman_brothers",
+      "gringotts"
+    ],
+    "merchant_category_code": 5814,
+    "account_type": "H"
+  },
+  {
+    "merchant": "FitHub",
+    "capture_delay": "1",
+    "acquirer": [
+      "dagoberts_geldpakhuis",
+      "medici"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Culinary_Creations",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "bank_of_springfield",
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Bookworm_Central",
+    "capture_delay": "7",
+    "acquirer": [
+      "gringotts",
+      "the_savings_and_loan_bank"
+    ],
+    "merchant_category_code": 5942,
+    "account_type": "R"
+  },
+  {
+    "merchant": "Green_Fairways",
+    "capture_delay": "manual",
+    "acquirer": [
+      "tellsons_bank"
+    ],
+    "merchant_category_code": 7993,
+    "account_type": "F"
+  },
+  {
+    "merchant": "AI_Pro_Labs",
+    "capture_delay": "2",
+    "acquirer": [
+      "dagoberts_geldpakhuis",
+      "gringotts"
+    ],
+    "merchant_category_code": 7372,
+    "account_type": "S"
+  },
+  {
+    "merchant": "Brunch_Bliss",
+    "capture_delay": "1",
+    "acquirer": [
+      "lehman_brothers"
+    ],
+    "merchant_category_code": 5814,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Muscle_House",
+    "capture_delay": "immediate",
+    "acquirer": [
+      "medici",
+      "the_savings_and_loan_bank"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "F"
+  },
+  {
+    "merchant": "Crafty_Cuisine",
+    "capture_delay": "7",
+    "acquirer": [
+      "tellsons_bank"
+    ],
+    "merchant_category_code": 5812,
+    "account_type": "H"
+  },
+  {
+    "merchant": "Cafe_Centrale",
+    "capture_delay": "manual",
+    "acquirer": [
+      "dagoberts_vault"
+    ],
+    "merchant_category_code": 7997,
+    "account_type": "H"
+  }
+]
+
+=== Structured Data Summary ===
+Records: 30
+Columns (5):
+  account_type, acquirer, capture_delay, merchant, merchant_category_code
+
+Column statistics (non-null count, types, sample values):
+- account_type: non-null 30/30 | types: str:30 | sample values: ['F', 'H', 'R', 'D', 'S']
+- acquirer: non-null 30/30 | types: array:30
+- capture_delay: non-null 30/30 | types: str:30 | sample values: ['manual', 'immediate', '1', '2', '7']
+- merchant: non-null 30/30 | types: str:30 | sample values: ['Crossfit_Hanna', 'Martinis_Fine_Steakhouse', 'Belles_cookbook_store', 'Golfclub_Baron_Friso', 'Rafa_AI', 'Eggnest', 'Gym_Pro', 'Gourmet_Bites', 'Book_Haven', 'City_Golf_Club']
+- merchant_category_code: non-null 30/30 | types: int:30 | sample values: [7997, 5812, 5942, 7993, 7372, 5814, 8299]
+
+Example records (showing up to 5):
+
+--- Record 1 ---
+{
+  "merchant": "Crossfit_Hanna",
+  "capture_delay": "manual",
+  "acquirer": [
+    "gringotts",
+    "the_savings_and_loan_bank",
+    "bank_of_springfield",
+    "dagoberts_vault"
+  ],
+  "merchant_category_code": 7997,
+  "account_type": "F"
+}
+
+--- Record 2 ---
+{
+  "merchant": "Martinis_Fine_Steakhouse",
+  "capture_delay": "immediate",
+  "acquirer": [
+    "dagoberts_geldpakhuis",
+    "bank_of_springfield"
+  ],
+  "merchant_category_code": 5812,
+  "account_type": "H"
+}
+
+--- Record 3 ---
+{
+  "merchant": "Belles_cookbook_store",
+  "capture_delay": "1",
+  "acquirer": [
+    "lehman_brothers"
+  ],
+  "merchant_category_code": 5942,
+  "account_type": "R"
+}
+
+--- Record 4 ---
+{
+  "merchant": "Golfclub_Baron_Friso",
+  "capture_delay": "2",
+  "acquirer": [
+    "medici"
+  ],
+  "merchant_category_code": 7993,
+  "account_type": "F"
+}
+
+--- Record 5 ---
+{
+  "merchant": "Rafa_AI",
+  "capture_delay": "7",
+  "acquirer": [
+    "tellsons_bank"
+  ],
+  "merchant_category_code": 7372,
+  "account_type": "D"
+}
+
+Code:
+#!/usr/bin/env python3
+"""
+Single-file program to load, print, and describe data/merchant_data.json.
+
+- Handles both structured (list/dict of records) and unstructured JSON.
+- Prints the content (pretty-printed) and essential summary information.
+- If there are many records/keys, prints only a few examples.
+- No try/except blocks.
+"""
+
+import json
+import os
+from collections.abc import Mapping, Sequence
+
+DATA_DIR = "data"
+FILE_NAME = "merchant_data.json"
+FILE_PATH = os.path.join(DATA_DIR, FILE_NAME)
+
+MAX_PRINT_CHARS = 20000      # limit for raw pretty print to avoid huge console output
+MAX_EXAMPLE_ITEMS = 5        # examples of records/items to show
+MAX_KEYS_PREVIEW = 80        # keys to show in key lists
+MAX_UNIQUE_PREVIEW = 10      # sample unique values per column
+
+
+def is_primitive(x):
+    return x is None or isinstance(x, (str, int, float, bool))
+
+
+def pretty_json(obj):
+    return json.dumps(obj, ensure_ascii=False, indent=2, sort_keys=False)
+
+
+def truncate_text(s, max_chars=MAX_PRINT_CHARS):
+    if len(s) <= max_chars:
+        return s
+    return s[:max_chars] + f"\n... [TRUNCATED: showing first {max_chars} chars out of {len(s)}]"
+
+
+def get_shape(obj):
+    if isinstance(obj, Mapping):
+        return {"type": "object", "num_keys": len(obj)}
+    if isinstance(obj, Sequence) and not isinstance(obj, (str, bytes, bytearray)):
+        return {"type": "array", "length": len(obj)}
+    return {"type": type(obj).__name__}
+
+
+def iter_records(data):
+    """
+    Return (records, mode) where mode indicates how to interpret:
+    - "list_of_dicts": data is list[dict]
+    - "dict_of_records": data is dict[str->dict] or dict[int->dict]
+    - "single_dict": data is dict but not a record-collection
+    - "other": not tabular
+    """
+    if isinstance(data, list) and all(isinstance(x, Mapping) for x in data):
+        return data, "list_of_dicts"
+    if isinstance(data, Mapping):
+        values = list(data.values())
+        if values and all(isinstance(v, Mapping) for v in values):
+            return values, "dict_of_records"
+        return None, "single_dict"
+    return None, "other"
+
+
+def union_columns(records):
+    cols = set()
+    for r in records:
+        cols.update(r.keys())
+    return sorted(cols)
+
+
+def infer_type(value):
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "bool"
+    if isinstance(value, int) and not isinstance(value, bool):
+        return "int"
+    if isinstance(value, float):
+        return "float"
+    if isinstance(value, str):
+        return "str"
+    if isinstance(value, Mapping):
+        return "object"
+    if isinstance(value, list):
+        return "array"
+    return type(value).__name__
+
+
+def summarize_records(records):
+    n = len(records)
+    cols = union_columns(records)
+    print("\n=== Structured Data Summary ===")
+    print(f"Records: {n}")
+    print(f"Columns ({len(cols)}):")
+    if len(cols) <= MAX_KEYS_PREVIEW:
+        print("  " + ", ".join(cols))
+    else:
+        print("  " + ", ".join(cols[:MAX_KEYS_PREVIEW]) + f", ... (+{len(cols)-MAX_KEYS_PREVIEW} more)")
+
+    print("\nColumn statistics (non-null count, types, sample values):")
+    for col in cols:
+        non_null = 0
+        types = {}
+        uniques = []
+        seen = set()
+        for r in records:
+            v = r.get(col, None)
+            if v is None:
+                continue
+            non_null += 1
+            t = infer_type(v)
+            types[t] = types.get(t, 0) + 1
+
+            if is_primitive(v):
+                key = (t, v)
+                if key not in seen and len(uniques) < MAX_UNIQUE_PREVIEW:
+                    seen.add(key)
+                    uniques.append(v)
+
+        type_desc = ", ".join(f"{k}:{v}" for k, v in sorted(types.items(), key=lambda x: (-x[1], x[0])))
+        if not type_desc:
+            type_desc = "all null/missing"
+
+        sample_desc = f" | sample values: {uniques}" if uniques else ""
+        print(f"- {col}: non-null {non_null}/{n} | types: {type_desc}{sample_desc}")
+
+    print(f"\nExample records (showing up to {MAX_EXAMPLE_ITEMS}):")
+    for i, r in enumerate(records[:MAX_EXAMPLE_ITEMS], start=1):
+        print(f"\n--- Record {i} ---")
+        print(truncate_text(pretty_json(r), max_chars=4000))
+
+
+def describe_unstructured(data):
+    print("\n=== Unstructured/Non-tabular Summary ===")
+    shape = get_shape(data)
+    print("Top-level:", shape)
+
+    if isinstance(data, Mapping):
+        keys = list(data.keys())
+        print(f"Top-level keys ({len(keys)}):")
+        if len(keys) <= MAX_KEYS_PREVIEW:
+            print("  " + ", ".join(map(str, keys)))
+        else:
+            print("  " + ", ".join(map(str, keys[:MAX_KEYS_PREVIEW])) + f", ... (+{len(keys)-MAX_KEYS_PREVIEW} more)")
+
+        print("\nKey -> type preview (up to first 30 keys):")
+        for k in keys[:30]:
+            v = data[k]
+            print(f"- {k}: {infer_type(v)}")
+            if isinstance(v, (Mapping, list)):
+                subshape = get_shape(v)
+                print(f"    shape: {subshape}")
+
+        print("\nExample content (first few key-value pairs):")
+        preview = {k: data[k] for k in keys[:min(len(keys), MAX_EXAMPLE_ITEMS)]}
+        print(truncate_text(pretty_json(preview), max_chars=4000))
+
+    elif isinstance(data, list):
+        print(f"List length: {len(data)}")
+        print(f"\nExample list items (showing up to {MAX_EXAMPLE_ITEMS}):")
+        for i, item in enumerate(data[:MAX_EXAMPLE_ITEMS], start=1):
+            print(f"\n--- Item {i} ({infer_type(item)}) ---")
+            text = pretty_json(item) if isinstance(item, (Mapping, list)) else repr(item)
+            print(truncate_text(text, max_chars=4000))
+
+        if data and all(is_primitive(x) for x in data):
+            counts = {}
+            for x in data:
+                counts[x] = counts.get(x, 0) + 1
+            top = sorted(counts.items(), key=lambda kv: (-kv[1], str(kv[0])))[:20]
+            print("\nTop value counts (up to 20):")
+            for val, cnt in top:
+                print(f"- {val!r}: {cnt}")
+    else:
+        print("Value:", repr(data))
+
+
+def main():
+    abs_path = os.path.abspath(FILE_PATH)
+    print(f"Reading: {abs_path}")
+    assert os.path.exists(FILE_PATH), f"File not found: {abs_path}"
+
+    with open(FILE_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    print("\n=== Raw JSON Content (pretty-printed) ===")
+    raw = pretty_json(data)
+    print(truncate_text(raw, max_chars=MAX_PRINT_CHARS))
+
+    records, mode = iter_records(data)
+    if mode in ("list_of_dicts", "dict_of_records") and records is not None:
+        summarize_records(records)
+    else:
+        describe_unstructured(data)
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #3: merchant_category_codes.csv ---
+Summary:
+
+Code:
+#!/usr/bin/env python3
+"""
+Inspect and describe merchant_category_codes.csv.
+
+- Works for structured CSV (rows/columns) or "unstructured" text-like CSV.
+- Prints: file path, size, encoding guess, delimiter guess, column names (if any),
+  row/column counts, missingness summary, sample rows, and basic per-column stats.
+- Prints the content in a safe way:
+  - If structured and large: prints a few example rows (head/tail) plus random sample.
+  - If unstructured / single-column: prints a text preview and a few parsed lines.
+"""
+
+from pathlib import Path
+import os
+import csv
+import io
+import sys
+import re
+import pandas as pd
+
+
+CSV_PATH = Path("merchant_category_codes.csv")
+
+# Tuning parameters
+MAX_FULL_PRINT_CELLS = 2000          # if dataframe has <= this many cells, print all rows
+HEAD_ROWS = 10
+TAIL_ROWS = 5
+RANDOM_SAMPLE_ROWS = 10
+TEXT_PREVIEW_CHARS = 8000            # for unstructured-like content preview
+MAX_LINES_PREVIEW = 50               # show first N raw lines when unstructured
+MAX_UNIQUE_SHOW = 20                 # show up to N uniques for low-cardinality columns
+
+
+def guess_encoding(raw: bytes) -> str:
+    # Simple heuristic: try UTF-8 variants first, then latin-1.
+    # No try/except per requirement; so use deterministic checks.
+    # We'll check for UTF-8 BOM, else assume UTF-8.
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return "utf-8-sig"
+    return "utf-8"
+
+
+def guess_delimiter(sample_text: str) -> str:
+    # Use csv.Sniffer on a small sample; fallback to comma if ambiguous.
+    sniffer = csv.Sniffer()
+    dialect = sniffer.sniff(sample_text, delimiters=[",", ";", "\t", "|", ":"])
+    return dialect.delimiter
+
+
+def is_probably_unstructured(df: pd.DataFrame) -> bool:
+    # Heuristic: single column with very long strings, or no header inferred.
+    if df.shape[1] == 1:
+        s = df.iloc[:, 0].astype(str)
+        long_frac = (s.str.len() > 200).mean() if len(s) else 0.0
+        return long_frac > 0.2
+    return False
+
+
+def print_section(title: str):
+    print("\n" + "=" * len(title))
+    print(title)
+    print("=" * len(title))
+
+
+def main():
+    if not CSV_PATH.exists():
+        print(f"File not found: {CSV_PATH.resolve()}")
+        print("Place merchant_category_codes.csv in the current working directory or adjust CSV_PATH.")
+        sys.exit(1)
+
+    file_size = CSV_PATH.stat().st_size
+    abs_path = CSV_PATH.resolve()
+
+    print_section("FILE INFO")
+    print(f"Path: {abs_path}")
+    print(f"Size: {file_size:,} bytes")
+    print(f"CWD:  {Path.cwd()}")
+
+    raw = CSV_PATH.read_bytes()
+    encoding = guess_encoding(raw)
+    text = raw.decode(encoding, errors="replace")
+
+    print(f"Encoding (heuristic): {encoding}")
+
+    # Prepare a sniffer sample (first ~64KB or full file)
+    sample_text = text[:65536]
+    delimiter = guess_delimiter(sample_text)
+    print(f"Delimiter (sniffed): {repr(delimiter)}")
+
+    # Peek at raw first lines
+    print_section("RAW TEXT PREVIEW (first lines)")
+    raw_lines = text.splitlines()
+    for i, line in enumerate(raw_lines[:MAX_LINES_PREVIEW], start=1):
+        print(f"{i:>4}: {line}")
+    if len(raw_lines) > MAX_LINES_PREVIEW:
+        print(f"... ({len(raw_lines) - MAX_LINES_PREVIEW} more lines)")
+
+    # Read into DataFrame
+    # Use engine='python' for robust delimiter handling; keep_default_na to standardize NA parsing.
+    df = pd.read_csv(
+        CSV_PATH,
+        sep=delimiter,
+        engine="python",
+        encoding=encoding,
+        dtype="string",
+        keep_default_na=True,
+        na_values=["", "NA", "N/A", "null", "NULL", "None", "none"]
+    )
+
+    print_section("STRUCTURED VIEW (pandas)")
+    print(f"Shape: {df.shape[0]:,} rows x {df.shape[1]:,} columns")
+    print("Column names:")
+    for idx, col in enumerate(df.columns, start=1):
+        print(f"  {idx:>2}. {col}")
+
+    # Basic missingness
+    print_section("MISSINGNESS SUMMARY")
+    missing = df.isna().sum().sort_values(ascending=False)
+    missing_pct = (missing / max(len(df), 1) * 100).round(2)
+    miss_df = pd.DataFrame({"missing_count": missing, "missing_pct": missing_pct})
+    # Show all columns; it's typically essential info.
+    print(miss_df.to_string())
+
+    # Unstructured heuristics
+    unstructured = is_probably_unstructured(df)
+
+    # Print content
+    print_section("CONTENT")
+    total_cells = df.shape[0] * df.shape[1]
+    if unstructured:
+        print("Detected as likely unstructured / text-like (single column with long strings).")
+        col = df.columns[0]
+        print(f"Column: {col}")
+        joined_preview = "\n".join(df[col].astype(str).head(MAX_LINES_PREVIEW).tolist())
+        print("\nPreview (first entries):")
+        print(joined_preview[:TEXT_PREVIEW_CHARS])
+        if len(joined_preview) > TEXT_PREVIEW_CHARS:
+            print(f"... (preview truncated to {TEXT_PREVIEW_CHARS} chars)")
+    else:
+        if total_cells <= MAX_FULL_PRINT_CELLS and len(df) <= 2000:
+            print("Printing full table (small dataset).")
+            print(df.to_string(index=False))
+        else:
+            print(f"Dataset is large (cells: {total_cells:,}); printing examples only.")
+            print("\n-- Head --")
+            print(df.head(HEAD_ROWS).to_string(index=False))
+            print("\n-- Tail --")
+            print(df.tail(TAIL_ROWS).to_string(index=False))
+            if len(df) >= RANDOM_SAMPLE_ROWS:
+                print("\n-- Random sample --")
+                print(df.sample(RANDOM_SAMPLE_ROWS, random_state=42).to_string(index=False))
+
+    # Per-column quick stats
+    print_section("COLUMN PROFILE (quick stats)")
+    for col in df.columns:
+        s = df[col]
+        non_null = s.dropna()
+        print(f"\n[{col}]")
+        print(f"  dtype: {s.dtype}")
+        print(f"  non-null: {len(non_null):,} / {len(s):,}")
+        if len(non_null) == 0:
+            continue
+
+        # Try numeric conversion for stats
+        numeric = pd.to_numeric(non_null, errors="coerce")
+        numeric_nonnull = numeric.dropna()
+        if len(numeric_nonnull) >= max(3, int(0.5 * len(non_null))):
+            desc = numeric_nonnull.describe(percentiles=[0.25, 0.5, 0.75])
+            print("  numeric-like stats:")
+            print(desc.to_string())
+        else:
+            # Categorical/text summary
+            nunique = non_null.nunique(dropna=True)
+            print(f"  unique: {nunique:,}")
+            if nunique <= MAX_UNIQUE_SHOW:
+                uniques = non_null.unique().tolist()
+                print("  values:")
+                for v in uniques:
+                    v_str = str(v)
+                    v_str = re.sub(r"\s+", " ", v_str).strip()
+                    print(f"    - {v_str}")
+            else:
+                vc = non_null.value_counts().head(10)
+                print("  top 10 most frequent:")
+                print(vc.to_string())
+
+    print_section("DONE")
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #4: payments.csv ---
+Summary:
+File: /Users/jonathan/github/DS-STAR/examples/dabstep/data/payments.csv
+Size: 23581339 bytes (22.49 MB)
+Guessed encoding: utf-8
+
+--- First 256 bytes (repr) ---
+b'psp_reference,merchant,card_scheme,year,hour_of_day,minute_of_hour,day_of_year,is_credit,eur_amount,ip_country,issuing_country,device_type,ip_address,email_address,card_number,shopper_interaction,card_bin,has_fraudulent_dispute,is_refused_by_adyen,aci,acqu'
+
+--- Text/Newline stats ---
+lines_total: 138237
+contains_crlf: False
+contains_cr_only: False
+sample_chars: 200000
+nonprintable_in_sample: 0
+empty_lines_in_sample: 0
+
+--- CSV sniff ---
+Delimiter: ','
+Quotechar: '"'
+Escapechar: None
+Doublequote: False
+Skipinitialspace: False
+Lineterminator: '\r\n'
+Has header (sniffer guess): True
+
+--- Raw line preview (first 20 lines) ---
+   1: psp_reference,merchant,card_scheme,year,hour_of_day,minute_of_hour,day_of_year,is_credit,eur_amount,ip_country,issuing_country,device_type,ip_address,email_address,card_number,shopper_interaction,card_bin,has_fraudulent_dispute,is_refused_by_adyen,aci,acquirer_country
+   2: 20034594130,Crossfit_Hanna,NexPay,2023,16,21,12,False,151.74,SE,SE,Windows,pKPYzJqqwB8TdpY0jiAeQw,0AKXyaTjW7H4m1hOWmOKBQ,uRofX46FuLUrSOTz8AW5UQ,Ecommerce,4802,False,False,F,NL
+   3: 36926127356,Crossfit_Hanna,NexPay,2023,23,58,75,False,45.7,NL,NL,Linux,uzUknOkIqExYsWv4X14GUg,_Gm8at1k2ojYAM_wSEptNw,6vqQ89zfCeFk6s4VOoWZFQ,Ecommerce,4920,False,False,F,NL
+   4: 31114608278,Belles_cookbook_store,GlobalCard,2023,4,30,96,False,14.11,NL,NL,MacOS,3VO1v_RndDg6jzEiPjfvoQ,,EmxSN8-GXQw3RG_2v7xKxQ,Ecommerce,4571,False,False,F,US
+   5: 68442235288,Crossfit_Hanna,NexPay,2023,3,5,77,True,238.42,LU,LU,iOS,3qbuXGoFldniCC6r1X8K0Q,5VW_2O6ku_0p_fLLwuC1vw,wG2VTvj2TfVG-NRDzifMHw,Ecommerce,4017,False,False,D,NL
+   6: 81404384199,Crossfit_Hanna,NexPay,2023,17,30,83,False,67.13,NL,NL,Windows,9WMJJdgtop6jkkyerxMvuQ,Alb1iUIxIqlW8YUeYVGTzg,0khzuCj7aQ1e51S5vWR8gg,Ecommerce,4532,False,False,F,NL
+   7: 74453982452,Crossfit_Hanna,SwiftCharge,2023,8,30,55,True,14.96,NL,NL,Linux,lRYNn2teO8RZ_ms_5Ei52Q,YunUeDIiQyoqdiDzRWvx9g,8j9y7A7UdAgWkWGV6ggaFA,Ecommerce,4017,True,False,G,NL
+   8: 85922945139,Golfclub_Baron_Friso,NexPay,2023,6,17,265,True,57.35,NL,NL,MacOS,r1qwSy2fOfqVm8GIcRwRfg,9cmOlwD4F0ymL7nRQt_3Xg,zux-2rRgzotNdbxKnLpLpw,Ecommerce,4556,False,False,D,IT
+   9: 50996494424,Golfclub_Baron_Friso,NexPay,2023,20,15,54,True,34.71,SE,SE,MacOS,2nItEMNElHH14wI4yBnByg,53Dph-6X7CqoI_f7NlJa6g,0P4ieP8lxYpSqhABWmwmQg,Ecommerce,4526,False,False,D,IT
+  10: 21324863343,Crossfit_Hanna,TransactPlus,2023,22,12,5,False,75.42,NL,BE,Linux,,hzw3CbkxazpVg38re7jchQ,4JpiSBmEVdfKrDq2WcSZJQ,Ecommerce,4645,False,False,F,NL
+  11: 12974611380,Golfclub_Baron_Friso,NexPay,2023,21,0,242,True,13.05,SE,SE,Android,QGKOQYa1ZgWJmvLZkJtheg,RhrGjnIy09oAfASREHh0Rw,kEOtBdNv42532DCUYV4fBA,Ecommerce,4916,False,False,F,IT
+  12: 11539582857,Belles_cookbook_store,GlobalCard,2023,14,7,77,False,54.94,SE,SE,Android,v4QmydqCskH7TYu-B_KbNg,I2FVI0bgarR2FcTwB-pp3w,X2wgYLwKBQ-tVhTptskgdg,Ecommerce,4556,False,False,F,US
+  13: 25576144624,Golfclub_Baron_Friso,GlobalCard,2023,12,29,171,True,19.65,IT,NL,iOS,f-5KoLWOkAH3Kq6pdF1bQg,U5clB36PFDRdyj3CeAGiXw,FESypn6U7_vguyTAzCMg3g,Ecommerce,4916,False,False,D,IT
+  14: 55566636527,Crossfit_Hanna,SwiftCharge,2023,10,35,270,True,117.98,BE,BE,Other,TPOemgnEU-_wcqFO4FzoQA,dVI_mlqijeG6kIRKMnmJTQ,kjoTGeJmmxdPEM9pAEVVVg,Ecommerce,4532,False,False,D,NL
+  15: 39321493661,Martinis_Fine_Steakhouse,GlobalCard,2023,9,48,42,True,29.47,FR,FR,Linux,0LG7KSVCKOxMGDkgRElCZA,tCUsaB-FqRo7u9PBFRL9OA,Dqk1EsUqVh-mzFQdrg3Wzw,Ecommerce,4916,False,False,D,FR
+  16: 15954433169,Rafa_AI,GlobalCard,2023,11,15,191,True,18.55,GR,GR,iOS,0HA13IRK16lIfJ6Bn0hMoA,UVzK61GrAYwkA67rVA1qIQ,GiG7AUuWkIWW99N5NqwlZw,Ecommerce,4556,False,False,E,NL
+  17: 10778285308,Crossfit_Hanna,GlobalCard,2023,11,41,325,False,80.39,IT,IT,Linux,,Y6qCEfNOFvSyWAPWa7V7sA,NpKsb1Zfl3TdtWLLl9oZvg,Ecommerce,4017,False,False,F,NL
+  18: 39644392406,Golfclub_Baron_Friso,GlobalCard,2023,11,25,297,True,94.48,NL,NL,Windows,ecRJFiZeKTQCnklgt7ldow,sWnZoKQeYuLumRHVaKAwZg,hH6dWt0enDqUFmTDu0wveA,Ecommerce,4571,False,False,D,IT
+  19: 58125631016,Crossfit_Hanna,GlobalCard,2023,11,20,257,True,97.9,IT,IT,iOS,1konyURtRGWZ1GGjZvgoBw,VUkWDiiw-LWx8EQJN_2aDA,d-ojybFvqhCR5GRbxxUaHg,Ecommerce,4571,False,False,G,NL
+  20: 16900553593,Belles_cookbook_store,GlobalCard,2023,17,43,24,True,295.37,SE,SE,MacOS,IkTvIq7qVolDLRWc-eo2Jw,j2lcSM-ZDZQH8PAm4VshGA,SjIWwffh8yHVwNWJUTh4OA,Ecommerce,4916,False,False,G,US
+... (138217 more lines not shown)
+
+=== Structured view (pandas DataFrame) ===
+Shape: 138236 rows x 21 columns
+
+Column names:
+ - psp_reference
+ - merchant
+ - card_scheme
+ - year
+ - hour_of_day
+ - minute_of_hour
+ - day_of_year
+ - is_credit
+ - eur_amount
+ - ip_country
+ - issuing_country
+ - device_type
+ - ip_address
+ - email_address
+ - card_number
+ - shopper_interaction
+ - card_bin
+ - has_fraudulent_dispute
+ - is_refused_by_adyen
+ - aci
+ - acquirer_country
+
+Dtypes:
+psp_reference               int64
+merchant                   object
+card_scheme                object
+year                        int64
+hour_of_day                 int64
+minute_of_hour              int64
+day_of_year                 int64
+is_credit                    bool
+eur_amount                float64
+ip_country                 object
+issuing_country            object
+device_type                object
+ip_address                 object
+email_address              object
+card_number                object
+shopper_interaction        object
+card_bin                    int64
+has_fraudulent_dispute       bool
+is_refused_by_adyen          bool
+aci                        object
+acquirer_country           object
+
+Missing values per column (top 50 shown if many):
+ip_address                27647
+email_address             13824
+psp_reference                 0
+device_type                   0
+aci                           0
+is_refused_by_adyen           0
+has_fraudulent_dispute        0
+card_bin                      0
+shopper_interaction           0
+card_number                   0
+issuing_country               0
+merchant                      0
+ip_country                    0
+eur_amount                    0
+is_credit                     0
+day_of_year                   0
+minute_of_hour                0
+hour_of_day                   0
+year                          0
+card_scheme                   0
+acquirer_country              0
+
+Sample rows:
+ psp_reference              merchant card_scheme  year  hour_of_day  minute_of_hour  day_of_year  is_credit  eur_amount ip_country issuing_country device_type             ip_address          email_address            card_number shopper_interaction  card_bin  has_fraudulent_dispute  is_refused_by_adyen aci acquirer_country
+   20034594130        Crossfit_Hanna      NexPay  2023           16              21           12      False      151.74         SE              SE     Windows pKPYzJqqwB8TdpY0jiAeQw 0AKXyaTjW7H4m1hOWmOKBQ uRofX46FuLUrSOTz8AW5UQ           Ecommerce      4802                   False                False   F               NL
+   36926127356        Crossfit_Hanna      NexPay  2023           23              58           75      False       45.70         NL              NL       Linux uzUknOkIqExYsWv4X14GUg _Gm8at1k2ojYAM_wSEptNw 6vqQ89zfCeFk6s4VOoWZFQ           Ecommerce      4920                   False                False   F               NL
+   31114608278 Belles_cookbook_store  GlobalCard  2023            4              30           96      False       14.11         NL              NL       MacOS 3VO1v_RndDg6jzEiPjfvoQ                    NaN EmxSN8-GXQw3RG_2v7xKxQ           Ecommerce      4571                   False                False   F               US
+   68442235288        Crossfit_Hanna      NexPay  2023            3               5           77       True      238.42         LU              LU         iOS 3qbuXGoFldniCC6r1X8K0Q 5VW_2O6ku_0p_fLLwuC1vw wG2VTvj2TfVG-NRDzifMHw           Ecommerce      4017                   False                False   D               NL
+   81404384199        Crossfit_Hanna      NexPay  2023           17              30           83      False       67.13         NL              NL     Windows 9WMJJdgtop6jkkyerxMvuQ Alb1iUIxIqlW8YUeYVGTzg 0khzuCj7aQ1e51S5vWR8gg           Ecommerce      4532                   False                False   F               NL
+
+Value examples for each column (up to 5 unique values):
+ - psp_reference: np.int64(20034594130), np.int64(36926127356), np.int64(31114608278), np.int64(68442235288), np.int64(81404384199), ... (+138231 more)
+ - merchant: 'Crossfit_Hanna', 'Belles_cookbook_store', 'Golfclub_Baron_Friso', 'Martinis_Fine_Steakhouse', 'Rafa_AI'
+ - card_scheme: 'NexPay', 'GlobalCard', 'SwiftCharge', 'TransactPlus'
+ - year: np.int64(2023)
+ - hour_of_day: np.int64(16), np.int64(23), np.int64(4), np.int64(3), np.int64(17), ... (+19 more)
+ - minute_of_hour: np.int64(21), np.int64(58), np.int64(30), np.int64(5), np.int64(17), ... (+55 more)
+ - day_of_year: np.int64(12), np.int64(75), np.int64(96), np.int64(77), np.int64(83), ... (+360 more)
+ - is_credit: np.False_, np.True_
+ - eur_amount: np.float64(151.74), np.float64(45.7), np.float64(14.11), np.float64(238.42), np.float64(67.13), ... (+29547 more)
+ - ip_country: 'SE', 'NL', 'LU', 'IT', 'BE', ... (+3 more)
+ - issuing_country: 'SE', 'NL', 'LU', 'BE', 'FR', ... (+3 more)
+ - device_type: 'Windows', 'Linux', 'MacOS', 'iOS', 'Android', ... (+1 more)
+ - ip_address: 'pKPYzJqqwB8TdpY0jiAeQw', 'uzUknOkIqExYsWv4X14GUg', '3VO1v_RndDg6jzEiPjfvoQ', '3qbuXGoFldniCC6r1X8K0Q', '9WMJJdgtop6jkkyerxMvuQ', ... (+55187 more)
+ - email_address: '0AKXyaTjW7H4m1hOWmOKBQ', '_Gm8at1k2ojYAM_wSEptNw', '5VW_2O6ku_0p_fLLwuC1vw', 'Alb1iUIxIqlW8YUeYVGTzg', 'YunUeDIiQyoqdiDzRWvx9g', ... (+46279 more)
+ - card_number: 'uRofX46FuLUrSOTz8AW5UQ', '6vqQ89zfCeFk6s4VOoWZFQ', 'EmxSN8-GXQw3RG_2v7xKxQ', 'wG2VTvj2TfVG-NRDzifMHw', '0khzuCj7aQ1e51S5vWR8gg', ... (+52767 more)
+ - shopper_interaction: 'Ecommerce', 'POS'
+ - card_bin: np.int64(4802), np.int64(4920), np.int64(4571), np.int64(4017), np.int64(4532), ... (+8 more)
+ - has_fraudulent_dispute: np.False_, np.True_
+ - is_refused_by_adyen: np.False_, np.True_
+ - aci: 'F', 'D', 'G', 'E', 'B', ... (+2 more)
+ - acquirer_country: 'NL', 'US', 'IT', 'FR', 'GB'
+
+Describe (numeric columns):
+       psp_reference      year    hour_of_day  minute_of_hour    day_of_year     eur_amount       card_bin
+count   1.382360e+05  138236.0  138236.000000   138236.000000  138236.000000  138236.000000  138236.000000
+mean    4.999527e+10    2023.0      12.867777       29.441708     182.409553      91.852321    4602.433266
+std     2.312788e+10       0.0       5.512741       17.350049     105.424268     121.730514     254.898164
+min     1.000064e+10    2023.0       0.000000        0.000000       1.000000       0.500000    4017.000000
+25%     2.993308e+10    2023.0       9.000000       14.000000      91.000000      28.370000    4532.000000
+50%     4.998230e+10    2023.0      13.000000       29.000000     182.000000      55.740000    4571.000000
+75%     7.003231e+10    2023.0      17.000000       45.000000     274.000000     109.282500    4891.000000
+max     8.999829e+10    2023.0      23.000000       59.000000     365.000000    4811.760000    4920.000000
+
+Describe (object/text columns; top counts for up to 10 columns):
+
+Top values for 'merchant':
+merchant
+Crossfit_Hanna              55139
+Golfclub_Baron_Friso        27748
+Rafa_AI                     27696
+Belles_cookbook_store       13848
+Martinis_Fine_Steakhouse    13805
+
+Top values for 'card_scheme':
+card_scheme
+GlobalCard      48150
+NexPay          41679
+TransactPlus    34674
+SwiftCharge     13733
+
+Top values for 'ip_country':
+ip_country
+NL    29760
+IT    28246
+BE    22976
+SE    21664
+FR    14209
+LU     7151
+GR     7123
+ES     7107
+
+Top values for 'issuing_country':
+issuing_country
+NL    29622
+IT    28329
+BE    23040
+SE    21716
+FR    14175
+LU     7171
+ES     7109
+GR     7074
+
+Top values for 'device_type':
+device_type
+Other      31018
+Android    22599
+iOS        22520
+MacOS      20781
+Windows    20734
+Linux      20584
+
+Top values for 'ip_address':
+ip_address
+<NA>                      27647
+2Gs4t2fTFfo1nQ49_xpzbw       65
+grafpK0pV7Vp4-tne1lP5A       59
+gU5S99jVZ6boM62Eg4wf3Q       43
+56MnnlPgVBolMFHC5x5ecQ       42
+ObHXWYrp-5CceAZk2IqFdw       42
+CtU02BfqL2xoQvXuyY7I4g       40
+pp_Lv3fp-MXfmtEatylrNg       39
+6TfkYkzXoNn5Jw2i3kyPRw       39
+B4knmZdNtk6hHsCpqD9KZw       39
+
+Top values for 'email_address':
+email_address
+<NA>                      13824
+LpRZBs-xaXxXznAlu3l3Cw       85
+x6I4TMHXOgeKdD6Yqt-H1A       78
+V3RwKgvmYdkU2lmb7giXOA       60
+1VcWlxuxqd3OLGXbgodnOw       55
+DAx2JyMHsFciljrDlZyp7Q       55
+DlTyf65QbXkqH4qU2ljn-g       54
+_uKfZyY5ED3BvZ2GV5XtvA       53
+Z8d9SPPtzDpvTNppEgoLbw       50
+VAMno3WkLvPSgMwgfr3S1Q       50
+
+Top values for 'card_number':
+card_number
+fJJlHcp3QnV5kmU50xkCdw    84
+hKFpFKRrIId-YOz6gv55hg    82
+cHMkEMpRvaq5WILet1A3pQ    62
+EHnVEucD3oRRjKY9VN_Niw    60
+de45KOQonwIzlI6DLieLIQ    57
+hLJTO2tvucui1gU4BHcxnA    57
+jq_EZtGSfCfXZ3mcJUPk3g    55
+BK08csklsex3td4SbZcDCA    55
+qigBTnupzD11w9UzZjPbRw    52
+QguEfbt9qKdcU6rR9wC2oQ    52
+
+Top values for 'shopper_interaction':
+shopper_interaction
+Ecommerce    125839
+POS           12397
+
+Top values for 'aci':
+aci
+D    49642
+F    29266
+G    25463
+E    21468
+C     5807
+A     3837
+B     2753
+
+... (1 more object/text columns not shown)
+
+=== Full content output policy ===
+Below is a content printout (limited if very large):
+
+File is large; printing first 200 and last 200 lines.
+
+--- BEGIN payments.csv (head) ---
+psp_reference,merchant,card_scheme,year,hour_of_day,minute_of_hour,day_of_year,is_credit,eur_amount,ip_country,issuing_country,device_type,ip_address,email_address,card_number,shopper_interaction,card_bin,has_fraudulent_dispute,is_refused_by_adyen,aci,acquirer_country
+20034594130,Crossfit_Hanna,NexPay,2023,16,21,12,False,151.74,SE,SE,Windows,pKPYzJqqwB8TdpY0jiAeQw,0AKXyaTjW7H4m1hOWmOKBQ,uRofX46FuLUrSOTz8AW5UQ,Ecommerce,4802,False,False,F,NL
+36926127356,Crossfit_Hanna,NexPay,2023,23,58,75,False,45.7,NL,NL,Linux,uzUknOkIqExYsWv4X14GUg,_Gm8at1k2ojYAM_wSEptNw,6vqQ89zfCeFk6s4VOoWZFQ,Ecommerce,4920,False,False,F,NL
+31114608278,Belles_cookbook_store,GlobalCard,2023,4,30,96,False,14.11,NL,NL,MacOS,3VO1v_RndDg6jzEiPjfvoQ,,EmxSN8-GXQw3RG_2v7xKxQ,Ecommerce,4571,False,False,F,US
+68442235288,Crossfit_Hanna,NexPay,2023,3,5,77,True,238.42,LU,LU,iOS,3qbuXGoFldniCC6r1X8K0Q,5VW_2O6ku_0p_fLLwuC1vw,wG2VTvj2TfVG-NRDzifMHw,Ecommerce,4017,False,False,D,NL
+81404384199,Crossfit_Hanna,NexPay,2023,17,30,83,False,67.13,NL,NL,Windows,9WMJJdgtop6jkkyerxMvuQ,Alb1iUIxIqlW8YUeYVGTzg,0khzuCj7aQ1e51S5vWR8gg,Ecommerce,4532,False,False,F,NL
+74453982452,Crossfit_Hanna,SwiftCharge,2023,8,30,55,True,14.96,NL,NL,Linux,lRYNn2teO8RZ_ms_5Ei52Q,YunUeDIiQyoqdiDzRWvx9g,8j9y7A7UdAgWkWGV6ggaFA,Ecommerce,4017,True,False,G,NL
+85922945139,Golfclub_Baron_Friso,NexPay,2023,6,17,265,True,57.35,NL,NL,MacOS,r1qwSy2fOfqVm8GIcRwRfg,9cmOlwD4F0ymL7nRQt_3Xg,zux-2rRgzotNdbxKnLpLpw,Ecommerce,4556,False,False,D,IT
+50996494424,Golfclub_Baron_Friso,NexPay,2023,20,15,54,True,34.71,SE,SE,MacOS,2nItEMNElHH14wI4yBnByg,53Dph-6X7CqoI_f7NlJa6g,0P4ieP8lxYpSqhABWmwmQg,Ecommerce,4526,False,False,D,IT
+21324863343,Crossfit_Hanna,TransactPlus,2023,22,12,5,False,75.42,NL,BE,Linux,,hzw3CbkxazpVg38re7jchQ,4JpiSBmEVdfKrDq2WcSZJQ,Ecommerce,4645,False,False,F,NL
+12974611380,Golfclub_Baron_Friso,NexPay,2023,21,0,242,True,13.05,SE,SE,Android,QGKOQYa1ZgWJmvLZkJtheg,RhrGjnIy09oAfASREHh0Rw,kEOtBdNv42532DCUYV4fBA,Ecommerce,4916,False,False,F,IT
+11539582857,Belles_cookbook_store,GlobalCard,2023,14,7,77,False,54.94,SE,SE,Android,v4QmydqCskH7TYu-B_KbNg,I2FVI0bgarR2FcTwB-pp3w,X2wgYLwKBQ-tVhTptskgdg,Ecommerce,4556,False,False,F,US
+25576144624,Golfclub_Baron_Friso,GlobalCard,2023,12,29,171,True,19.65,IT,NL,iOS,f-5KoLWOkAH3Kq6pdF1bQg,U5clB36PFDRdyj3CeAGiXw,FESypn6U7_vguyTAzCMg3g,Ecommerce,4916,False,False,D,IT
+55566636527,Crossfit_Hanna,SwiftCharge,2023,10,35,270,True,117.98,BE,BE,Other,TPOemgnEU-_wcqFO4FzoQA,dVI_mlqijeG6kIRKMnmJTQ,kjoTGeJmmxdPEM9pAEVVVg,Ecommerce,4532,False,False,D,NL
+39321493661,Martinis_Fine_Steakhouse,GlobalCard,2023,9,48,42,True,29.47,FR,FR,Linux,0LG7KSVCKOxMGDkgRElCZA,tCUsaB-FqRo7u9PBFRL9OA,Dqk1EsUqVh-mzFQdrg3Wzw,Ecommerce,4916,False,False,D,FR
+15954433169,Rafa_AI,GlobalCard,2023,11,15,191,True,18.55,GR,GR,iOS,0HA13IRK16lIfJ6Bn0hMoA,UVzK61GrAYwkA67rVA1qIQ,GiG7AUuWkIWW99N5NqwlZw,Ecommerce,4556,False,False,E,NL
+10778285308,Crossfit_Hanna,GlobalCard,2023,11,41,325,False,80.39,IT,IT,Linux,,Y6qCEfNOFvSyWAPWa7V7sA,NpKsb1Zfl3TdtWLLl9oZvg,Ecommerce,4017,False,False,F,NL
+39644392406,Golfclub_Baron_Friso,GlobalCard,2023,11,25,297,True,94.48,NL,NL,Windows,ecRJFiZeKTQCnklgt7ldow,sWnZoKQeYuLumRHVaKAwZg,hH6dWt0enDqUFmTDu0wveA,Ecommerce,4571,False,False,D,IT
+58125631016,Crossfit_Hanna,GlobalCard,2023,11,20,257,True,97.9,IT,IT,iOS,1konyURtRGWZ1GGjZvgoBw,VUkWDiiw-LWx8EQJN_2aDA,d-ojybFvqhCR5GRbxxUaHg,Ecommerce,4571,False,False,G,NL
+16900553593,Belles_cookbook_store,GlobalCard,2023,17,43,24,True,295.37,SE,SE,MacOS,IkTvIq7qVolDLRWc-eo2Jw,j2lcSM-ZDZQH8PAm4VshGA,SjIWwffh8yHVwNWJUTh4OA,Ecommerce,4916,False,False,G,US
+64327336902,Rafa_AI,TransactPlus,2023,17,7,113,False,224.39,IT,IT,Android,O0UKtRnZAaj7inLhhZaWog,h7yegJ7AShGeIt1RYjdzhA,qTFj7u69HBVUYrfFETuMRA,Ecommerce,4916,False,False,E,NL
+33180657672,Crossfit_Hanna,SwiftCharge,2023,8,52,62,True,28.12,SE,BE,Linux,_ml2eKMWvvR7i1La3ek78A,wWkL7mxJeudAmh7B1NSPsg,2ta19zZL7td3SWu5arCUcw,Ecommerce,4526,False,False,D,NL
+89410650089,Golfclub_Baron_Friso,SwiftCharge,2023,20,37,10,True,7.86,SE,SE,Other,,4L4aF3qoXTGKuFUO5ioruw,2EoBadg0dQ4eOxaltF42Tg,Ecommerce,4571,False,False,D,IT
+38394465378,Crossfit_Hanna,TransactPlus,2023,14,32,304,True,23.54,IT,IT,Linux,aDhLBMezC8c7FMYdIIDMvw,Ee3NMsv4XInSlTPkHvlgRA,7Jaf4XDxD-jVji8iqBq5Gg,Ecommerce,4920,False,False,D,NL
+79488939497,Belles_cookbook_store,SwiftCharge,2023,13,34,307,True,374.37,ES,ES,Linux,dWpLx3iS9s2uPLumwmIxCA,ghhAkzYPhoQZcmG7Agi71A,T-1PYlTeN9wvf6ShQ1IvJA,Ecommerce,4571,False,False,D,US
+87912942699,Crossfit_Hanna,NexPay,2023,17,16,97,False,594.52,BE,BE,Linux,Xt521LwPZmuZa7sOo5wL9Q,Zv_OHxjhttfWkAE00oWyKQ,iuboZ4l9Pr5dhSIg3uMPOQ,Ecommerce,4622,False,False,F,NL
+64505510891,Crossfit_Hanna,NexPay,2023,3,22,245,False,28.35,IT,NL,Linux,g5iZIOp1OYKHz0L0vQs8gQ,,FqwjHrqWnI2LJeBHs2RXbw,Ecommerce,4017,False,False,F,NL
+27927426581,Belles_cookbook_store,TransactPlus,2023,19,40,364,True,38.66,SE,SE,iOS,0fPMg3fSyV5FrUUINhAw0w,5i7jWiIDiGIuioFTPtLV0g,tBPkO6dGo4c4VWhrIceYZQ,Ecommerce,4236,False,True,G,US
+82045987576,Belles_cookbook_store,NexPay,2023,10,28,363,True,9.08,BE,BE,Linux,0vzHOzwAptVqdh8UIiPKSA,jV7Cyzt8bLNrxWUA0jrlYA,Zs5F4mtNNWQXCoymTWE8GA,Ecommerce,4556,False,False,F,US
+54650739823,Crossfit_Hanna,GlobalCard,2023,15,12,288,True,61.83,BE,BE,Other,S21UNGJa2j9jQG_lj96faQ,,WwDyVm7E0-CfCYFhu92iiA,POS,4916,False,False,B,NL
+31882872937,Rafa_AI,GlobalCard,2023,7,48,189,False,57.34,FR,FR,iOS,FGpkyGpX5BHE_jh69OCGZA,QdoLV331zl00B3YZY-AGlA,WhQF6b95kaLvbpC6TMX7xA,Ecommerce,4916,False,False,E,NL
+71354221041,Golfclub_Baron_Friso,GlobalCard,2023,6,40,125,True,88.95,BE,BE,iOS,SNEX2rtZBj22jl6fylfpow,E0YwXu-_vDOM0c4u-Ijz4Q,myBYH2uHhfZIunINAWjz3Q,POS,4645,False,False,C,IT
+44719748574,Crossfit_Hanna,GlobalCard,2023,23,16,296,False,43.96,IT,IT,Linux,ZlMwuJWR1c64-GMPaCw_pg,hZ9RSZw3255bOrn3O3N3uw,KjqWxZvXx3wSWhN-9zrwIA,Ecommerce,4802,False,False,F,NL
+72750934301,Golfclub_Baron_Friso,TransactPlus,2023,7,47,167,True,113.96,NL,NL,Linux,,QCR9SrRgxo7AjkCZ94uNIA,sGTJ4CEftllpWN2B7Iypaw,Ecommerce,4916,False,False,D,IT
+33987304310,Crossfit_Hanna,TransactPlus,2023,16,25,8,False,55.17,IT,IT,Linux,VWe5dNRQJIVJkVpypb478w,,PK8oPgDdmN_jq5Jwch9FjQ,Ecommerce,4916,False,False,F,NL
+33722951254,Rafa_AI,NexPay,2023,3,4,305,True,321.22,SE,SE,iOS,2laa1YbPYX_L5uLHZK85hw,,7t_MOGf86vDLQgSL06el-g,Ecommerce,4802,True,False,G,NL
+71840152056,Crossfit_Hanna,GlobalCard,2023,23,15,189,True,1053.6,LU,NL,Windows,CFFHhvbqS8-UAbRwfuck3w,Mc_3GoBbK1ZHET6oH6yIBg,gUq6W4Zz5YNP0uo8VWv4-g,Ecommerce,4556,False,False,D,NL
+87994913094,Golfclub_Baron_Friso,GlobalCard,2023,13,5,229,True,104.33,NL,NL,Windows,qNi5E_W9kMfey9cR64VitA,3_lUwZN1W0Azfu68U9q6ZQ,gd_5ddhoeh8UdSRkYLh_pA,Ecommerce,4920,False,False,D,IT
+57172750246,Crossfit_Hanna,NexPay,2023,15,45,147,True,68.09,GR,GR,Other,oWHmaUAqM2JAMLKCDHvAKA,0ygXGCe2OMFtSbk_1HGiFw,MC34nd-TKq90izlIe-iy2Q,Ecommerce,4556,False,True,G,NL
+83239638370,Crossfit_Hanna,TransactPlus,2023,2,34,268,False,18.8,FR,FR,Android,kT6I8oklBvEdu0F5BHs6ow,epOTYT3Z5j8gPkv2sBCedw,-9NtXgjAD_eLuI-tPSGXAQ,POS,4017,False,False,C,NL
+33017505011,Rafa_AI,NexPay,2023,12,19,230,True,13.38,IT,IT,MacOS,,0mDPYtSNMXytCt3A9WTxxw,wvsZCU5lSdSrSte3sp2Nzw,Ecommerce,4916,False,False,E,NL
+11654773123,Golfclub_Baron_Friso,GlobalCard,2023,8,9,100,True,9.46,SE,SE,Other,,tHp8fW3VANIlItEShpnxlw,OyWp1r62YR3ikZyqxW_9uA,POS,4622,False,False,B,IT
+11340236231,Rafa_AI,TransactPlus,2023,8,14,128,False,2.47,BE,BE,Linux,knOi8dI6tc0fwc-RGyyFqQ,8L0RTett1gd0YwhZfqEWgw,mYPtyKy4uJldTigpqIFFrQ,Ecommerce,4920,False,False,E,NL
+12061579674,Crossfit_Hanna,GlobalCard,2023,9,37,325,False,119.88,IT,IT,Linux,cYFsTilU1ZqStUEVMXH6WA,hrrWvOplkwAb7nDm5JaxPA,o-0fnmzPGVNlRQoPLB4IUQ,Ecommerce,4556,False,False,F,NL
+57911601753,Crossfit_Hanna,TransactPlus,2023,18,34,221,True,384.82,NL,NL,iOS,aBb8GR3183m6UrZvbQ_ntQ,N2zZGJWdQkL6EIXV3a-Hiw,nfyKzuozYmggEmrwYXhAhQ,Ecommerce,4916,False,False,D,NL
+43727349391,Crossfit_Hanna,SwiftCharge,2023,4,0,360,False,133.87,NL,NL,Linux,PhflCfDNoHksKt5X95DDag,wnR_gI03j9moPew4bdUTLg,fU9ts-m5Awbhj10Hqndt4g,Ecommerce,4622,False,False,F,NL
+14819927884,Rafa_AI,TransactPlus,2023,14,25,26,True,32.52,ES,ES,iOS,BoX9BTSQoRa-duLBr8Jn2Q,BAYWftD4jPEwXKiSzPsOgQ,0dn7gXachiB8nyZvyEud5w,POS,4645,False,False,C,NL
+35788283984,Crossfit_Hanna,SwiftCharge,2023,4,36,226,True,33.21,IT,IT,Android,aalwFtokFHB9rAoKZewK6Q,C5tnH2hqVWfx5JRYPmVfUg,seHFMbFFvu-bveKB8Mk2KQ,Ecommerce,4526,False,False,D,NL
+66523455495,Rafa_AI,GlobalCard,2023,11,40,282,True,27.04,IT,IT,iOS,JclIqQCRAMBD7nsOD1UO4w,UCwVSsRICL0koU-eVYCmcA,msvxA17JlPHp4XVG3LOVWg,Ecommerce,4556,False,False,E,NL
+81531016677,Crossfit_Hanna,GlobalCard,2023,14,1,260,False,18.45,NL,NL,iOS,TPOemgnEU-_wcqFO4FzoQA,dVI_mlqijeG6kIRKMnmJTQ,kjoTGeJmmxdPEM9pAEVVVg,Ecommerce,4556,False,False,F,NL
+66017259224,Belles_cookbook_store,NexPay,2023,0,20,21,False,95.7,BE,BE,Other,kmCfsqvrYKbWkzdry_pWgQ,br9un-3kg89EDG07tyWYtw,ELA6-URdwT-sL0EDv96fIw,POS,4622,False,False,B,US
+24796561934,Martinis_Fine_Steakhouse,GlobalCard,2023,15,15,131,True,102.88,GR,GR,Other,9icJ_wdB1s4wFeTUX37qQQ,xFJ2x8xsl0qrnp83ZtTv8w,LHZKE1No_msVwVxAT6lZIA,Ecommerce,4556,False,False,D,FR
+62233380230,Rafa_AI,TransactPlus,2023,8,9,276,True,45.61,SE,SE,Android,,nO8qaF2AswRAIejLpRr8sQ,GsMPgmOIprSvUCZyQL-DVA,Ecommerce,4622,False,False,E,NL
+73672607869,Rafa_AI,NexPay,2023,11,19,134,True,67.87,NL,FR,Linux,jZ6AFVaOmqv9JBfqTSq7CQ,zcC5lhx9OfZ52qn8zg53SQ,TZuy2q3_lb6Dkz77DElTgQ,Ecommerce,4916,False,True,G,NL
+79897257292,Belles_cookbook_store,TransactPlus,2023,14,16,288,True,28.9,NL,NL,Other,,XmgPNa1eVADAWqbBgN6lEw,JyqqQIUeUiVrOWBzj9wKPg,Ecommerce,4571,False,False,D,US
+30915267091,Belles_cookbook_store,NexPay,2023,11,47,326,False,29.69,SE,SE,Other,O19AkGwi1anqjUDeAXXbqg,Ox-fe6jY_FbUtOqFA3ZYBA,lxTFFe-WKBhK2eKfMqBzyw,Ecommerce,4556,False,False,F,US
+21702732737,Martinis_Fine_Steakhouse,NexPay,2023,19,3,291,True,45.11,BE,BE,Other,x8fwfbBnI_i1bQsm1nn_uw,,0IZ6uTwI3SiPFBgBl2GcRQ,POS,4916,False,False,B,FR
+39614216705,Golfclub_Baron_Friso,GlobalCard,2023,5,29,350,True,12.53,SE,SE,Windows,0S3iK1uefekC3C3d6kyr0w,L1u3Hj4eAmQDKwQpqpxVXA,fj_59zMdGyx5l6Vl49KG1A,Ecommerce,4133,False,False,D,IT
+83509523662,Crossfit_Hanna,NexPay,2023,20,26,193,True,31.4,IT,IT,Windows,,gPBXeko-CwBjS-KTN2LkOw,CCcUyt3yGqrF3kZv6MnoPw,Ecommerce,4891,False,False,D,NL
+71209492949,Martinis_Fine_Steakhouse,NexPay,2023,17,20,226,True,94.46,GR,GR,Android,3nc_L6rj0rcnMCn49Q3Biw,Ln9hAIt17mMS-xXpmBlGpw,KaPbqryvRCuVLz5HCmfwBA,Ecommerce,4556,False,False,D,FR
+85839731450,Crossfit_Hanna,GlobalCard,2023,18,58,352,True,64.69,LU,LU,iOS,,Sqyo-SVsZrwDKfqTUgBO_Q,pV_TDP6qRTZnZ8ZVDcl19A,Ecommerce,4916,False,False,D,NL
+36958466051,Belles_cookbook_store,GlobalCard,2023,19,6,348,True,50.5,IT,SE,MacOS,u76vUXp-YyPf8SLZyJZjGw,Zt5JvHY3Nvq9jYGPKcYdjA,IfEaBu4K-KpBi2QJ9cUEKQ,Ecommerce,4891,False,False,D,US
+89049464251,Crossfit_Hanna,GlobalCard,2023,16,9,289,True,115.37,FR,FR,Linux,62b5963seR5SH_lnwKUHog,MTYW7Olsm5ES_T9rXIyh6Q,uMDFMXjr5qtj9nLN8vAV-Q,Ecommerce,4556,False,False,D,NL
+12075623213,Rafa_AI,GlobalCard,2023,21,15,340,True,356.14,ES,NL,Other,,3z4khr2q-o8tJe41rc0byg,USi4H8XZDyPtbvAYupAlhw,Ecommerce,4916,False,False,E,NL
+60287333380,Crossfit_Hanna,NexPay,2023,15,33,270,True,281.4,LU,FR,Android,,YRv0J1UB8YdWA8WEdHIqSw,eRc1IrCx6K0LyuT68vt3dg,POS,4556,False,False,C,NL
+70263464804,Crossfit_Hanna,GlobalCard,2023,15,3,56,False,177.65,BE,BE,MacOS,jPBfgy_z-Sk4KwdQtloxDg,1aBX7KDejYjJFkDb6yu8Qg,UGppzVljPNc9hGORt40q4Q,Ecommerce,4532,False,False,F,NL
+12478004621,Crossfit_Hanna,GlobalCard,2023,10,34,254,True,26.26,BE,BE,iOS,1bDCuQHdJtLa-mXlYw6zTQ,OxsPtKkAwPo_xI0fZE1miQ,eojRLPYDb4GktAfEgLaG8Q,Ecommerce,4236,False,False,D,NL
+37692682051,Crossfit_Hanna,SwiftCharge,2023,6,38,289,False,37.97,NL,NL,Other,NvylZVoInlB-_jvfHWGVXg,,KeWP4JDfIKgLRTqKGmaJ6g,POS,4916,False,False,A,NL
+65649845274,Crossfit_Hanna,TransactPlus,2023,17,23,8,True,56.51,ES,ES,iOS,sK-6SojfSttREl7fyoEwVw,9QiwOE_waXAHLVlWxIy9Jw,rmG2JHpZH_v7h8-fLmgI8g,Ecommerce,4532,False,False,D,GB
+36189817116,Crossfit_Hanna,NexPay,2023,14,56,249,False,167.65,IT,IT,Android,,DBrKuu6wYilVlUNszcVcxg,GUKeFckCTg3_lPROVIv4ZQ,Ecommerce,4920,False,False,F,NL
+60042399083,Crossfit_Hanna,NexPay,2023,12,15,65,True,11.18,SE,SE,Windows,9loZmwAOPL54cB1C7ctfpA,axGhVBGFtn1b-tCuLWQs-Q,NolDUbtCqrOMWCoL3J9zcA,Ecommerce,4891,False,False,F,NL
+86885022840,Crossfit_Hanna,GlobalCard,2023,21,19,116,True,57.31,NL,NL,Android,G6Mlg5Tc_Iw26XbSS4898w,ivmUg9n2AymluERzmjHzWg,KXLViKIWg4HXlXYiLGBoKA,Ecommerce,4916,False,False,D,NL
+17625769336,Crossfit_Hanna,TransactPlus,2023,14,46,135,True,143.63,BE,BE,Windows,SNEX2rtZBj22jl6fylfpow,E0YwXu-_vDOM0c4u-Ijz4Q,WJjxKI5V_Q1SltDVRtLqYA,Ecommerce,4556,False,False,D,NL
+79210911079,Golfclub_Baron_Friso,GlobalCard,2023,9,6,74,True,96.78,NL,NL,Other,eA2PGOzA-1AC2buhMS3pQw,1o5aw_lvL8SgBhKFgww5dA,zyQ6CRJifM20nCU0fyrX2A,Ecommerce,4532,False,False,D,IT
+28688122660,Golfclub_Baron_Friso,NexPay,2023,11,6,134,True,9.34,IT,IT,Linux,Oc8jWi1g-oqtiMCLYUzcnQ,Pjd4xUdw52070CfKUcyFTg,mlfElnKSjR6JTwYTSdFARw,Ecommerce,4645,False,False,D,IT
+53693317996,Crossfit_Hanna,GlobalCard,2023,12,34,121,True,97.82,FR,FR,Windows,Xno7eDYG1pBbAM5SZHepyg,SR51j-0eMfAnJAYwHP9EmA,iY9mDvrK9hhZhuTkbC_fbQ,Ecommerce,4916,False,False,G,NL
+12774624141,Rafa_AI,GlobalCard,2023,11,18,303,True,80.14,IT,IT,Linux,O12SD_hrQhWVHJ1pT42pmg,arg_azhRjaQ9VUtUolqe5A,zTAubqVoLeX4sCLyqoQVgQ,Ecommerce,4916,False,False,E,NL
+80211788576,Martinis_Fine_Steakhouse,GlobalCard,2023,22,11,30,True,62.96,BE,BE,Other,,eDaA7wLzXDzyEKGlhWZ8wA,Ur-i7ri9uNmV_mnQFB6Gug,POS,4622,False,False,A,FR
+74876055983,Rafa_AI,GlobalCard,2023,11,11,323,False,307.8,BE,BE,Other,,a6jeDatUYbChHtV_nF18nQ,Owtrfc36obXXEMspXWZMHQ,Ecommerce,4916,False,False,E,NL
+22948949083,Rafa_AI,NexPay,2023,16,56,104,False,32.24,NL,NL,Linux,3URNh4ccGzONspbHpGpfSg,HvQ_AaLagTSEB0NM6CHWIg,tYPX_v5fAVXP3VarqcwHpQ,Ecommerce,4571,False,False,E,NL
+42889071869,Rafa_AI,TransactPlus,2023,8,44,217,True,3.79,NL,NL,Linux,P9WfntTz35XOirHJ8a6tlA,ryV8o7pMR8W5Nk2xknNZgw,aXvSSHlrrD9MgPYCwz-iHw,Ecommerce,4133,False,False,E,NL
+64323168508,Golfclub_Baron_Friso,GlobalCard,2023,22,41,50,True,7.81,NL,NL,Android,xt6CE9kbceZHyAt3zVImSQ,6VYA4F9RFNdxaqH04G3SOQ,wS5wJ_G1EYq2owzhHvSxWg,Ecommerce,4802,False,False,D,IT
+39780964631,Belles_cookbook_store,GlobalCard,2023,18,58,232,True,120.87,IT,IT,Other,,LLybfpCcCfp4CABzq0R-dQ,-j1WqBak75-9t8JfO1JUvA,Ecommerce,4802,False,False,D,US
+31185397742,Belles_cookbook_store,GlobalCard,2023,20,21,100,False,55.08,IT,IT,Linux,,WQb2GZXjfrJ_eQr1MD40IA,ftiC3cvQhXEDi1hPH0WpRQ,Ecommerce,4916,False,False,F,US
+26302032627,Crossfit_Hanna,TransactPlus,2023,13,0,270,False,119.71,IT,IT,Android,,CJn0LZJ6S3460MbcvYAyfQ,KxbZnxhUU7M3qPrJH9VPeQ,Ecommerce,4645,False,False,F,NL
+12174730074,Crossfit_Hanna,TransactPlus,2023,13,58,52,True,24.03,LU,LU,Linux,A_M49aEbFafynHXPrqktaQ,hakcCSXDDhrY7Zb0q1LfXA,qVr_2ZnKvJx72KuhsPDa3Q,Ecommerce,4526,False,False,G,NL
+86303915612,Golfclub_Baron_Friso,TransactPlus,2023,19,9,56,False,52.89,NL,NL,Android,wok8gc2ejSfdcI0bhO5mSA,JQLbhMclCcsAmUeeG7Ng0Q,SPhYZIqrLCdfoh6KVK17QA,Ecommerce,4556,False,False,F,IT
+24968211254,Crossfit_Hanna,NexPay,2023,19,34,314,True,26.23,BE,BE,Android,yUXa6ZZCXfNV8mCsJHbVQw,EkNoiru2F5eW8V9ITMyGgA,mZKORX_uzm9ruDXFPVgiOQ,Ecommerce,4622,False,False,F,NL
+29403666807,Belles_cookbook_store,NexPay,2023,7,56,157,False,18.57,IT,IT,Other,AJ3pWaz_mVgGeqpSLPEpfw,,YiFIfJCzRvCgdh41BqpQSA,Ecommerce,4571,False,False,F,US
+14214155722,Belles_cookbook_store,GlobalCard,2023,1,6,6,True,186.14,NL,NL,iOS,Et1TroJqChIxrH8glJqm1w,tbDq7oL7iLw0XYS9PG01ew,gyESS-qu1JK1ng52-KDQ5Q,Ecommerce,4526,False,False,D,US
+15786948544,Crossfit_Hanna,NexPay,2023,2,52,1,True,21.93,IT,IT,Linux,4SXiHevbuS9UeCX0-_8vkA,Lbh9xhbZGjcSPGxXLhvLfA,5EoMp5yNzAxiqgTTEH1UjQ,Ecommerce,4891,False,False,D,NL
+41477821659,Crossfit_Hanna,NexPay,2023,16,5,115,True,25.84,SE,SE,Android,,6yA_vSnVkP-ja2bpLmog-A,p77GJwRscudQi9CTeSA2zA,Ecommerce,4916,False,False,G,NL
+59212062455,Belles_cookbook_store,SwiftCharge,2023,7,24,295,False,27.14,IT,IT,Other,N9Zm3Xd4toxeJMkNMB82Yg,443wSko1Sxd-Vz4zAQ9bkw,RzAl2Vung9Sk9NOnk1fzBg,Ecommerce,4017,False,False,F,US
+88192996050,Crossfit_Hanna,GlobalCard,2023,20,49,118,True,22.59,NL,NL,Other,gbyBBnBJ1XRWmPK6ckz-SA,,Ir0yRhR215BO8PV0E6C6ew,Ecommerce,4916,False,False,D,NL
+58679016224,Crossfit_Hanna,GlobalCard,2023,9,3,19,True,32.77,NL,NL,iOS,,61j1BpK7m9106fHj5rRTGQ,TDnwKmpbAi8ne5zL-pufrw,POS,4556,False,False,C,NL
+10971734701,Golfclub_Baron_Friso,GlobalCard,2023,9,58,248,True,8.24,NL,NL,Other,,JfjYHBQou677gmdDF9VWTA,O-3SWUpEOGkPCxvbbuNwQw,Ecommerce,4532,False,False,D,IT
+51505545090,Crossfit_Hanna,NexPay,2023,18,6,2,False,47.86,IT,IT,Android,7Rd79gz-9vzRNn4Cvw7gBg,mEIAwClb4hu-IaROQ06Ncg,O5Iqzmclu4K2WJFnY8HPYQ,Ecommerce,4532,False,False,F,NL
+11634048489,Golfclub_Baron_Friso,GlobalCard,2023,13,38,5,False,23.98,LU,LU,Android,,,0Z1t7hHU7bDXYLIjYWsqBw,Ecommerce,4556,False,False,F,IT
+61931506150,Golfclub_Baron_Friso,SwiftCharge,2023,9,6,251,True,102.8,IT,IT,Other,uR5a9a6lVh-0TlwE3jIshQ,oirIlC_qD-FRpbP4GtA4Tw,Gg-QjYvU3nTbtSSp49YqZg,Ecommerce,4571,True,False,G,IT
+47895020372,Rafa_AI,GlobalCard,2023,12,1,158,True,101.97,NL,NL,Linux,,mBHJi4YJrnkulFWyFAL74A,QuTLoP0qwRIPj17706gRvA,Ecommerce,4532,False,False,E,NL
+45409333045,Crossfit_Hanna,GlobalCard,2023,12,7,271,True,38.06,BE,BE,MacOS,,6TuR8J3R044fSUsYSd9JcA,xSDIftBBLzP1IbLgbmqrxA,Ecommerce,4916,False,False,G,NL
+11160578147,Crossfit_Hanna,GlobalCard,2023,21,19,60,True,75.02,IT,IT,iOS,x5l5ycGvWUhZA9tUln-vbg,aBet_kaggohoaPGaTyzk1Q,FYluejvw3pRbPJBQ2xoOPA,Ecommerce,4916,False,False,D,NL
+72404824030,Martinis_Fine_Steakhouse,GlobalCard,2023,18,23,95,True,33.32,GR,GR,Other,,GsTeXjA66vR_9T7TgJV1nw,QsLrNa58Bzp3Dh5oprnA4Q,Ecommerce,4236,False,True,G,FR
+10513291903,Golfclub_Baron_Friso,NexPay,2023,8,35,113,False,20.0,LU,LU,Android,QoptM2npsjcOX9OZ6eXJqA,S7nijEFqmgJke7c8aElQ-A,oc_YaNxMlakqc2RLUjhxgA,Ecommerce,4236,False,False,F,IT
+23472469694,Rafa_AI,GlobalCard,2023,14,38,155,False,155.49,SE,IT,Windows,,dqweCiHI_WkbgUNFFBPCbg,v5hKXU4rn_DOrOYZJjelEA,Ecommerce,4526,False,False,E,NL
+34499880248,Rafa_AI,NexPay,2023,21,50,47,True,46.36,IT,IT,Android,5pD9w1Ej4zX5HzOF1EXikw,VpQBiFGBPjIcl-fVNJwKIw,rckOKxqMyAZBRi9AVZe6pQ,Ecommerce,4916,False,False,E,NL
+11785147176,Crossfit_Hanna,TransactPlus,2023,12,31,27,True,180.48,IT,FR,Other,IJxuPhTG6iwQYtsIuaPK3w,bZhExEmVxSuHvP99Iybwdw,OhVknOkFckavUmHPRuA0Lg,Ecommerce,4645,True,False,G,NL
+13821686274,Martinis_Fine_Steakhouse,NexPay,2023,20,50,300,True,25.8,ES,ES,Linux,2DnyQuQsRzE4OF56jUi1GQ,,3L1s3la7AmGEwt2cSuV6tg,Ecommerce,4236,False,False,D,FR
+40979407587,Martinis_Fine_Steakhouse,TransactPlus,2023,2,59,18,True,87.79,ES,GR,Other,Hr8nRom-wNZDqcEd40Kj0A,Sq97lXdP6cemOP9VGnVY3g,OuSqc4YeSUf1RnnKYNs6ZQ,POS,4916,False,False,B,FR
+43256077269,Rafa_AI,NexPay,2023,15,14,285,True,60.41,IT,SE,Windows,yC3ZBij_cbTzXgj_lsPKlg,2Ws6QbFejuAOq4BRXkEqbQ,LKxKI0YOSr2rgWSgFowing,Ecommerce,4556,False,False,E,NL
+13109067436,Crossfit_Hanna,TransactPlus,2023,4,42,117,True,209.28,NL,NL,Windows,p7NG1g0MAIXbg4102ZxRlg,sO26bxDkjU-54dVbhjldbA,7-Z7jevGCwIqGqZWj-yhOg,Ecommerce,4133,False,False,D,NL
+27563824483,Golfclub_Baron_Friso,GlobalCard,2023,13,45,211,False,73.1,FR,FR,MacOS,G1YI-YQXH_xSUQg4X8QPdQ,IV4UH_x967aUARhLNEiZPA,QceiUrmlxzJSMpTpfrqNcQ,Ecommerce,4622,False,False,F,IT
+11441093271,Belles_cookbook_store,NexPay,2023,18,44,94,True,140.33,BE,BE,iOS,EzhnQILjqHcYrsm_RYKCkg,NTSJJyGvdWRD7i_2Qlr21A,QU2tMz-3yM7U1dfGCIRtog,POS,4645,False,False,C,US
+68618046935,Martinis_Fine_Steakhouse,GlobalCard,2023,17,41,240,True,301.72,FR,FR,Other,,02PgKiU5EJxgD48fF7mZtQ,7fS4TohwuhJTDuSs2u6zag,Ecommerce,4556,True,False,G,FR
+58063899304,Rafa_AI,TransactPlus,2023,13,46,120,True,84.18,NL,NL,iOS,,a-phTQ09vNq0a5hgIzrZsw,L_2U9tyaP0mqeGdQ_8BAqg,Ecommerce,4017,False,False,E,NL
+42312064608,Golfclub_Baron_Friso,NexPay,2023,6,48,298,False,118.64,BE,BE,Linux,EKFmK6Fzec9_9-FyXXc1_w,UfJ5naKrutbWmRVBHCpgKg,ITYEskY_4epxSA39iLSvZg,Ecommerce,4556,False,False,F,IT
+33952203999,Martinis_Fine_Steakhouse,TransactPlus,2023,17,24,163,False,32.82,NL,NL,Other,rEnQkO0Eh0wq0i9mfUHbYw,,_EMJRcvEfOTmYQp2cGctHg,POS,4236,False,False,A,FR
+10338457978,Golfclub_Baron_Friso,NexPay,2023,18,44,329,True,120.48,IT,FR,Other,,FkYKR9Qc9LB07vjnAbjy9w,k18MJSg3yCQEXNCTN_2Rbg,POS,4916,False,False,C,IT
+10990898861,Crossfit_Hanna,NexPay,2023,17,3,113,True,90.88,IT,IT,Android,GqVoyM4Rov6YCTsUWXYOSQ,4dHpAfgogTbMu3uAvRjSOQ,3ryCT0NiWezVmlpzurpOjA,Ecommerce,4802,False,False,D,NL
+87045714145,Rafa_AI,GlobalCard,2023,13,30,77,True,37.86,BE,BE,iOS,CMDFKE_MUytdmFOAYJLtdA,,Y2rfWbk1Q8aEU1qfEQ-oww,Ecommerce,4556,False,False,E,NL
+23913861684,Rafa_AI,NexPay,2023,2,5,51,False,26.06,IT,IT,MacOS,5WjY0JwVy0wepuFrMUpGFA,B8c3ODQcMKcNcb3AlFk0dA,YCwauXXVW30iYXRI3uyIJQ,Ecommerce,4916,False,False,E,NL
+70889235338,Rafa_AI,NexPay,2023,9,6,310,False,53.61,ES,ES,MacOS,x8bA2ufA41xK4jX-OF9yiw,,CJsfsDn6Chi8dcmFnC_ykA,Ecommerce,4916,False,False,E,NL
+86309192153,Belles_cookbook_store,GlobalCard,2023,14,13,319,False,71.06,FR,FR,MacOS,tre2wlCfbhthfKSdbN8ckA,-s6cU0syWJVEYrRXMU28Kg,XRyt7DD4pfxoqJ3cfmN_yw,Ecommerce,4916,False,False,F,US
+25758714438,Crossfit_Hanna,GlobalCard,2023,15,32,78,False,280.74,SE,SE,MacOS,U32eQVma4fu4--L-9hIrkA,LCHtXHX2YCyK9AJymewI1A,E8cbdDK90ZLdHvk7EqnrCg,Ecommerce,4802,False,False,F,NL
+63627896845,Belles_cookbook_store,NexPay,2023,23,17,189,True,31.86,SE,BE,Windows,,YgdXrhl85b5o39vcpEsghw,fM2F835Z8lSVmyxYU3OWOg,Ecommerce,4920,True,False,G,US
+82540440050,Crossfit_Hanna,TransactPlus,2023,19,44,123,False,119.45,SE,SE,MacOS,3ftUvYNUJwLjaFKH2UlzFA,jDvvYa1UZAhbSLF_7nE5DA,krTZyxueb4iJvtbjqNUNoA,Ecommerce,4017,False,False,F,NL
+38538884308,Rafa_AI,NexPay,2023,10,38,232,True,51.55,IT,IT,Other,9ovReXqIzNXRbtWsaoR63w,INErzpciH5zPUg6s-rqXRw,iJxgxrLtpBwznYDxK9GpLQ,POS,4916,False,False,A,NL
+34562022451,Golfclub_Baron_Friso,GlobalCard,2023,12,43,170,True,147.82,IT,IT,Linux,hoIGg8I0THhnGqN383Oipw,WWS8zc2Sfd4UNVRtN050rQ,zv6IKHQQsOml9XW6n-2alw,Ecommerce,4526,False,False,D,IT
+65925998779,Crossfit_Hanna,NexPay,2023,20,9,207,False,244.37,NL,NL,Windows,A-Bsd4m3pLNlDvJc-t5fJg,nfXiZaQnrtazNTavV5EaMA,HVBkAyGiAKo20hfz0C4ZPg,Ecommerce,4622,False,False,F,NL
+81816652559,Belles_cookbook_store,SwiftCharge,2023,8,22,142,True,142.56,IT,IT,Windows,,IPD8sfeYLXlf9HFxdlxUyA,hamET2WYNuUdoqAwwbA9RQ,Ecommerce,4556,False,False,D,US
+58266142857,Golfclub_Baron_Friso,GlobalCard,2023,14,2,278,True,45.18,BE,SE,Other,bfPVro6tRpAftSR69sNIiA,2e4Pb3qRHanLIKwsWIkjGQ,UYtj3E40mNjgZMERm3gCIA,Ecommerce,4556,False,False,D,IT
+16376141752,Rafa_AI,NexPay,2023,19,53,224,False,64.19,BE,GR,MacOS,BOtY8OI6Hzcv8bj8amrNYA,hQZWNBIwaBg4YO3X6DvTPA,3nQ1buePUEh6H3SPzjA3sg,Ecommerce,4526,False,False,E,NL
+26899849995,Belles_cookbook_store,GlobalCard,2023,16,59,37,True,100.21,IT,IT,Android,a9rzQsoajVh4nJE8YDa9PA,uBFTrxEw-kGpyhby-MTQnA,FFiKZdOCy_sol2wxYYqRhw,POS,4916,False,False,C,US
+29227207093,Golfclub_Baron_Friso,NexPay,2023,15,3,94,True,33.2,FR,FR,Android,rm2eqSXtBcTL5T1sNrt33g,a-8Zye1NHgqDNsAZWBowrg,ioO_oyhbkI3PDMNpLlYw3Q,Ecommerce,4916,False,False,G,IT
+58031276636,Martinis_Fine_Steakhouse,GlobalCard,2023,18,15,309,True,44.96,FR,SE,MacOS,bLFyOE9Vk6WeZSzo2JiZDw,I-Nd1U4mIYCGB_2JW9S1xA,983O-_FaaLtL-t1bmStoYg,Ecommerce,4571,False,False,F,FR
+80600325472,Martinis_Fine_Steakhouse,TransactPlus,2023,8,24,260,False,52.7,FR,FR,Other,UHn9TOP_JnCCLIKmcropOA,ayw0cOjubyMoX8Ii1sUSSA,aiH9tfOPIY3vsBWsBVHzbw,Ecommerce,4017,False,False,F,FR
+61880970123,Rafa_AI,NexPay,2023,19,21,111,True,70.39,FR,FR,Android,yhYEAuqRB2b3jUjQlF5e4g,O43Z2nMB_Akpw7sscgnxzQ,s4NqdJJZjBKNVlZqYXScRQ,POS,4645,False,False,C,NL
+73126567613,Rafa_AI,GlobalCard,2023,20,49,285,True,56.21,BE,BE,Android,HpbUnD5ZBskRT8FLevrNDA,oK5qt22ryvhqRo19VYO4jw,0AT4e3lejTWJfAra613PJQ,Ecommerce,4556,False,False,E,NL
+34788753467,Rafa_AI,GlobalCard,2023,13,4,21,True,66.73,NL,NL,Other,oDzxpAIdz-_E5rrdY2tLSg,3ph-1BuAeeIiGSX9b8ghSA,LTCwQ1w_cJeAwI2H3PMT-g,Ecommerce,4645,True,False,G,NL
+18193117832,Golfclub_Baron_Friso,GlobalCard,2023,12,29,95,True,19.12,ES,ES,Android,,At1dFFf1td-TOnw0AaCPsA,6c2vvFQCO28IaSAZoratiA,Ecommerce,4556,True,False,G,IT
+76983250835,Crossfit_Hanna,GlobalCard,2023,14,30,210,True,30.62,IT,IT,Windows,GB71RPvrO6BXEUeDsC4VTw,ZDl3DhJa51sKm1mwxlT5nw,jT_fVWpou6_94mfo_WbNvA,Ecommerce,4645,False,False,D,NL
+60534247503,Crossfit_Hanna,NexPay,2023,12,13,264,True,195.8,IT,IT,Linux,Tlbx3jIVkGAO5td6H6KICA,dZJ7TacT-9_aq44hhiLUEw,UyORIH9aEmDLASwESJzewQ,Ecommerce,4916,False,False,D,NL
+34922844568,Crossfit_Hanna,NexPay,2023,19,9,65,True,141.79,SE,NL,MacOS,lf_SUAYCbfTWIXBO_JqK4A,XU0AMEAQnUKaVCDj47djeQ,XMVyWKczxFvS50hX-FfTLQ,Ecommerce,4916,True,False,G,NL
+16711044830,Rafa_AI,NexPay,2023,16,54,335,True,88.28,IT,IT,Android,hrxZ7kAb4S5z-jYFL8EE6w,6JH8kf1Hq0Sm3PAQIrdOEQ,QhfOONok-r47sce5X6X66A,POS,4556,False,False,C,NL
+16938652663,Rafa_AI,SwiftCharge,2023,19,44,301,True,46.07,ES,FR,iOS,oto2YQsuXKgWlx29HCsAJw,JUw3wdnixAMhOZvcABDzPg,lIZh7UqQ7j8BKQieGyj0EQ,Ecommerce,4532,False,True,G,NL
+40910806738,Crossfit_Hanna,GlobalCard,2023,14,52,197,False,49.3,SE,SE,Other,JCbGLrPH9ubK31W5CStMrg,f3J0vrbs4nNhA-kTqn5hqg,IkI2tzb-DUeyNTg_7YluTw,Ecommerce,4622,False,False,F,NL
+32764852930,Crossfit_Hanna,NexPay,2023,19,1,79,True,50.72,BE,FR,Linux,xhphJf7ZhhslIxGJTJDLQw,JDpZ_z4sVX7NY6MEXgnvvA,4o8FiT2P7XfwVEOXJAY8YQ,Ecommerce,4916,False,False,D,NL
+79859913139,Golfclub_Baron_Friso,GlobalCard,2023,17,20,223,False,236.46,FR,FR,Android,LtcGlqLY3qvkCArChvBkcA,HGFmSRuhq25JaUbnm-okOQ,HLkhKH-Mtx0X2kILSu1SKw,Ecommerce,4556,False,False,F,IT
+16395543811,Belles_cookbook_store,TransactPlus,2023,15,58,285,False,75.27,BE,BE,iOS,mUbUtQ_sNQCVnYAj1_D2Dg,oYLPktDRpx4yolONxn_LZA,cMcqogAv4pWJ12YBFp2qaw,Ecommerce,4916,False,False,F,US
+74622858531,Martinis_Fine_Steakhouse,NexPay,2023,21,12,182,True,13.15,SE,SE,MacOS,x_mxtTGB7ihHmJHSgCghLw,uRcFQQLT_epOpFU2jwsHlA,cNbA6GFOt-p1HECLvXRv8w,Ecommerce,4571,False,False,D,FR
+72053745153,Martinis_Fine_Steakhouse,NexPay,2023,16,42,12,False,23.4,LU,LU,Android,XPVmOCYRO0QPLrQEIaor4A,S_dADvpYPGGYmsC33s8VNQ,atPurAoMd3fETKoVCJXI5g,Ecommerce,4532,False,False,F,FR
+78400137476,Rafa_AI,SwiftCharge,2023,12,53,27,True,21.2,BE,BE,Other,yeXauezihB1OpE3jFi3znw,PueO-Pmm8PZyQrSifVjsIQ,h3OggnLa98marOXXBK-puw,Ecommerce,4133,False,True,G,NL
+52231961536,Golfclub_Baron_Friso,TransactPlus,2023,13,21,311,False,82.36,IT,IT,MacOS,MoHK_F9ATqJ7kTVvjMHLZQ,Cv3nCJQNgA5_mIuGk6z33w,QUVxvQDJsB0LuFldMHEgCw,Ecommerce,4556,False,True,G,IT
+61895803744,Crossfit_Hanna,GlobalCard,2023,18,50,233,True,171.28,NL,NL,Other,ETecoHOZYdQskydFr9bW0w,hPoD__72HWNaOu3P6qz2lA,NcdYFUgdUYyUtsDYBSKjMg,POS,4916,False,False,A,NL
+83893408859,Martinis_Fine_Steakhouse,TransactPlus,2023,18,0,166,True,48.32,NL,NL,Other,xZ6PtfQCWkmNgvw9FbN3Dg,NDXazPwh9qbK-oHTZQVOJQ,1mxXpZMNAbiDj4P3dCF9VA,POS,4916,False,False,A,FR
+22758881097,Crossfit_Hanna,TransactPlus,2023,18,33,343,False,27.7,IT,IT,Windows,QogXgKOC5tyOzlPtUncMEA,-osY4FjnWPS6idjcX2WdxQ,YEs5Dk5ULhuaalaYmfb2mg,Ecommerce,4236,False,False,F,NL
+73907450843,Rafa_AI,NexPay,2023,5,21,331,True,110.22,IT,NL,Android,F6oZ1PNHo_RbqbbJ1MXH9A,ZM_YH-zfTv5B9aMJC4cKCQ,A7eznhJI7R55xnMN9m8VeA,Ecommerce,4622,True,False,G,NL
+76321238170,Crossfit_Hanna,GlobalCard,2023,17,0,67,True,51.56,BE,BE,Other,PAtvbeTe0oHf8ysSco6KaA,fqlyoCC53Iy67slXRJjK5g,cHjhBEM2p_FSh4oDIJjazQ,Ecommerce,4532,False,False,D,NL
+85651468388,Crossfit_Hanna,NexPay,2023,14,8,178,True,328.54,NL,NL,Android,NXW77LjOct4AaxofWJWX5g,GKjtq5LbziHp96-1KBRpiA,NcmBJ-so2umpsB71joarCA,Ecommerce,4556,False,False,D,NL
+39294993442,Crossfit_Hanna,NexPay,2023,18,37,223,True,26.94,BE,BE,Other,,VcsM5FN1uSGysBk30W9DeA,DcuN0aHb2oR0dX0rjrCKlg,Ecommerce,4916,False,False,D,NL
+75173557255,Belles_cookbook_store,NexPay,2023,4,7,261,True,31.17,ES,ES,MacOS,6wdbAjsN3OdRsu3IkF3fXA,,XxOuR7jqc5hg-w-sI6uWbA,Ecommerce,4556,False,False,D,US
+81708557378,Golfclub_Baron_Friso,GlobalCard,2023,15,11,29,True,48.47,NL,NL,Windows,rj1RzaNIcLFN8WoJjp6ufQ,aZz4qOXEfpRzzONOTn067A,UPecWCgvwnfhKU_f2o1nOQ,Ecommerce,4622,False,False,D,IT
+22710070588,Crossfit_Hanna,GlobalCard,2023,13,47,291,True,63.61,BE,BE,Android,ILJVC-q42405iYSSXfErjQ,OpqtGgQXbweMY1186ayDwA,y7nB4jEcHk9Zgxg28XyFNA,Ecommerce,4571,False,False,D,NL
+72878600545,Crossfit_Hanna,GlobalCard,2023,19,9,19,True,55.49,SE,SE,MacOS,FTzY1vy3jzUARqK5n_wpwA,3T31kP2xWOau9md5A6_vKw,jF653kof0LRlipRcGnjqBg,Ecommerce,4556,False,False,D,NL
+25810359438,Crossfit_Hanna,NexPay,2023,9,9,217,True,34.47,LU,LU,iOS,O0aYG3SLEsWqQ4VfsJ-48A,J5ru4Lui8uMKl82zG6OMnw,1LCX15U4Xm0ax5wCFDBEBg,Ecommerce,4920,False,False,D,NL
+85217906953,Rafa_AI,TransactPlus,2023,12,5,91,True,179.27,BE,NL,Other,3d__YZQZvEi9_bsPCOJDiw,IqB9S_oxkgcnAeQWvcCY0Q,y1IJFa04WBinLcpWbe9vgw,Ecommerce,4556,True,False,G,NL
+14440200564,Golfclub_Baron_Friso,GlobalCard,2023,16,26,250,True,9.68,BE,BE,Windows,pSqAv6Pwpvc4hWBhSUNTnw,IAW0D1IVZSJSr7vIbLPWXg,NEnwupTsmbDU6Jmm0QNq6Q,Ecommerce,4532,True,False,G,IT
+76059120927,Crossfit_Hanna,SwiftCharge,2023,14,10,88,False,21.83,IT,IT,MacOS,jlGGgsV6uoZNtWFlTuiRzg,mjogH5OKcMs6W0gHuukMKg,FcZI_A1wFkkvCHCoSF8maQ,Ecommerce,4571,False,False,F,NL
+81407991999,Golfclub_Baron_Friso,NexPay,2023,15,5,130,False,45.26,SE,SE,iOS,qymd-sknCYpPj2UWCjDwDA,KaxbLZpiymbki4znjfftZg,pTxZvoNcnkR3yyZFK7JxVg,Ecommerce,4556,False,False,F,IT
+64257353996,Rafa_AI,NexPay,2023,22,37,146,True,60.59,BE,BE,Windows,5LPk4mtc-_qEbhoS5DuXyg,rFUiqi0fgt15ex2WLZ8B_Q,Z-HPXCcxjdyrde4MD1XpwA,Ecommerce,4916,False,False,E,NL
+69753929320,Belles_cookbook_store,NexPay,2023,23,23,6,True,61.28,ES,SE,Android,bJKMQp2mCegh3UNJRdAnHQ,LPhi11-5uZ49zv2zzF37-w,2ycla3Za7hpZkwTaOAsZLg,Ecommerce,4556,False,False,D,US
+34844183874,Rafa_AI,NexPay,2023,6,15,132,True,73.69,FR,FR,Linux,m0mGApxvSqQa5kVB1HWVmQ,efb7EzVoyze9K0kPZS8-2w,AvQrxezb3hRA0LjRvyxFAw,Ecommerce,4556,False,False,E,NL
+29159352977,Golfclub_Baron_Friso,GlobalCard,2023,16,54,217,True,103.07,SE,IT,Windows,,Zhgi7kBihe3IzDbZscANGA,oIQAvsEYf5PFv0iQczI1bA,Ecommerce,4645,False,False,D,IT
+79262358201,Crossfit_Hanna,GlobalCard,2023,14,30,33,False,59.08,NL,NL,MacOS,-XFBwMi6ebey_8Mg89JWlg,mvo4oRUyzzkhDr7SJ_V67g,CPBVcUXTNFdmAQWZUpFaTA,Ecommerce,4920,False,False,F,NL
+54944171435,Rafa_AI,GlobalCard,2023,20,16,285,True,17.57,BE,BE,iOS,c4qVrcY0V6oQONmO63-R6g,,kMJVB3FXLIvw-crzWUUUew,Ecommerce,4916,False,False,E,NL
+15401995969,Martinis_Fine_Steakhouse,NexPay,2023,8,21,228,True,150.75,NL,NL,MacOS,vCyqHkoknyOc2KJGj40GMQ,6aeSgCwgkcMlVm3G_18zTw,HI2UdrFXt3pP2Dp6UOWBww,Ecommerce,4526,False,False,G,FR
+26271834829,Golfclub_Baron_Friso,NexPay,2023,18,36,233,True,91.9,NL,NL,Android,qM1ge0jTalE4Tl0cPySQ7g,VbMddHPt0jNeLAcPQh1JiQ,DXACNZ6kH5xe96M9AKtf7Q,Ecommerce,4891,False,False,F,IT
+78022699594,Martinis_Fine_Steakhouse,NexPay,2023,15,51,195,False,83.53,FR,FR,iOS,,Z-wEG5Px-7SJwzHKWBObLg,3v2ctbSam3tjaQwV5j3wrg,Ecommerce,4571,False,False,F,FR
+28870405207,Golfclub_Baron_Friso,NexPay,2023,4,16,44,True,48.95,LU,LU,iOS,4VKOjNCEDZK9wtiNV6kNZA,qcFG4lrwr3GIfv982omEmg,_i2ubQ9_7pcD1wcS2N5KwQ,Ecommerce,4916,False,False,D,IT
+54081707597,Rafa_AI,GlobalCard,2023,13,17,187,False,22.84,IT,IT,Other,CFpGJSkx7y6Tk5HA06FlGg,edHrdfgFlURRVEqDLeSiRw,bdi-CsXq6LknWkK9YeSaLw,Ecommerce,4916,False,False,E,NL
+40659575538,Belles_cookbook_store,NexPay,2023,14,34,276,True,104.32,IT,IT,MacOS,8VwpzUWB11KL9pixptjQLQ,SDJ5C4hbjy_WVM54CvqGDQ,dTBd1DG0RK4FkBlumHSMfw,Ecommerce,4891,True,False,G,US
+26901349641,Martinis_Fine_Steakhouse,GlobalCard,2023,22,15,309,True,64.67,BE,BE,Android,,IbK0ldDBqPMZd29IQz3NvQ,o4Fmu2gr3OTtHbfVLcRu6A,Ecommerce,4916,False,False,D,FR
+72507199968,Golfclub_Baron_Friso,GlobalCard,2023,2,15,314,False,123.67,NL,NL,MacOS,ZsesUqYJZygfcTIIqxijxA,1aOcAyiaE7vFBylH3y4ZXg,aczMRofmPMt3BPl6oHDIuw,Ecommerce,4645,False,False,D,IT
+36266239886,Crossfit_Hanna,SwiftCharge,2023,4,42,355,False,5.12,IT,IT,Other,wssbVGHBWUtqelAnPZUK8w,,FHxn9JtdOJoISrOv36jKAQ,POS,4645,False,False,A,NL
+40428665115,Rafa_AI,NexPay,2023,0,14,276,False,100.68,NL,NL,iOS,,Fmff_7zehZjgup96TJIMhQ,Zp023g1ZigHy8ROSzaX68g,Ecommerce,4916,False,False,E,NL
+24745235282,Belles_cookbook_store,TransactPlus,2023,22,48,288,True,39.83,SE,SE,Linux,yJRiaG8r1sic03OR0pWfCw,0uTMX9HTRyxnXzwGOpHMxg,B1Wx1ZXvUVzQYhm42QFxDw,Ecommerce,4802,False,False,D,US
+58402095256,Rafa_AI,TransactPlus,2023,15,57,162,False,134.83,SE,GR,Other,,xb2fg5ua8WnP2GbKW9cJww,_cw1RJcSHfjwWTumoPItyA,Ecommerce,4526,False,True,G,NL
+40505831842,Golfclub_Baron_Friso,SwiftCharge,2023,11,14,112,True,220.28,NL,IT,Linux,6YvtjxuXcuotBxt10-S6Yw,iM88FASkPoDNd3QfoK1ZfQ,Z-ljzJ8L12rBW_poitF0IA,Ecommerce,4916,False,False,G,IT
+31262311193,Crossfit_Hanna,GlobalCard,2023,11,56,140,True,62.38,BE,BE,Windows,rb2qmdSvo1u2w4Gg9t2Ayw,o9dM0080rST5LjsJGQR5AQ,tQ1_ucfBjb6AsUuDvSK5CQ,Ecommerce,4532,False,False,D,NL
+34581725126,Rafa_AI,NexPay,2023,11,56,162,True,32.55,NL,NL,iOS,7BKPTEDviWZnR5yZmdh4WQ,wmwqMhKJKqA8_KasdWhUOA,CsEGnz2GUM-TGgCibx2XUA,Ecommerce,4236,False,False,E,NL
+22741743732,Rafa_AI,GlobalCard,2023,0,35,132,True,74.53,IT,IT,Other,Dk7JENEUGcK-pdxI6FesMw,8n25mn1RXNztaQVa3zd97A,lPAHf8nFJf_fJe5QRFhYVA,Ecommerce,4916,False,True,G,NL
+89331056613,Golfclub_Baron_Friso,GlobalCard,2023,12,32,269,True,222.47,SE,SE,Linux,ddwqi7xEjiKdxsEAPXc6lQ,-7aFjvgWxMeBnWfcl5XL5g,iDjKKRu3tL7gAVe7XsCbzw,Ecommerce,4916,True,False,G,IT
+55804550608,Golfclub_Baron_Friso,NexPay,2023,11,30,97,False,120.62,GR,GR,Other,,q8dgAB5zLtnIIq3jzPerow,NKJ1G8TVoYmTaGvOsmwK4g,Ecommerce,4556,False,False,F,IT
+24122652899,Golfclub_Baron_Friso,GlobalCard,2023,10,19,181,True,256.1,LU,LU,Linux,ZNGOasAU4okJe8KeyO7gYw,uVhikzWDOuMPnpfHLRsG1w,IfXl1kzlH2bnI01UCzpOkg,Ecommerce,4916,False,False,D,IT
+46178200195,Golfclub_Baron_Friso,NexPay,2023,18,45,257,True,136.76,NL,NL,Other,lpjFC9cY-7_G0_dM3yitjA,JVjJ26xrvOE3uSHIynfc6g,myMopxbBiBfh91Be3Xzi7w,Ecommerce,4556,False,False,D,IT
+41443232784,Crossfit_Hanna,GlobalCard,2023,9,26,99,True,33.29,BE,BE,Android,,uthiYx4J32FetjeXHl4mBw,5id-lzicjxiSXF1QsBBDGg,Ecommerce,4556,False,False,G,NL
+39870199991,Golfclub_Baron_Friso,TransactPlus,2023,9,45,347,True,64.93,SE,SE,Android,wMOFCT6rHUAf7YsfgESEHA,T0W3tyLFm_Az1rjpCsRi9w,eicqWAUX4W2gQZpqGJ8XIg,Ecommerce,4133,False,False,D,IT
+14326655057,Golfclub_Baron_Friso,GlobalCard,2023,6,47,175,True,11.0,NL,NL,Other,NqucH8wohxTbdV8l1ZB1bQ,jH4nknYvfmc4ez6C1weXdg,-UREjZHGRCURnjBJmf1-9A,POS,4556,False,False,A,IT
+72204548795,Crossfit_Hanna,SwiftCharge,2023,14,8,354,True,146.64,SE,IT,MacOS,34HCsry8SSgKTUjlzPI9gQ,srwXFHNtO06dDvXcS8ePPA,WCd0fb9QHeUH7tMlxsdfPQ,Ecommerce,4236,False,True,G,NL
+37307636905,Martinis_Fine_Steakhouse,GlobalCard,2023,8,55,190,True,36.71,SE,SE,iOS,,,sc2WwuU0oFGiyHE-zXnGxQ,Ecommerce,4802,False,False,D,FR
+--- END payments.csv (head) ---
+
+--- BEGIN payments.csv (tail) ---
+23064091211,Belles_cookbook_store,NexPay,2023,19,30,10,False,108.41,NL,NL,Other,2TtGT5vkuUgSnm8DfLhDiA,EKqUPw9QUhTCbPEGMfcw2A,CG-uPSZhopEsEVgQA9jJCA,Ecommerce,4916,False,False,F,US
+11500258011,Belles_cookbook_store,NexPay,2023,23,37,67,True,125.87,SE,SE,iOS,dtyXu1XlUt4-gPsJZ45Tsg,bkrx6HtyqAsa9_EHwAIMfQ,u7urI2gmCaCexZhtl3i7ow,Ecommerce,4236,False,False,D,US
+80462654516,Golfclub_Baron_Friso,GlobalCard,2023,14,56,177,True,51.5,BE,BE,Other,nPG1n7wk6b93qCHFoC1dVw,kHaRAtqfSBqtIgJ1wEfXEA,ilYnbXDuYC5n4vIXOSHUqg,Ecommerce,4916,True,False,G,IT
+19354755609,Crossfit_Hanna,NexPay,2023,11,38,141,True,20.32,NL,NL,Linux,kFuw9ts_1531GlUIoGN2RA,CGNSbf7HxDZL4FhPt8IrVA,GJegxJFyJjqVhNXJ1dOWSw,Ecommerce,4571,False,False,D,NL
+44238119358,Crossfit_Hanna,GlobalCard,2023,19,30,300,True,23.14,BE,BE,iOS,,uMgsz8mpFrnuBigoMm14Gg,4bCChmj8iD4ZzvIlUzpmBw,Ecommerce,4920,False,False,D,NL
+76608628795,Crossfit_Hanna,NexPay,2023,1,7,267,True,11.44,SE,SE,Android,Df8g3PjgsbqmZApyDgUpWw,Gme5g8WVjCStpIlIu636cw,ji9ouzgGDhxEayU_Intg6w,Ecommerce,4891,False,False,G,NL
+27510451830,Crossfit_Hanna,NexPay,2023,7,50,112,False,9.16,FR,FR,Other,UplyipvXvZqp0rK7iYQVig,OT4sK2dD5lF4zYhIEJR-Ng,MY5Pl49guRhm-rMN4xh_ig,Ecommerce,4916,False,True,G,NL
+10322590826,Crossfit_Hanna,SwiftCharge,2023,9,18,173,True,27.79,SE,IT,Other,,8nDj7qlI9u7EhPaGk1_xKg,HpXkdVfbwY3W6vAnxp5RiA,Ecommerce,4891,False,False,D,NL
+16445419801,Rafa_AI,GlobalCard,2023,10,36,89,True,90.22,BE,BE,Android,cx3magsNMjJpMuTAtutjTg,54nskIDQ2MN7vj61i3tc8Q,lziAotz_BapxswrxlDxEVA,Ecommerce,4622,False,False,E,NL
+83987974905,Golfclub_Baron_Friso,TransactPlus,2023,11,53,281,True,51.14,LU,LU,iOS,grafpK0pV7Vp4-tne1lP5A,LpRZBs-xaXxXznAlu3l3Cw,fJJlHcp3QnV5kmU50xkCdw,Ecommerce,4916,True,False,G,IT
+67455651753,Golfclub_Baron_Friso,SwiftCharge,2023,21,13,75,False,159.52,IT,IT,iOS,1aTXFzLVW_7RI5XCvbS96A,-zHACYUfXNaHSv-QDZktbw,iFIT7DL9ZTG9SySbSq-r-w,Ecommerce,4916,False,False,F,IT
+46478639526,Belles_cookbook_store,TransactPlus,2023,17,44,206,True,56.99,LU,LU,Linux,yjOfy-knvrv6JfTvJuM_Jw,,4DQpZhkDi2mNvo_nbmI0FA,Ecommerce,4916,False,False,D,US
+28673909641,Crossfit_Hanna,GlobalCard,2023,12,7,290,True,86.48,BE,BE,Other,,CvM4H32oEb-wmuOX9Rbhwg,Ph_dDl9-e5jGb9Bp7Sq1HQ,Ecommerce,4017,False,False,D,NL
+71664003937,Rafa_AI,GlobalCard,2023,14,19,82,True,63.55,BE,BE,iOS,,uHJ0LFx-dp1dyxvAuwKF2g,on_lwGkFvUlJeO7nLfWJ9g,Ecommerce,4645,False,False,E,NL
+87182506210,Belles_cookbook_store,NexPay,2023,16,56,132,True,17.38,SE,NL,Linux,7m9tan3viusa3KOKc32Iow,JuhRHUv6WzlIage6mp8mIw,_KaF2s2BLSrxIseGyD_tqA,Ecommerce,4622,False,False,D,US
+17491369483,Martinis_Fine_Steakhouse,GlobalCard,2023,4,16,208,True,26.29,BE,BE,Other,,jOAeV-M8dQ1iy8W6IB0RTg,iEiWyu62r9OnwhYm5Hs36A,Ecommerce,4920,False,False,F,FR
+73227592388,Crossfit_Hanna,NexPay,2023,13,23,341,True,26.84,IT,NL,Linux,jEW2JIhEFzQGbcx-i26wjg,QLAsXHlg8jcBcJxUd3f1KQ,in7VIm1aEAnVcMwGkuNFuA,Ecommerce,4556,False,False,D,NL
+50052183013,Rafa_AI,TransactPlus,2023,14,32,47,False,15.73,NL,NL,Other,T9cBEVV0H2Ztgn8M-G1GXg,loYSsEM5I54MXFKojy96Ig,lXnsbp57cpjrxBQo7bh7ng,Ecommerce,4017,False,False,E,NL
+48239874833,Golfclub_Baron_Friso,NexPay,2023,11,43,271,False,55.08,NL,NL,Other,XfT53Lg-tJ9OozmwHKF3MQ,WwC28L1nQjnTkTyCr-uRYQ,bJr7iiAhOvJVjNSJJQtOgw,Ecommerce,4571,False,False,F,IT
+53551691355,Martinis_Fine_Steakhouse,GlobalCard,2023,16,23,229,True,17.89,IT,IT,MacOS,gweLUQfnQdzS6Wfw5B7wSA,YmZs8CBpkU84qQrkW2tA4A,69gjvzyEJRD15X1YnNAvVQ,Ecommerce,4916,False,False,D,FR
+80173879451,Crossfit_Hanna,TransactPlus,2023,4,14,235,False,15.25,NL,NL,iOS,XFZWSWw0tgBQZ9FkqR1F7w,,prU4dci9iTPyk5HE--s7Xw,Ecommerce,4916,False,False,F,NL
+77645032959,Crossfit_Hanna,TransactPlus,2023,20,18,311,True,65.88,GR,GR,Android,3R-45aTBuOPVkGMgzV-2nw,Fm-pfuCpKpw61f02BakR_Q,ZTtwQmhbEuVslIuYbhhDRg,Ecommerce,4571,False,False,D,NL
+85578977167,Golfclub_Baron_Friso,GlobalCard,2023,14,17,94,True,53.61,IT,IT,iOS,6tU7v550Wk46aX3l0P7pPQ,ssQ_BoG2j1oRZTSEYvW4oA,UzG_QxTJTvcHZspDU4TsYg,Ecommerce,4645,False,False,F,IT
+22010717207,Belles_cookbook_store,TransactPlus,2023,7,59,47,True,137.26,FR,IT,Linux,3J8SufdihHR5PpjEb2Q0uA,EUkzfRATghw3XQO6urEc3Q,ZzCBWvsLovdHjKklayY_eg,Ecommerce,4556,False,False,D,US
+48133172444,Crossfit_Hanna,GlobalCard,2023,13,41,72,True,82.09,ES,ES,iOS,,8p6aBnzpPXnEK0NF7rsYEQ,wWd-3iENcIOaIGYDjp9LuA,Ecommerce,4622,False,False,D,GB
+80269755540,Rafa_AI,NexPay,2023,14,42,337,True,18.02,LU,LU,iOS,LDLGOUodxPBMREzHAcXE6g,LexRWzZD29qRiIfLVmANPA,BnNfpg9loh4LDkSOsjnslw,Ecommerce,4916,False,False,E,NL
+32887369260,Rafa_AI,GlobalCard,2023,15,56,121,True,26.0,BE,NL,Linux,h49cCdpaMMlEdoExjW2A-A,fJA14cJkW4KIIG_bIRAY9Q,DFCUq5JkPzYhTw42LMGHOg,Ecommerce,4532,False,False,E,NL
+44035452212,Golfclub_Baron_Friso,NexPay,2023,9,20,14,True,148.12,IT,IT,Android,,f6y5cvR-wtmEK094Z5EyqA,gkuqSCPSi6l4_IUdVdhQGQ,Ecommerce,4556,False,False,D,IT
+54406800145,Crossfit_Hanna,GlobalCard,2023,19,15,44,True,47.59,IT,NL,Other,1GYkpoAuTWZd3lk4TPSjww,oyxk0dHUB-5Hugtp45y2Rg,aWsb7_O4tdLVGYLt2k5zvg,Ecommerce,4556,False,False,G,NL
+75243185690,Golfclub_Baron_Friso,GlobalCard,2023,22,34,118,True,156.11,ES,ES,MacOS,pkFFu0ZoAm0FhHQitgrDmg,WStTP00psYVELGxuuF8dlw,c0w4uOocig3VXM4Ti0rnfw,Ecommerce,4916,False,False,D,IT
+67564412091,Martinis_Fine_Steakhouse,GlobalCard,2023,23,46,244,True,70.38,SE,BE,iOS,fXxhGiUgscdlHf1NxrcS7w,72cI3GJ8OpLEJt47j2PQNg,PrLaDNfDi8xWabgN-sMRHA,POS,4017,False,False,C,FR
+68346291460,Belles_cookbook_store,GlobalCard,2023,10,1,65,True,20.0,FR,FR,Android,,uBvnX5GN6MoQFJk0JNW-xQ,j42wE_WHe-o6J2BPik9bkQ,POS,4556,False,False,C,US
+74562776420,Rafa_AI,GlobalCard,2023,13,9,61,True,64.45,SE,SE,Linux,iSrXEdkGTXH3iqUhcbGJKQ,lFBTT8eX3C-gtieyuTny5w,hTd1M9-fHAWqgtDbR9vXsA,Ecommerce,4526,False,False,E,NL
+37533725064,Golfclub_Baron_Friso,GlobalCard,2023,18,0,330,True,98.78,IT,IT,Linux,ASdnXDs1tFeuLvBeBp6vpw,ntkyryp63cpjo2TAQCvMgQ,rDYDlggrIn7vnSX-gpq9dA,Ecommerce,4802,False,False,D,IT
+26336332335,Martinis_Fine_Steakhouse,NexPay,2023,10,19,33,True,28.72,SE,FR,MacOS,QK7QTjCYD_cePVWiuaaf7Q,,p5IH7Ya4P1lPMcA3AHU2lw,Ecommerce,4916,False,False,D,FR
+43603878305,Crossfit_Hanna,NexPay,2023,4,3,342,True,24.8,BE,BE,Other,tF2JzpEskmol0EpY4ZDpFA,B4hBd99YIhttrMdMaVDVqA,aeg-zvHnX6IKWFyWGqdt6g,Ecommerce,4017,False,False,D,NL
+39752243246,Golfclub_Baron_Friso,GlobalCard,2023,13,27,246,False,9.65,ES,ES,MacOS,,OVqWhN5lAy1iaojSUwl2HA,6-QhvnTOp8YASWJM7RsCHw,Ecommerce,4891,False,False,F,IT
+11893434145,Rafa_AI,GlobalCard,2023,15,2,204,True,85.5,IT,IT,Android,,OZDOyLwJKKHCWXfAO_jjlw,N0d7MU542a4bGYuvWLELtQ,POS,4556,False,False,C,NL
+48314865043,Crossfit_Hanna,TransactPlus,2023,21,17,283,True,47.44,BE,SE,Linux,v284fzrBMR9zAgljoUaYVg,v1IJnROyL3HpYJKvRFeGuQ,cmtVdP3wQuj4PUpVM5XUQg,Ecommerce,4556,False,False,G,NL
+11621494314,Crossfit_Hanna,GlobalCard,2023,13,5,169,True,12.57,FR,FR,iOS,oiC6oEgQ2RXxfYXYbydi2w,nLplDiJjjWZSgZmXDGrKmg,-Xb4QDis-2U1w3NOtkFlLw,Ecommerce,4571,False,False,D,NL
+73501715499,Crossfit_Hanna,GlobalCard,2023,11,58,346,False,95.06,IT,FR,Other,bXXL3LWNXFD02zC9DiiUNA,vVnrKocXCWN1xRSbsCz9zA,3i5f_cDJ3H6E1CSTMqIbOA,POS,4526,False,False,B,NL
+54287932174,Martinis_Fine_Steakhouse,SwiftCharge,2023,4,43,105,True,150.87,BE,BE,MacOS,8SUw2jDGer_TGrzMUnf0cQ,RLtXMLqnYUQQERjk36UBUw,2cqJhZrZZWq39zYdgUDzDA,Ecommerce,4645,True,False,G,FR
+77312302480,Martinis_Fine_Steakhouse,TransactPlus,2023,13,30,202,False,113.85,IT,BE,MacOS,yqSppr_zFqI8mh63N4Gkjw,rPFBgIkdxs2ZBVczkftvtA,QXEItNp_CqC8R-fAG1BqAg,Ecommerce,4556,False,False,F,FR
+65093452081,Belles_cookbook_store,NexPay,2023,21,27,116,True,13.11,FR,FR,Other,,bZnqQuoTzxKkuh7g-5h-Pw,7bPCxVsIblesZVh_RDTpwg,POS,4556,False,False,B,US
+14522924266,Crossfit_Hanna,GlobalCard,2023,6,50,280,True,183.73,SE,SE,Android,,g4Ca3OHqCA85Y3aEfNchJA,PJm5j7CyN7GYnA0iWUrygA,Ecommerce,4236,False,False,G,NL
+37746248344,Martinis_Fine_Steakhouse,TransactPlus,2023,17,5,128,True,100.26,IT,IT,iOS,hhC2mWvbMuN6-8wYT0r_ww,OVbbq4LphlL5BrK0nM2Xrw,sWbKafKRv-j-zHSxeEI5IA,Ecommerce,4571,False,False,F,FR
+82661665035,Rafa_AI,GlobalCard,2023,17,32,66,True,124.36,BE,FR,Windows,oGihiKgSP6Bh-vBTUfInRQ,lvG5h6wQgIC4_SNgdLJZZw,sLli3doUfjWpI7o8GWHY1g,Ecommerce,4571,False,False,E,NL
+43694115777,Rafa_AI,GlobalCard,2023,11,14,183,True,22.96,NL,NL,Linux,sJZjBell79LmK30Zd4IViQ,vNPUayRLP4xCvHen_JX6ZQ,3dQ3OYpnxR70435Ur0Dbmg,Ecommerce,4571,False,False,E,NL
+40533348777,Golfclub_Baron_Friso,GlobalCard,2023,2,17,223,False,39.63,SE,SE,Linux,Ikf7OHl2LW7ItV78nVL7Qg,Xh50TwDUjm50qqtJkz9Vqw,T-rCcZJt6oa4hjjeHDezaQ,Ecommerce,4916,False,False,F,IT
+83506569765,Crossfit_Hanna,SwiftCharge,2023,14,6,355,True,252.39,IT,IT,Other,G2qhEvAnX4-gLGbnsnwZhg,GZ_xH9WxT1vaDhl96lpWUQ,KBiysrZ9MGX5F2BUbdHfWg,Ecommerce,4556,False,False,F,NL
+83692931126,Golfclub_Baron_Friso,GlobalCard,2023,14,44,11,False,65.58,LU,LU,Windows,aJM0CrQ1FGeO9rgwVQffEA,,76yqZVePFYwhxj1qCz2hcw,Ecommerce,4891,False,False,F,IT
+42141520048,Golfclub_Baron_Friso,TransactPlus,2023,3,31,272,False,20.21,FR,IT,iOS,ul9vJtRPEJ8w5qDcZH1g1Q,,MFK6ZffujFDSYubuYGsiPQ,Ecommerce,4916,False,False,F,IT
+11599286488,Golfclub_Baron_Friso,GlobalCard,2023,5,44,109,True,59.8,GR,GR,iOS,,8X_pDAYAjUzMeSa51wVT3g,o1HgvXfDwx6Fss-Rapm8_w,Ecommerce,4916,False,False,D,IT
+26729482868,Golfclub_Baron_Friso,SwiftCharge,2023,21,47,133,True,5.47,BE,BE,Windows,zbEf3yIalFTJk4cuEoXRpw,AxUzpI8PY9MD4bUHaljZaA,kgk8CEXHVcVLjId_6PkNdQ,Ecommerce,4236,False,False,D,IT
+59721118213,Crossfit_Hanna,NexPay,2023,17,51,26,True,40.73,IT,IT,MacOS,,a-xcSQf8IvxyiSenyS48oQ,xTRIkwHLQrht_UW9HT4zPA,Ecommerce,4571,False,False,D,NL
+53562060328,Crossfit_Hanna,GlobalCard,2023,20,59,365,True,225.73,IT,IT,Windows,bqrw2m5F4do-aPPwEnYCVQ,BiC5oKrZcO-fnzhxG95rFg,1j45lDXBAkGIfFdv67A8yg,Ecommerce,4891,False,False,D,NL
+85212802611,Belles_cookbook_store,GlobalCard,2023,15,49,57,True,39.46,FR,FR,iOS,gF-FIIA4zgVGaXUqQ7ToPg,IQ0QNKij0MVo6jYisNILjw,rGSAeUwdcJQVlFThgsM0NA,Ecommerce,4891,False,False,D,US
+68188106267,Belles_cookbook_store,NexPay,2023,22,32,165,True,403.99,IT,IT,Windows,0_IUN9Eqzbi3Dx_EWND8vA,uFfSRAs69Vzcm0krGE3pcA,FEWHBhuYpEMkROW0NEeV2g,Ecommerce,4556,False,False,D,US
+22560965516,Crossfit_Hanna,NexPay,2023,10,33,123,True,46.78,BE,BE,Linux,6K4jDFkp1DvxG2d77NOutQ,dWywFYEsNzMl6SbSCyR6lA,sVVOd7fLQ9sG0KE4gSO9yw,Ecommerce,4571,True,False,G,NL
+45716524717,Crossfit_Hanna,TransactPlus,2023,16,2,245,False,34.51,ES,BE,Windows,rWvop1YjdKJDWXlYSJUAqA,RnxYQ4XTIAXnMj93ZXm-iA,jRL6AZ4r65hP8Ue72AESSA,Ecommerce,4916,False,False,F,NL
+58063706159,Belles_cookbook_store,TransactPlus,2023,11,50,333,True,36.32,IT,BE,MacOS,2Gs4t2fTFfo1nQ49_xpzbw,x6I4TMHXOgeKdD6Yqt-H1A,hKFpFKRrIId-YOz6gv55hg,Ecommerce,4526,True,False,G,US
+49909902805,Crossfit_Hanna,GlobalCard,2023,8,46,103,False,30.83,ES,ES,Android,ns6SwrGimCaO4UiiPMd1xw,,gMo-APGDSLycE00jOYEAVA,Ecommerce,4920,False,False,F,GB
+79429298765,Crossfit_Hanna,TransactPlus,2023,10,44,188,True,41.13,NL,NL,Other,,5RXNQ3ZALEa_x4YM2BVfEg,J6SLv8lz3i0NdjZy1XgpCw,Ecommerce,4916,False,False,D,NL
+76311624326,Rafa_AI,TransactPlus,2023,10,6,322,False,71.2,NL,NL,MacOS,6SeOmlAzuahAyesks46prg,oVjAIWmhV98bs_-3CKQNtg,4oeCgkGT6eHJ1VfNTmZOmg,Ecommerce,4556,False,False,E,NL
+25814361653,Golfclub_Baron_Friso,TransactPlus,2023,19,14,346,False,11.24,LU,LU,MacOS,E8SJfSN3ChvxF0Z-rb5WPg,WaawUR9JPJE7orfygSHj5Q,a3TS74Pk0EJAJJgf_TIkJg,Ecommerce,4802,False,False,G,IT
+72845706395,Crossfit_Hanna,TransactPlus,2023,21,10,21,True,13.85,IT,IT,iOS,YnjfaaPSSp7IrRMJONIH-Q,OWeynEEvmJxrxyeU4xkkow,vSDbWE6HLP0IkZ3B9iX6Pw,Ecommerce,4916,False,False,D,NL
+14272090627,Belles_cookbook_store,TransactPlus,2023,15,32,159,False,257.13,ES,FR,Windows,PRAILg2uSeZcaAoTxsqgpQ,1vv7JviViBMeglbdrVRh7w,ApXYa3NfnGPHrUWrFZG1eA,Ecommerce,4571,False,False,F,US
+11122922681,Belles_cookbook_store,TransactPlus,2023,4,54,268,True,95.54,NL,IT,Windows,eAAzmgl9jfsyVimtVy5dbg,rKHKncEM_vwoNjjLYvSaug,YQPhJVFLAUNSlUGaUGdvOA,Ecommerce,4556,False,False,D,US
+73037638834,Golfclub_Baron_Friso,TransactPlus,2023,0,22,157,True,80.75,SE,SE,Other,cQCudphGHHaWFgDS0BaKXg,20iu5fZBivHp13791qUp7g,v9eCEBwPjQz58eEHTCcxog,POS,4622,False,False,C,IT
+74794206462,Crossfit_Hanna,NexPay,2023,9,11,254,True,37.83,SE,SE,Windows,yUaiOqcu9DlUKpIrZm0sVQ,HseUHHUIonuRIPJdxGLQbQ,RPzCt0SJ3p7GaSN0Iqk6Vg,Ecommerce,4916,False,False,D,NL
+60307879749,Rafa_AI,TransactPlus,2023,9,23,249,True,76.28,BE,BE,MacOS,mTVcQ4NlbOe45OXjuxRJlg,JH9cPLX04h8EyBk8ajKxIw,S8xOyapZpP4oTjNOzMrVxw,Ecommerce,4526,False,False,E,NL
+52896929145,Rafa_AI,SwiftCharge,2023,10,38,257,True,17.37,IT,IT,Windows,f0gR8brCYUacMOOXCKaz9g,5RdmgOAYYc8OJKIZqGzXtA,8bPc8RjB7kHcg6hfxdBS1Q,Ecommerce,4556,False,False,E,NL
+51189298898,Rafa_AI,NexPay,2023,15,2,137,False,143.22,IT,SE,Windows,ppQg0BRe8zAsXbNyl06rQg,iEUYSG3qsPWqNjfYOYYAoA,tBMc-PE-qZgue9gBXQiTZw,Ecommerce,4236,False,False,E,NL
+79696940147,Crossfit_Hanna,NexPay,2023,16,51,6,True,47.44,FR,FR,Linux,wLJEuywcIWjtSFTbdKH-Yg,Slms0AgQJRSlrV-RV8WWXw,eUWh_US-ildGfVmAtOlXIg,Ecommerce,4556,False,False,D,NL
+16032280180,Crossfit_Hanna,TransactPlus,2023,14,7,85,True,245.1,NL,NL,Windows,qSSVDYflj8H9x8Vpzwd9wQ,RP_LaWvnrlaFATZHu2NIAg,zGVapqdUIl-CvSUa4VCjyA,Ecommerce,4802,False,False,D,NL
+20999571030,Crossfit_Hanna,SwiftCharge,2023,14,17,13,True,66.42,FR,LU,Android,lLVlkMnYeJZs8csqIJtmsQ,8Y9zC9x4id2Z1bSgtDzLgQ,hm6Z4jWxy1542YtV4-vMRw,Ecommerce,4017,False,False,D,NL
+37682272023,Crossfit_Hanna,NexPay,2023,12,15,130,False,51.68,NL,NL,Other,HqYMEtiawOzdXuYMh_6t8g,4m8WNu2y-zcawaWTiCXcrQ,ScHxUcm5w4XJg_Ywo4M19Q,Ecommerce,4645,False,False,F,NL
+68623926512,Rafa_AI,GlobalCard,2023,19,38,176,True,13.07,BE,BE,Linux,yS_hiWKS_BpecU5fEyurqQ,vSVq8DQgNa6MBXgEBLt1vA,SwO1JablFb0VUQaNbYdsnw,Ecommerce,4556,False,False,E,NL
+12071155923,Crossfit_Hanna,NexPay,2023,20,21,116,False,57.3,SE,SE,Windows,1q9fcfXSfTNtjGPcjuKUaw,Et4fj61N62wVPI4KMg056Q,Mz-boR7Kz92rvnhT6iywpg,Ecommerce,4526,False,False,F,NL
+13221590654,Belles_cookbook_store,NexPay,2023,21,23,84,True,210.97,ES,ES,iOS,,LIuGo8600ija7cc3URkdGw,lnKltZqtG3aIshLDCrSj8Q,Ecommerce,4916,False,False,D,US
+30710632244,Martinis_Fine_Steakhouse,GlobalCard,2023,11,44,259,True,57.03,BE,BE,Linux,bKwOElG2i8c4qBw_X6bAcA,5rGpKHdoc8Tn_BDF_R3JZA,yUYzeudO7AkS6x7w_Ur6Lg,Ecommerce,4920,False,False,D,FR
+86215796774,Rafa_AI,SwiftCharge,2023,23,5,247,True,109.54,SE,SE,iOS,,,7cnrJgYx5FEPcGl3IIFAtg,Ecommerce,4017,False,False,E,NL
+65599772362,Crossfit_Hanna,GlobalCard,2023,14,45,356,True,117.02,FR,FR,iOS,Ni6FW6QjjCTuVcHrXiZ03g,v2IEzkYS0daiGjiq_t3Drg,kwLyEo2xLtGBSM2jPvrQpw,Ecommerce,4236,False,True,G,NL
+20682300880,Belles_cookbook_store,GlobalCard,2023,10,39,239,True,56.23,NL,NL,MacOS,,d8txnWr1YIzeekIH4XVPbw,MW3svAIs-DA4O54dN9n3gw,Ecommerce,4571,False,False,F,US
+74536707049,Golfclub_Baron_Friso,GlobalCard,2023,15,49,169,True,18.5,IT,IT,Other,,2V1jiPRAkWbd65zOtuO0dg,vWyyhY91zYITp8uxadplGA,Ecommerce,4571,False,False,D,IT
+43690298330,Belles_cookbook_store,SwiftCharge,2023,14,46,214,False,52.82,IT,NL,MacOS,,RDsefBaRk6tfikHAHDQRsg,w7O9KLBLJ1Yga0sxfuDBag,Ecommerce,4920,False,False,F,US
+28621678371,Rafa_AI,NexPay,2023,5,22,48,True,65.97,LU,LU,MacOS,pAk9QgMI5q44cLaSFo-vAQ,OtQ45SRKKnx3a6bM2kwKBg,p8VW_zUgrrVpdFF2fCxR_g,Ecommerce,4556,False,False,E,NL
+27410457074,Belles_cookbook_store,GlobalCard,2023,19,19,55,False,64.89,FR,FR,Android,dRBpSvdb3slx_6W5JlLyEQ,3za_SL8Dd0GCO3bGcZ3dsg,F9bqW_BTsjyiLo0GUAFKhw,POS,4017,False,True,A,US
+28662558310,Rafa_AI,TransactPlus,2023,12,45,245,False,78.88,FR,FR,Other,TPAj9ebV4CHkbrITKeMZ6Q,tbN3JPPAW22PeUCK-kuL5g,FJzboV_jN1vLiq3CxAAdtA,Ecommerce,4802,False,False,E,NL
+66969757951,Rafa_AI,TransactPlus,2023,22,41,161,True,37.05,SE,SE,iOS,SrEK08gHBSJoRut1G7TbHw,KDK17Wf0hvpGaZQG5vMizQ,am17OqxQHvXt6dPM2sYuAw,Ecommerce,4571,False,False,E,NL
+31821172929,Rafa_AI,GlobalCard,2023,9,2,359,False,116.5,IT,IT,Windows,p3CyDtv-TuESawYw8ml6Dw,_0jW-lICqGlJ2CGgnxHoyQ,w0E1HNavqFjP00sE2e8Ktg,Ecommerce,4532,False,False,E,NL
+62481303895,Golfclub_Baron_Friso,NexPay,2023,11,24,77,True,58.59,NL,NL,Other,,HICtoOKRbGREgTXNvYVINw,9opzyC9OgtcBhGqNGuI-kA,Ecommerce,4916,False,False,D,IT
+27817856868,Crossfit_Hanna,TransactPlus,2023,17,20,284,False,106.54,NL,NL,Other,USVCt-MB0dwYnOQ1R2rGDw,v0QlHMp4YChQsF9mMqKinQ,95CgIJrmxG6Ux4uKphCiQQ,Ecommerce,4571,False,False,F,NL
+86801277287,Golfclub_Baron_Friso,SwiftCharge,2023,13,17,308,True,67.54,SE,SE,Linux,XTJZINylW1AzwWswMod1kg,Qd7hReZkW-v0s_HVH2YsEw,M1cVtrgePJkSTx7Cg7-WVQ,Ecommerce,4532,True,False,G,IT
+37065464912,Rafa_AI,GlobalCard,2023,22,6,297,True,83.39,FR,FR,Android,B6Uc-h9fnsWTr1Lm-xaz4w,SkZctKVdoavxzxMyqrFS3w,HBJp1-xfPV_8iVPbpHnvvg,Ecommerce,4916,False,False,E,NL
+33294856935,Crossfit_Hanna,NexPay,2023,13,22,26,False,6.59,IT,IT,MacOS,,ufOO_yk2kwsa_A9QdsnjhA,fPaLCSUFylq5CUHwy3qHLQ,Ecommerce,4645,False,True,G,NL
+44035130672,Rafa_AI,NexPay,2023,16,27,52,True,160.06,GR,GR,Windows,0hnlyRbvgox2JBf7P3MJyg,UEQVnzKj99zFvtMRo9eAEQ,f7UeNfRhtdXodkHK-XCMtA,Ecommerce,4645,False,False,E,NL
+73261710274,Golfclub_Baron_Friso,NexPay,2023,12,48,150,True,50.57,FR,FR,Windows,lAGrAxv9dIIM219Ro2KdUA,,Eo37pMx9nO1RqrfwIew79A,Ecommerce,4571,False,False,F,IT
+27525182100,Rafa_AI,TransactPlus,2023,18,50,121,True,184.59,NL,SE,Android,,F2B9wBRrMUJf2AAjHjsBIQ,P1083cyWSEBLBe-vC9o52Q,Ecommerce,4622,True,False,G,NL
+54133554179,Crossfit_Hanna,GlobalCard,2023,8,19,242,False,194.77,SE,FR,Other,Rk8FceFwAnErrZjZ6SX36w,,--rF-7timtLZbVBjQrPkkA,POS,4133,False,False,A,NL
+53793260173,Golfclub_Baron_Friso,NexPay,2023,9,23,344,True,111.91,IT,IT,MacOS,CkbyNRg9-jKhE2uQwHCuKQ,7wQGtNv75qoELVOQq7418w,lXUFoqNqdByggssmAFikTg,Ecommerce,4556,False,False,G,IT
+68926738888,Golfclub_Baron_Friso,NexPay,2023,12,49,94,True,43.66,ES,ES,iOS,p79lG8n0ypUsdyNku0X9Sg,9H69mLwq4REp-nA_sbioxw,julVe7pU7QZpSV3XHT_t-g,Ecommerce,4916,False,False,D,IT
+36172966790,Crossfit_Hanna,NexPay,2023,16,4,20,True,7.32,FR,FR,Android,jCOo3xTWQuxQ5FfulBtTrA,n04WGKhn5sQo6UnUtLeARQ,UAXXRr-nz1Z57r8mebg7aw,Ecommerce,4802,False,False,D,NL
+69507165820,Crossfit_Hanna,SwiftCharge,2023,19,47,40,True,305.84,IT,NL,Linux,rW0BL8JqumiYwo8BdZ-5NQ,K2b8NfyjD-Hv53y8OoRasg,glhv-wmZXMNMUT9VXzIlgQ,Ecommerce,4526,False,False,D,NL
+76870859724,Crossfit_Hanna,GlobalCard,2023,11,22,278,False,18.82,FR,FR,iOS,_1QMQ2QY5v7YN_WZX7r19Q,bpX_qxoiw3WBxVAyo-MaUw,tmuhtFw0odykff9b0w7REw,Ecommerce,4571,False,False,G,NL
+16582542722,Rafa_AI,NexPay,2023,14,48,69,True,55.24,IT,IT,Windows,,EEn9h-JTyddSVzgfUqO2yg,kYGsxGcQX2e9TTaJDPdJ7w,Ecommerce,4916,False,False,E,NL
+71542193433,Rafa_AI,NexPay,2023,19,0,197,True,97.72,ES,ES,Other,,3w0m4gEa4s78H31ZijH7yg,UZeKUMqOOaKgMOZFBnrtkQ,Ecommerce,4133,False,True,G,NL
+43229317639,Crossfit_Hanna,NexPay,2023,16,54,118,False,37.32,LU,NL,iOS,AeJcgraKrESX3p6cWcRejg,Eka8nzWhAf8Oqn4I5NmIFQ,NFTgMpMrnJEnuzEQ1-OYxg,Ecommerce,4916,False,False,F,NL
+84215276785,Crossfit_Hanna,GlobalCard,2023,15,17,238,True,40.17,NL,NL,Other,tJA81FymSZCeJOSZDp6GWw,jWngBtdmBoYrm9hYyn1-7A,8TdoesTt7Q6xAfayT_RZnw,POS,4556,False,True,A,NL
+22508468567,Rafa_AI,NexPay,2023,8,1,55,True,78.05,BE,BE,MacOS,,Fw94nLHlx7RLIE1d_ShvCw,kSwsFMS4PCHUq10XRLNUZw,Ecommerce,4571,True,False,G,NL
+20577941273,Crossfit_Hanna,TransactPlus,2023,0,31,101,True,10.85,FR,FR,Windows,KjZcU5ksJiEvzT-1TVLBPQ,CzUxIwXd5G-wLh4V0w7bng,dTq-W-YZdIaBZ-4rm9Zfbw,Ecommerce,4891,False,False,D,NL
+56025100743,Crossfit_Hanna,GlobalCard,2023,22,38,56,True,48.32,LU,BE,Other,t6-5Qd6kFoFp3Qsuz5USGw,RLtXMLqnYUQQERjk36UBUw,vMxMGiH2K6TWLCE0P2HbZQ,Ecommerce,4645,False,True,G,NL
+76642413206,Rafa_AI,TransactPlus,2023,1,9,150,True,68.71,GR,GR,iOS,qGm1HMoOx-MUCjO2NMjdMw,1227rK4qLD0BsPMae6hm0Q,5_6ZfOTJkdlr_wbYawGpGw,POS,4532,False,False,C,NL
+64249153984,Belles_cookbook_store,NexPay,2023,14,20,135,True,122.11,LU,LU,Other,,BCnQQFuEBjhcs0rf3_HUYQ,n0xP-WQ0NvjKtaRUjKMV1g,Ecommerce,4645,False,False,D,US
+79828826431,Golfclub_Baron_Friso,GlobalCard,2023,20,5,283,True,301.3,LU,LU,Linux,WjXiBSewvlUpmne8m8co0w,JUw3wdnixAMhOZvcABDzPg,lIZh7UqQ7j8BKQieGyj0EQ,Ecommerce,4891,False,False,D,IT
+18745564814,Crossfit_Hanna,TransactPlus,2023,18,22,124,True,2.51,NL,NL,Linux,,msGrx2IWKMwAZ4pb0Gxu5g,haCCqC_sAClUJy59I2b2Rg,Ecommerce,4556,False,False,D,NL
+62924410225,Crossfit_Hanna,TransactPlus,2023,17,4,259,True,94.04,IT,IT,Other,lwWhI-HtSdfp9CYhv4iTqQ,kQpTfGHJI3nSoBlUAXSXQw,yLcbAGh2hPFf3LNEWUPocQ,Ecommerce,4556,False,False,D,NL
+50626325950,Martinis_Fine_Steakhouse,NexPay,2023,10,41,194,True,13.27,IT,IT,MacOS,m7gPZWsAb3XO5gF5rxVPkw,GiQoTPZzQQv-6Snuu0P3TA,Bg72P-cn0eARnAUi2Go-Nw,Ecommerce,4571,False,False,D,FR
+43219073064,Golfclub_Baron_Friso,GlobalCard,2023,10,32,93,False,18.9,IT,IT,Other,4EQ0zCrAfX8_TiV3VWFIeQ,,RlfMEvVlo82d7DqCl4sCaA,POS,4916,False,False,B,IT
+79897218715,Golfclub_Baron_Friso,NexPay,2023,18,24,289,False,359.6,GR,GR,iOS,ZOLZ8VEb293XoPJlbJr03A,LgS0jILjZu186T6OEw4BNg,sJzn7rM2fXCCnGKL98l5Fw,POS,4133,False,False,C,IT
+58547069921,Martinis_Fine_Steakhouse,SwiftCharge,2023,16,5,24,False,58.83,BE,BE,Android,hWVxOH-KxVtoM7MIcXLdMg,BQ-Z1oi_OU0DbWSFr8ocSg,--S7Nigoa47cDsigLmjJOA,Ecommerce,4571,False,False,F,FR
+69420908180,Rafa_AI,NexPay,2023,9,54,235,False,22.63,BE,BE,Other,,WehvcOLsF_PDepK0AA7gqQ,cLbGKGa-RWL29g135B8cyA,Ecommerce,4891,False,False,E,NL
+13265862831,Crossfit_Hanna,GlobalCard,2023,20,53,160,True,26.98,SE,SE,iOS,95yqwVujZkaV-ZUQjJRexQ,0BDWfmpXXlUv6HAy8itetA,C-Rpfaif1x_fUAfho5jN0A,Ecommerce,4802,False,False,D,NL
+82611374942,Crossfit_Hanna,TransactPlus,2023,10,7,241,True,71.39,LU,GR,iOS,,EmUvzLWipsA2TKuAK_GVrg,TndQQRFkaAtk_25MpwPt-Q,Ecommerce,4916,False,False,D,NL
+46498840788,Martinis_Fine_Steakhouse,TransactPlus,2023,6,45,197,True,18.03,BE,BE,Linux,5MObX6VLXMj9VV9VwSAKjw,bsIPA97--8EKou8bz8huOw,slEuA4DkkeVPAhIbhmlp9Q,Ecommerce,4571,False,False,D,FR
+86640273882,Belles_cookbook_store,GlobalCard,2023,16,21,127,False,135.09,GR,GR,Windows,,BVWihnWDhpNlUW1Bn0POUQ,R2irxfaMwa_CQwQ4S-uy1Q,Ecommerce,4891,False,False,F,US
+19597243470,Golfclub_Baron_Friso,NexPay,2023,15,14,257,True,189.26,LU,LU,Android,TEwo0dYGJ96z3q-SZ7dkSA,SNQwh4DCwicd8eOz0EVfjw,9xGrcoQH8rvtpjweLjUi3Q,Ecommerce,4916,False,False,F,IT
+14250027208,Golfclub_Baron_Friso,NexPay,2023,11,5,268,True,26.68,BE,BE,iOS,jgQeuKrdR1Y6YeIX9ljgAQ,m-maXcM_paIrn3yu6zEl4w,3cmh6RgdsIZ7Jkx85_ERbA,POS,4920,False,False,C,IT
+30245785745,Martinis_Fine_Steakhouse,GlobalCard,2023,17,36,320,True,174.88,SE,BE,Linux,,AQG8F6YejCsZPJOdhZdskQ,yIE6xiEv68foDSIBG18hkg,Ecommerce,4571,False,False,D,FR
+17013000047,Crossfit_Hanna,SwiftCharge,2023,8,40,20,False,15.31,IT,IT,Windows,R6tSnSAjoosLS0NrwAgUDA,pstKu14pPutWITLDzK0-lg,3UW_Bd1FBoNSpAxZPix43w,Ecommerce,4556,False,False,F,NL
+75350031164,Crossfit_Hanna,GlobalCard,2023,8,11,131,False,32.75,ES,ES,Linux,Q-tX3fcUpMP4miHTvhsA3w,bGesfzKUra4QpLoTlVqlkA,EYavsTl2tdTqpOhT7169cg,Ecommerce,4556,False,False,F,GB
+51882822682,Crossfit_Hanna,TransactPlus,2023,12,1,201,True,7.1,ES,ES,iOS,m2dW25Py95sqkJcLByOM-Q,aiCVdo9_lI8sXOTKM-dq1g,hNtD_B6dO5N3iMnXRG5yIA,Ecommerce,4916,False,False,D,GB
+28355151689,Martinis_Fine_Steakhouse,GlobalCard,2023,9,52,247,True,165.93,FR,FR,Other,,lMrXb64IsmtZKhfKKcbO4g,aG00UyBzB964kdAE6P186g,Ecommerce,4802,False,False,D,FR
+26699536292,Belles_cookbook_store,TransactPlus,2023,14,21,200,True,37.12,BE,BE,Windows,4CD7zOIBUfONtm84nGCDeg,GmtFizl0cF53ZsGKtrtw4g,VxP7BMRrBeo7IbLsY40-Jw,Ecommerce,4891,True,False,G,US
+54899143125,Rafa_AI,GlobalCard,2023,6,44,361,True,246.34,NL,IT,Android,yt1grk0R757-aSDoKwv4rg,zF_3tZbVghx-qunQ5vOM2Q,xvKbIv-yU3XronWNVwH0bA,Ecommerce,4133,True,False,G,NL
+84383748111,Crossfit_Hanna,GlobalCard,2023,16,20,181,True,54.94,SE,SE,iOS,g0Cg6RAhDL6WkjAB_ztnQw,QCg9EP6cZM5vmd_vujcrqQ,ucC1PET0ta-emXionFJLNQ,Ecommerce,4571,False,False,D,NL
+13414339056,Crossfit_Hanna,GlobalCard,2023,19,30,281,False,48.47,NL,FR,Other,vAXyttbv4t2InDDAE4WuAw,JMLWPMCTEAKQPd7A98K5eQ,pe8-qqjYKMykOc1vOi3nDQ,POS,4556,False,False,A,NL
+17317446684,Martinis_Fine_Steakhouse,NexPay,2023,12,34,167,True,72.19,NL,NL,iOS,sGkzWh8FGkJyUycBUKrw4A,aQPOuJpxVSI2EY8gvw1gwA,NJqscvGtL19B2bJReVpzNg,Ecommerce,4645,False,False,D,FR
+22843990495,Crossfit_Hanna,GlobalCard,2023,6,33,108,True,51.72,FR,IT,Other,42bWS_lXAkIdDYtLmwb1jQ,SikswiF5N8dHr3bi6IBbAA,n6UDIfnJc6ArlnwWpqiDxA,Ecommerce,4556,False,False,D,NL
+35707333235,Crossfit_Hanna,GlobalCard,2023,21,10,291,True,38.55,NL,NL,Other,XfQHLMGYnZv1qVfOA4oY-A,Y_Caj-txMllidjMXEtoskg,bP9YkWd8oNXLwgUGGs_bTg,Ecommerce,4571,True,False,G,NL
+57840909236,Golfclub_Baron_Friso,NexPay,2023,12,47,346,False,53.87,SE,SE,Windows,q_Pf3zaOXsiFaBz0zJLjGQ,J_rS99hbvlsvG8XKXS8UTQ,pId_UYiVm5qSV-8YHDBfDw,Ecommerce,4916,False,False,F,IT
+87025721702,Crossfit_Hanna,TransactPlus,2023,18,53,246,True,9.66,SE,SE,Other,TSQTuOtwVAal8oVBMmDEzw,tmFtKy5bY8fqTEWXtpIirg,Lt6LXcFIzmviFnHrNvjbcQ,Ecommerce,4532,False,False,D,NL
+70601651418,Martinis_Fine_Steakhouse,GlobalCard,2023,12,15,122,True,16.81,FR,NL,Other,_JyVnvGBaOos8PnLWkpdgw,jg99BA8c4_aQjZZKjsXejw,EaTGTW_eI10s0CHInGzw8g,Ecommerce,4532,False,False,D,FR
+31632272516,Belles_cookbook_store,NexPay,2023,12,19,214,True,41.48,BE,SE,Windows,,,8zKglNEstvSbt742f3CyCg,Ecommerce,4556,False,False,G,US
+30631855876,Martinis_Fine_Steakhouse,NexPay,2023,1,23,174,True,85.06,LU,SE,Linux,hfm_lUC6Dj_jMGH6Pl5XYg,b4E-NPpoNtoRe4w_qJSVXg,aK3qXXM2UnwqdoSkZDJZYw,Ecommerce,4916,False,False,D,FR
+51784677099,Golfclub_Baron_Friso,NexPay,2023,18,38,43,False,32.75,IT,GR,Android,FE3Ccj8-C_p59kl-9UeqWA,r5YCso38UjDuB_QGS_NXFQ,3OFryH4RwCdSGiAZBuaPBw,Ecommerce,4556,False,True,G,IT
+28268441035,Golfclub_Baron_Friso,TransactPlus,2023,2,45,31,True,95.06,IT,BE,Windows,O70OLrGt9uChsBe7vGrUpQ,jvRfqThtzX6CowjwxhIMxg,6j8lj3NAFErCRaUtxRzFCg,Ecommerce,4017,False,True,G,IT
+59456115904,Belles_cookbook_store,GlobalCard,2023,13,39,96,True,159.13,FR,FR,Linux,0-9mhnAKyA3es8kvSivK_w,5kP8z-0cQmlr6Q48qA5ueA,rC54h-bbcJ7wI0AgaRX8JQ,Ecommerce,4645,False,False,D,US
+58476791024,Crossfit_Hanna,GlobalCard,2023,9,43,93,True,12.62,BE,BE,iOS,xk876aqQYl9mzO7s0o5fGQ,EQWvyoBDNOqwGOGJQLC8DQ,oE6IgQaZM3Qcw7kJk7UWzw,Ecommerce,4556,True,False,G,NL
+80915434067,Rafa_AI,NexPay,2023,16,23,280,True,43.99,LU,LU,Android,,hCjWEMCJ41Z-jLm5wHip1g,H_BEC_LWas5zDrqH7oriAQ,Ecommerce,4526,False,False,E,NL
+70838031472,Rafa_AI,NexPay,2023,13,1,207,True,48.84,IT,GR,Linux,wUtdNg8wxparvfd6pHRjEQ,ygpwWOaHMe9lItqOtQzl-A,sOzVKT95_9OFsHPOxwV3Kw,Ecommerce,4920,True,False,G,NL
+46090846054,Martinis_Fine_Steakhouse,NexPay,2023,17,13,97,False,90.4,SE,SE,Android,,L9th4HKYRmPHYRu-T1zMMw,G5Sp27PgwNngZyTUJdmBmw,Ecommerce,4916,False,False,F,FR
+79142348017,Crossfit_Hanna,TransactPlus,2023,7,11,199,False,39.58,FR,FR,Windows,,BC-yu24XJ0NGKxW37AmrXg,QRxEGN6F2Tpmzf8MRjWT3A,Ecommerce,4920,False,False,F,NL
+38798721026,Belles_cookbook_store,NexPay,2023,18,59,236,True,32.3,ES,ES,iOS,piQm8zHaUdgrKo6-M-jg6g,vK989U0_2jZlUSQbP-n_NA,M5mN-ApOW48h0uA0d0F6hA,Ecommerce,4236,False,False,D,US
+58503111443,Crossfit_Hanna,NexPay,2023,4,24,105,True,111.43,ES,ES,Linux,8Gq6WgCbqg7mQxCeeiErGA,rIgap3pftbCd_F0yHhbSmg,FxY9BoCssPPvHpWsW2H19Q,Ecommerce,4622,False,False,D,GB
+13394556271,Rafa_AI,NexPay,2023,1,24,317,True,78.25,SE,SE,Windows,I1hmH9OIgQBkDr8dxqd4sQ,Bs5trcbP_o4IufdED998Tg,a_this9a32wpLjMpyuZ2Vg,Ecommerce,4133,False,False,E,NL
+70602941674,Martinis_Fine_Steakhouse,NexPay,2023,13,18,43,True,10.22,BE,LU,Windows,kkkJgyeF2DKaQcALxDDVxw,pmDpBzptH9gy88i9JvtJCw,pZf3d1KlPSL4G5RFXRWMkQ,Ecommerce,4916,False,False,D,FR
+78650333257,Crossfit_Hanna,TransactPlus,2023,1,30,137,True,86.52,NL,NL,Windows,,HpCvErQ5y-jzDtgIBnXH0g,gm117l_kWG7QF7XYgbAMSg,Ecommerce,4571,False,False,D,NL
+78678348078,Crossfit_Hanna,GlobalCard,2023,12,58,120,False,198.47,GR,GR,Linux,BDdDhV8LBoe7ZtnF3zEuJA,g7-NVRm_II1iru_9QZwUDg,O62QhnkbSFwP9sgYs36PAg,Ecommerce,4532,False,False,F,NL
+30122339062,Belles_cookbook_store,TransactPlus,2023,18,1,271,True,143.9,FR,FR,MacOS,A8vf2zB3OSvfo75BQO-dqw,-ZpBDT_uQ3z5nJeeD7q_0Q,OtKxKqbiVqa7W3gHogk5qw,Ecommerce,4916,False,False,D,US
+76788186783,Golfclub_Baron_Friso,TransactPlus,2023,18,17,146,True,8.93,BE,BE,iOS,thDirWkzF1pQmppNMDDCZg,YeKW9EmupnwtBKu1GB7vMw,72_DsISIWnS41_zCjHy9TQ,Ecommerce,4571,False,False,D,IT
+33135846911,Crossfit_Hanna,NexPay,2023,20,47,246,True,204.95,NL,NL,Other,,_9iFsECOLkoRQiECsc19wg,Xt-ZeCQBwKHC7Os2pyeVVA,POS,4556,False,False,B,NL
+78143612450,Golfclub_Baron_Friso,GlobalCard,2023,22,51,137,True,37.48,BE,BE,iOS,Wya7ytxRDlC1X9kVrSEJIQ,eLEZuHly8CgBqtHcbwersg,AM5yh1R89V93vegstHScCw,Ecommerce,4916,False,False,D,IT
+34729979968,Martinis_Fine_Steakhouse,TransactPlus,2023,16,48,128,False,44.56,IT,IT,Linux,,-hR6p4qFy1XRbuFX7xWV6A,VpoE92hxkUiCJLHhQlOT5w,Ecommerce,4891,False,False,F,FR
+19675400780,Rafa_AI,TransactPlus,2023,2,52,31,True,134.34,BE,BE,MacOS,qL2ubct3vk_wyGc0uTORXA,0fi5YreCWHZtleGz00xnNA,kqdfAoRqSfBebxUIL9pIfA,Ecommerce,4556,False,False,E,NL
+18910478435,Rafa_AI,SwiftCharge,2023,14,57,6,True,103.96,SE,SE,Windows,dPVqK8AR4U41IHMSZb9yCA,t3rjQDUY5COtFHejU4r6dQ,S9CqvfO8nOj0aAnuuTwHNQ,Ecommerce,4916,False,False,E,NL
+42788886712,Crossfit_Hanna,GlobalCard,2023,15,22,52,False,24.83,NL,NL,Windows,rdtpUVhyvahnUmh0xllFBw,D9Qebo5q58cgh_vmOSaycg,WcCRwVipxZOUqrPCpAE7tw,Ecommerce,4571,False,False,D,NL
+51673508983,Rafa_AI,GlobalCard,2023,11,39,73,True,301.9,IT,IT,Linux,tCXDu17QiAh_MKIVoiahLg,_C6IC1kAHo2r8EY3Hg7uwA,kngTA2AyujQh6XQxbhq95A,Ecommerce,4236,False,False,E,NL
+17994441231,Rafa_AI,TransactPlus,2023,13,55,323,True,39.72,NL,NL,Android,,AxvU51z2oIlHIlVX7LSQsA,zcqNMpPEjhfuE46ExMaSYA,Ecommerce,4017,False,False,E,NL
+36360385992,Rafa_AI,GlobalCard,2023,23,11,312,True,83.14,NL,NL,Android,3mSsA4TI01YD5agkEPuHGQ,Xul9P9X1WmwrmldPcSTrlA,b7blBjNup9ZMryYyoGwhjw,Ecommerce,4802,False,False,E,NL
+30630246754,Golfclub_Baron_Friso,TransactPlus,2023,9,4,53,False,28.96,IT,IT,iOS,okLvFG0n_u5FcAz-Z0Pq2g,9KBj-I_p2sTHqDQFz7ZOXA,iJzNk9hC5WULAu96Cg3U5w,Ecommerce,4133,False,False,F,IT
+71567730488,Belles_cookbook_store,TransactPlus,2023,12,51,199,True,20.77,FR,IT,Windows,59oOtOBHMonif_I7V0quCw,kcVH9v9aiydH2A1hLHwdwQ,CvgY-1_z5W-PV7nabpYeyw,Ecommerce,4571,False,False,D,US
+50304593716,Rafa_AI,TransactPlus,2023,21,44,223,True,39.98,BE,BE,Android,x33ww4lfJ_Jvln62BvUogw,MGf5palYYE0LwToE2qOVAw,grl7THx3pOxMjRVnOXa3Hw,Ecommerce,4802,False,False,E,NL
+44008385510,Martinis_Fine_Steakhouse,GlobalCard,2023,7,18,160,True,36.33,NL,NL,iOS,YOWCyiy4Gh9hlONuorMr6A,oUg4GTTASJbIyuMxOvpe7Q,Helu_tpH6VXFCcBYkFyEzg,Ecommerce,4526,True,False,G,FR
+53826561848,Crossfit_Hanna,GlobalCard,2023,18,31,11,True,74.68,IT,IT,Linux,-XO_cfosHFcMbIT91knw5A,nMDwUc7k5QJCmwSXzfJQAg,GQVnQVvQ9TU0fq0c0NAsAA,Ecommerce,4133,False,False,D,NL
+52473785639,Crossfit_Hanna,TransactPlus,2023,15,24,41,True,227.37,BE,BE,Other,V7ilK-qjjEF2deowwXxwlQ,1VcWlxuxqd3OLGXbgodnOw,cHMkEMpRvaq5WILet1A3pQ,Ecommerce,4526,True,False,G,NL
+42355704869,Crossfit_Hanna,SwiftCharge,2023,12,35,339,True,30.3,BE,BE,MacOS,75EQ8Oc7gCGw0hD5SoA63w,GcFOsewvlrsNYJCDkhKhrA,GkVhjpZ71BpVjN9UJPrX3Q,Ecommerce,4236,False,False,D,NL
+27975432024,Crossfit_Hanna,GlobalCard,2023,12,9,273,True,78.28,GR,GR,Android,3GeT_r3JXCvWraBQ6He8nw,CqhLKscJiQoNmsdpX1CKXg,KBs_wLjUgFYlPpA-LTNiLA,POS,4556,False,False,C,NL
+17752983330,Rafa_AI,GlobalCard,2023,18,5,166,False,15.53,BE,BE,Android,W-kCm_ShOBi1oQa8OzlJIA,g3yc16pB0Y5PmgC7ApKpWA,UhPUh3P5HB-4ycvXQdqaSQ,Ecommerce,4916,False,False,E,NL
+71413023128,Belles_cookbook_store,GlobalCard,2023,17,12,328,False,15.42,LU,BE,Other,qNvA4xtsOsPrtp7R_VVg3g,YxEWWkhc_lGbJiQ3ji6oCA,j7SZZp59UGp9PJxTUDn4xQ,Ecommerce,4802,False,False,F,US
+63477016052,Crossfit_Hanna,TransactPlus,2023,17,18,13,True,206.65,NL,NL,Linux,dFCjk8d5JLXmG5oia4veqA,y0uEVcTyxiXRgeQ4sY-V6g,n5oUZYVlnbzXzdQMcJfrxg,Ecommerce,4571,False,False,D,NL
+80591596335,Golfclub_Baron_Friso,NexPay,2023,19,17,258,False,222.54,BE,BE,Other,8AAtPAHuZ08jbq1wHB3OTw,Mw2k8bp__-ZTK_IYlpFGwA,L3i3lc28qzxWuY7swTk6yw,POS,4645,False,False,A,IT
+79549504826,Rafa_AI,GlobalCard,2023,6,5,99,True,63.05,BE,BE,Android,x_SmsM5kMnBZ2G2iGBqVqg,jA31ZAnCKpF7x1hBz0PHpg,zYpCDBzH7gcM1k6fxTtTRw,Ecommerce,4645,False,False,E,NL
+86452655449,Crossfit_Hanna,GlobalCard,2023,10,44,194,False,28.1,NL,NL,MacOS,pPJBt6NzVIfgvuTXQtXlrA,I-FZEKT22jHtPGBQfe1ySw,01-SDYS9OmAAhJK9uK0nwQ,Ecommerce,4916,False,False,F,NL
+55140444380,Belles_cookbook_store,SwiftCharge,2023,9,16,31,True,142.91,BE,BE,iOS,JY7T_SZ4JVY-S_mYIUdVkg,4Ndc3jnC5j1AFyRRgpVq7Q,x31WqZBRgJct1v9fcokojA,Ecommerce,4556,False,False,D,US
+30784962602,Belles_cookbook_store,NexPay,2023,7,55,358,True,186.14,SE,SE,Android,NK9D_dS3eMSF83UJ8tT_tQ,,xqiPtt490bjkPmyVaH15Rw,Ecommerce,4571,False,False,D,US
+21832102444,Belles_cookbook_store,GlobalCard,2023,13,31,245,True,14.21,ES,ES,Android,faBjP11otv01as8zLng-sw,AZBCu_YWcsVsuCLCl2xHXw,HfQaa9Lzt-jwmCo3ayXSyw,Ecommerce,4556,False,False,D,US
+49068493839,Martinis_Fine_Steakhouse,TransactPlus,2023,20,23,68,True,42.67,IT,SE,iOS,qhBmrK29i5QJnvEeZgt7pg,PVSEfLWkZd2RBTO1yAS4wg,gJBcQxzspeU1YQXwZoMK3w,Ecommerce,4891,False,False,G,FR
+35503234433,Rafa_AI,GlobalCard,2023,8,38,290,True,8.16,BE,BE,Linux,PTCT50FGDBQjUXOt9dS6Zw,PO9UV_1BLnos_vc5r-rtKA,fqh2dvhGvuahpwe8bvOGQA,Ecommerce,4920,False,False,E,NL
+47552383792,Rafa_AI,GlobalCard,2023,8,13,180,True,197.87,BE,BE,Windows,TYQ1uhyIqRCAHETY5PQ3BQ,KBdxAFrEsYBS53Ti0kj6qA,0YlgZam-1GG7ZMGkdtdTkw,Ecommerce,4532,False,False,E,NL
+79661351960,Golfclub_Baron_Friso,TransactPlus,2023,1,46,86,False,52.83,IT,IT,iOS,5W_GU_MNMuV0dM5XH1AvHQ,legJQc-316SekqIIOPTpaA,B1Ba10xe_qYzEW32eJ0_Mg,POS,4556,False,False,C,IT
+62855906950,Crossfit_Hanna,GlobalCard,2023,17,37,32,False,30.0,GR,GR,Linux,LKhETyyZNd26fpltJlZo_A,,uwFeyau6Rar-HL04I9--4w,Ecommerce,4526,False,False,F,NL
+73895199965,Belles_cookbook_store,NexPay,2023,15,42,58,True,54.1,SE,SE,Other,DrA752gzfZV4jAsJUbxZmg,GPNRW7mBj_TKZi6NUy8zQw,OQktV8qUIQjGD41vHOOhyg,POS,4556,False,False,A,US
+24436667525,Crossfit_Hanna,TransactPlus,2023,16,24,314,False,148.15,BE,BE,Linux,,4KyLCpHDgIsfRxY3VTKpUg,TB034koWicBwrkJkYLgn9Q,Ecommerce,4556,False,False,F,NL
+67179834709,Crossfit_Hanna,TransactPlus,2023,7,7,238,True,41.85,LU,LU,Windows,C5sx7lAatOoRc2m6bqFvWg,Afakzw83xjVxgKwlUXNvRg,ofZf68oanP9U6PT4wV5BuQ,Ecommerce,4532,False,False,D,NL
+89124881850,Crossfit_Hanna,GlobalCard,2023,20,10,223,True,246.48,NL,NL,Windows,MrIIK0HAweKXa2VLvMVLwA,RzxrSatGNna_3JbQGBiMhA,ghNPy4XwuCbTFEIO9tN0yg,Ecommerce,4556,False,False,D,NL
+31688111629,Crossfit_Hanna,GlobalCard,2023,4,48,232,False,85.74,ES,BE,Other,,bkK9YEMg26xB8Y--u_niTg,Kt5dqC34pAtCd1BEi6db1A,Ecommerce,4236,False,False,F,NL
+54380760510,Crossfit_Hanna,TransactPlus,2023,9,17,180,False,39.3,FR,NL,Other,8wSmQINl-EUZkKetaoiFKw,sOv88acnUF0uGCOEh4z05A,-JH1K3c8mT5P2i_3eDgC7g,Ecommerce,4622,False,False,F,NL
+61488790815,Crossfit_Hanna,GlobalCard,2023,13,20,127,True,116.97,LU,LU,MacOS,Bv7KNKMi1yJ2HEHXRTUriA,pfsVN33UDQS-7n6yIKhGFQ,0wWz3wrceqPFf7B1rRcpJg,Ecommerce,4622,False,False,F,NL
+27351484054,Crossfit_Hanna,NexPay,2023,15,31,348,True,43.08,BE,BE,Android,,F57Ru15Epqan6P08UXULWg,G8nqqAGM5vAYmMwTYiFDFw,Ecommerce,4920,True,False,G,NL
+--- END payments.csv (tail) ---
+
+Code:
+#!/usr/bin/env python3
+"""
+payments_inspect.py
+
+Loads and describes the content of data/payments.csv (structured or unstructured).
+- Prints essential info (file size, encoding guess, first bytes, newline stats).
+- Reads as a CSV into pandas (if parseable) and prints schema + sample rows.
+- If the file looks unstructured / single-column, prints raw line samples too.
+
+No try/except blocks per request.
+"""
+
+from pathlib import Path
+import csv
+import pandas as pd
+
+
+def human_bytes(n: int) -> str:
+    units = ["B", "KB", "MB", "GB", "TB"]
+    i = 0
+    x = float(n)
+    while x >= 1024 and i < len(units) - 1:
+        x /= 1024.0
+        i += 1
+    return f"{x:.2f} {units[i]}"
+
+
+def guess_encoding(path: Path) -> str:
+    raw = path.read_bytes()[:65536]
+    if raw.startswith(b"\xef\xbb\xbf"):
+        return "utf-8-sig"
+    raw.decode("utf-8")  # raises UnicodeDecodeError if not valid UTF-8
+    return "utf-8"
+
+
+def sniff_dialect_and_header(path: Path, encoding: str):
+    sample = path.read_text(encoding=encoding, errors="strict")[:200000]
+    sniffer = csv.Sniffer()
+    dialect = sniffer.sniff(sample)
+    has_header = sniffer.has_header(sample)
+    return dialect, has_header
+
+
+def compute_newline_stats(text: str):
+    return {
+        "lines_total": text.count("\n") + (0 if text.endswith("\n") or len(text) == 0 else 1),
+        "contains_crlf": "\r\n" in text,
+        "contains_cr_only": ("\r" in text) and ("\r\n" not in text),
+    }
+
+
+def basic_text_stats(text: str):
+    nonprintable = sum(1 for ch in text[:200000] if ord(ch) < 9 or (13 < ord(ch) < 32))
+    return {
+        "sample_chars": min(len(text), 200000),
+        "nonprintable_in_sample": nonprintable,
+        "empty_lines_in_sample": sum(1 for line in text[:200000].splitlines() if line.strip() == ""),
+    }
+
+
+def preview_raw_lines(path: Path, encoding: str, n: int = 20):
+    lines = path.read_text(encoding=encoding, errors="strict").splitlines()
+    print(f"\n--- Raw line preview (first {min(n, len(lines))} lines) ---")
+    for i, line in enumerate(lines[:n], start=1):
+        t = line if len(line) <= 300 else line[:300] + " ... [truncated]"
+        print(f"{i:>4}: {t}")
+    if len(lines) > n:
+        print(f"... ({len(lines) - n} more lines not shown)")
+
+
+def describe_dataframe(df: pd.DataFrame, max_examples: int = 5):
+    print("\n=== Structured view (pandas DataFrame) ===")
+    print(f"Shape: {df.shape[0]} rows x {df.shape[1]} columns")
+
+    print("\nColumn names:")
+    for c in df.columns:
+        print(f" - {c}")
+
+    print("\nDtypes:")
+    print(df.dtypes.to_string())
+
+    print("\nMissing values per column (top 50 shown if many):")
+    na = df.isna().sum().sort_values(ascending=False)
+    if len(na) > 50:
+        print(na.head(50).to_string())
+        print(f"... ({len(na) - 50} more columns not shown)")
+    else:
+        print(na.to_string())
+
+    print("\nSample rows:")
+    n = min(max_examples, len(df))
+    if n == 0:
+        print("(no rows)")
+    else:
+        print(df.head(n).to_string(index=False))
+
+    print("\nValue examples for each column (up to 5 unique values):")
+    for c in df.columns:
+        vals = df[c].dropna().unique()
+        show = vals[:5]
+        show_str = ", ".join(repr(v) for v in show)
+        more = "" if len(vals) <= 5 else f", ... (+{len(vals) - 5} more)"
+        print(f" - {c}: {show_str}{more}")
+
+    print("\nDescribe (numeric columns):")
+    num = df.select_dtypes(include="number")
+    if num.shape[1] == 0:
+        print("(no numeric columns detected)")
+    else:
+        print(num.describe().to_string())
+
+    print("\nDescribe (object/text columns; top counts for up to 10 columns):")
+    obj_cols = df.select_dtypes(include=["object", "string"]).columns.tolist()
+    if not obj_cols:
+        print("(no object/text columns detected)")
+    else:
+        for c in obj_cols[:10]:
+            vc = df[c].astype("string").value_counts(dropna=False).head(10)
+            print(f"\nTop values for {c!r}:")
+            print(vc.to_string())
+        if len(obj_cols) > 10:
+            print(f"\n... ({len(obj_cols) - 10} more object/text columns not shown)")
+
+
+def resolve_input_path() -> Path:
+    # All files/documents are in data/ directory.
+    # Prefer ./data/payments.csv; if script is run from elsewhere, also try relative to script dir.
+    cwd_candidate = Path("data") / "payments.csv"
+    script_candidate = Path(__file__).resolve().parent / "data" / "payments.csv"
+    return cwd_candidate if cwd_candidate.exists() else script_candidate
+
+
+def main():
+    path = resolve_input_path()
+
+    size = path.stat().st_size
+    print(f"File: {path.resolve()}")
+    print(f"Size: {size} bytes ({human_bytes(size)})")
+
+    encoding = guess_encoding(path)
+    print(f"Guessed encoding: {encoding}")
+
+    raw_head = path.read_bytes()[:256]
+    print("\n--- First 256 bytes (repr) ---")
+    print(repr(raw_head))
+
+    text_full = path.read_text(encoding=encoding, errors="strict")
+    nl_stats = compute_newline_stats(text_full)
+    tx_stats = basic_text_stats(text_full)
+    print("\n--- Text/Newline stats ---")
+    for k, v in {**nl_stats, **tx_stats}.items():
+        print(f"{k}: {v}")
+
+    dialect, has_header = sniff_dialect_and_header(path, encoding)
+    print("\n--- CSV sniff ---")
+    print(f"Delimiter: {repr(dialect.delimiter)}")
+    print(f"Quotechar: {repr(dialect.quotechar)}")
+    print(f"Escapechar: {repr(dialect.escapechar)}")
+    print(f"Doublequote: {dialect.doublequote}")
+    print(f"Skipinitialspace: {dialect.skipinitialspace}")
+    print(f"Lineterminator: {repr(dialect.lineterminator)}")
+    print(f"Has header (sniffer guess): {has_header}")
+
+    preview_raw_lines(path, encoding, n=20)
+
+    header = 0 if has_header else None
+    df = pd.read_csv(
+        path,
+        encoding=encoding,
+        sep=dialect.delimiter,
+        quotechar=dialect.quotechar,
+        escapechar=dialect.escapechar,
+        doublequote=dialect.doublequote,
+        skipinitialspace=dialect.skipinitialspace,
+        header=header,
+        engine="python",
+    )
+
+    if header is None:
+        df.columns = [f"col_{i}" for i in range(df.shape[1])]
+
+    describe_dataframe(df, max_examples=5)
+
+    if df.shape[1] == 1:
+        col = df.columns[0]
+        lengths = df[col].astype("string").str.len()
+        if lengths.notna().any():
+            print("\n--- Single-column heuristics ---")
+            print(f"Column: {col}")
+            print(
+                "Min/Median/Max length (non-null): "
+                f"{int(lengths.min())}/{int(lengths.median())}/{int(lengths.max())}"
+            )
+            topk = df.assign(_len=lengths).sort_values("_len", ascending=False).head(5)
+            print("\nLongest entries (up to 5, truncated to 300 chars):")
+            for i, v in enumerate(topk[col].astype("string").tolist(), start=1):
+                s = v if len(v) <= 300 else v[:300] + " ... [truncated]"
+                print(f"{i:>2}: {s}")
+
+    print("\n=== Full content output policy ===")
+    print("Below is a content printout (limited if very large):")
+
+    if size <= 2_000_000:  # 2 MB
+        print("\n--- BEGIN payments.csv (full) ---")
+        print(text_full)
+        print("--- END payments.csv (full) ---")
+    else:
+        lines = text_full.splitlines()
+        head_n, tail_n = 200, 200
+        print(
+            f"\nFile is large; printing first {min(head_n, len(lines))} and last {min(tail_n, len(lines))} lines."
+        )
+        print("\n--- BEGIN payments.csv (head) ---")
+        print("\n".join(lines[:head_n]))
+        print("--- END payments.csv (head) ---")
+        if len(lines) > head_n:
+            print("\n--- BEGIN payments.csv (tail) ---")
+            print("\n".join(lines[-tail_n:]))
+            print("--- END payments.csv (tail) ---")
+
+
+if __name__ == "__main__":
+    main()
+
+--- Data file #5: acquirer_countries.csv ---
+Summary:
+
+================================================================================
+FILE INFO
+================================================================================
+Path: /Users/jonathan/github/DS-STAR/examples/dabstep/data/acquirer_countries.csv
+Size: 194 bytes
+Encoding (guessed): utf-8
+
+================================================================================
+RAW CONTENT (HEAD PREVIEW)
+================================================================================
+,acquirer,country_code
+0,gringotts,GB
+1,the_savings_and_loan_bank,US
+2,bank_of_springfield,US
+3,dagoberts_vault,NL
+4,dagoberts_geldpakhuis,NL
+5,lehman_brothers,US
+6,medici,IT
+7,tellsons_bank,FR
+
+
+================================================================================
+CSV DIALECT (GUESSED)
+================================================================================
+Delimiter: ','
+Quotechar: '"'
+Doublequote: False
+Escapechar: None
+Skipinitialspace: False
+Lineterminator: '\r\n'
+
+================================================================================
+PANDAS LOAD (STRUCTURED VIEW)
+================================================================================
+DataFrame shape: 8 rows x 3 columns
+
+Columns:
+['Unnamed: 0', 'acquirer', 'country_code']
+
+================================================================================
+DTYPES & MISSINGNESS
+================================================================================
+               dtype  missing  missing_%  n_unique
+Unnamed: 0     Int64        0        0.0         8
+acquirer      string        0        0.0         8
+country_code  string        0        0.0         5
+
+================================================================================
+DESCRIBE (NUMERIC)
+================================================================================
+            count  mean      std  min   25%  50%   75%  max
+Unnamed: 0    8.0   3.5  2.44949  0.0  1.75  3.5  5.25  7.0
+
+================================================================================
+DESCRIBE (NON-NUMERIC / ALL)
+================================================================================
+             count unique        top  freq mean      std  min   25%  50%   75%  max
+Unnamed: 0     8.0   <NA>       <NA>  <NA>  3.5  2.44949  0.0  1.75  3.5  5.25  7.0
+acquirer         8      8  gringotts     1  NaN      NaN  NaN   NaN  NaN   NaN  NaN
+country_code     8      5         US     3  NaN      NaN  NaN   NaN  NaN   NaN  NaN
+
+================================================================================
+CONTENT (SAMPLE ROWS)
+================================================================================
+   Unnamed: 0                   acquirer country_code
+0           0                  gringotts           GB
+1           1  the_savings_and_loan_bank           US
+2           2        bank_of_springfield           US
+3           3            dagoberts_vault           NL
+4           4      dagoberts_geldpakhuis           NL
+5           5            lehman_brothers           US
+6           6                     medici           IT
+7           7              tellsons_bank           FR
+
+================================================================================
+LOW-CARDINALITY VALUE COUNTS (TOP 10)
+================================================================================
+
+Column: Unnamed: 0 (unique=8, missing=0)
+Unnamed: 0
+0    1
+1    1
+2    1
+3    1
+4    1
+5    1
+6    1
+7    1
+Name: count, dtype: Int64
+
+Column: acquirer (unique=8, missing=0)
+acquirer
+gringotts                    1
+the_savings_and_loan_bank    1
+bank_of_springfield          1
+dagoberts_vault              1
+dagoberts_geldpakhuis        1
+lehman_brothers              1
+medici                       1
+tellsons_bank                1
+Name: count, dtype: Int64
+
+Column: country_code (unique=5, missing=0)
+country_code
+US    3
+NL    2
+GB    1
+IT    1
+FR    1
+Name: count, dtype: Int64
+
+================================================================================
+FULL CONTENT (STRUCTURED PRINT)
+================================================================================
+ Unnamed: 0                  acquirer country_code
+          0                 gringotts           GB
+          1 the_savings_and_loan_bank           US
+          2       bank_of_springfield           US
+          3           dagoberts_vault           NL
+          4     dagoberts_geldpakhuis           NL
+          5           lehman_brothers           US
+          6                    medici           IT
+          7             tellsons_bank           FR
+
+Code:
+#!/usr/bin/env python3
+"""
+Inspect and describe the contents of acquirer_countries.csv.
+
+- Works for both structured CSV (tabular) and "unstructured" CSV-like text.
+- Prints essential information: size, encoding guess, delimiter guess, column names, dtypes, missingness,
+  basic stats, and sample rows.
+- Prints file content (raw) up to a configurable limit to avoid flooding the terminal.
+
+Assumption: files live in the `data/` directory (relative to this script).
+You can also pass a path as the first CLI argument.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+import csv
+import sys
+import pandas as pd
+
+
+DEFAULT_CSV_NAME = "acquirer_countries.csv"
+DEFAULT_DIR = "data"
+
+# Limits (adjust if needed)
+RAW_BYTES_TO_SHOW = 20000          # raw preview (bytes)
+RAW_TAIL_BYTES_TO_SHOW = 8000      # tail preview (bytes)
+MAX_ROWS_TO_PRINT = 20             # dataframe sample rows to print
+MAX_COLS_TO_PRINT = 50             # avoid huge wide printouts
+
+
+def guess_encoding(raw: bytes) -> str:
+    # Minimal heuristic without external dependencies.
+    for enc in ("utf-8", "utf-8-sig", "cp1252", "latin-1"):
+        try:
+            raw.decode(enc)
+            return enc
+        except UnicodeDecodeError:
+            pass
+    return "latin-1"
+
+
+def guess_dialect(text: str) -> csv.Dialect:
+    # Use csv.Sniffer if possible; fall back to excel dialect.
+    sample = text[:50000]
+    sniffer = csv.Sniffer()
+    try:
+        return sniffer.sniff(sample, delimiters=[",", ";", "\t", "|"])
+    except csv.Error:
+        return csv.get_dialect("excel")
+
+
+def print_header(title: str) -> None:
+    print("\n" + "=" * 80)
+    print(title)
+    print("=" * 80)
+
+
+def resolve_csv_path() -> Path:
+    # Priority:
+    # 1) CLI arg if provided
+    # 2) data/acquirer_countries.csv relative to CWD
+    # 3) data/acquirer_countries.csv relative to script location
+    if len(sys.argv) > 1:
+        p = Path(sys.argv[1]).expanduser()
+        return p if p.is_absolute() else (Path.cwd() / p)
+
+    candidate_cwd = Path.cwd() / DEFAULT_DIR / DEFAULT_CSV_NAME
+    if candidate_cwd.exists():
+        return candidate_cwd
+
+    script_dir = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+    candidate_script = script_dir / DEFAULT_DIR / DEFAULT_CSV_NAME
+    return candidate_script
+
+
+def main() -> None:
+    csv_path = resolve_csv_path()
+    if not csv_path.exists():
+        raise FileNotFoundError(
+            "File not found. Looked for:\n"
+            f"  - {csv_path.resolve()}\n\n"
+            "Provide a path as an argument, e.g.:\n"
+            "  python inspect_csv.py data/acquirer_countries.csv"
+        )
+
+    raw = csv_path.read_bytes()
+    size_bytes = len(raw)
+    enc = guess_encoding(raw)
+    text = raw.decode(enc, errors="replace")
+
+    print_header("FILE INFO")
+    print(f"Path: {csv_path.resolve()}")
+    print(f"Size: {size_bytes:,} bytes")
+    print(f"Encoding (guessed): {enc}")
+
+    print_header("RAW CONTENT (HEAD PREVIEW)")
+    head_bytes = raw[:RAW_BYTES_TO_SHOW]
+    print(head_bytes.decode(enc, errors="replace"))
+    if size_bytes > RAW_BYTES_TO_SHOW:
+        print(f"\n...[truncated raw preview at {RAW_BYTES_TO_SHOW:,} bytes]...")
+
+    if size_bytes > RAW_TAIL_BYTES_TO_SHOW:
+        print_header("RAW CONTENT (TAIL PREVIEW)")
+        tail_bytes = raw[-RAW_TAIL_BYTES_TO_SHOW:]
+        print(tail_bytes.decode(enc, errors="replace"))
+        print(f"\n...[showing last {RAW_TAIL_BYTES_TO_SHOW:,} bytes]...")
+
+    print_header("CSV DIALECT (GUESSED)")
+    dialect = guess_dialect(text)
+    print(f"Delimiter: {repr(dialect.delimiter)}")
+    print(f"Quotechar: {repr(dialect.quotechar)}")
+    print(f"Doublequote: {dialect.doublequote}")
+    print(f"Escapechar: {repr(dialect.escapechar)}")
+    print(f"Skipinitialspace: {dialect.skipinitialspace}")
+    print(f"Lineterminator: {repr(dialect.lineterminator)}")
+
+    print_header("PANDAS LOAD (STRUCTURED VIEW)")
+    df = pd.read_csv(
+        csv_path,
+        sep=dialect.delimiter,
+        quotechar=dialect.quotechar,
+        escapechar=dialect.escapechar,
+        engine="python",
+        dtype_backend="numpy_nullable",
+        on_bad_lines="warn",
+    )
+
+    print(f"DataFrame shape: {df.shape[0]:,} rows x {df.shape[1]:,} columns")
+
+    print("\nColumns:")
+    cols = list(df.columns)
+    if len(cols) <= MAX_COLS_TO_PRINT:
+        print(cols)
+    else:
+        print(cols[:MAX_COLS_TO_PRINT])
+        print(f"... (+{len(cols) - MAX_COLS_TO_PRINT} more columns)")
+
+    print_header("DTYPES & MISSINGNESS")
+    dtype_series = df.dtypes.astype(str)
+    missing = df.isna().sum()
+    missing_pct = (missing / len(df) * 100) if len(df) else missing.astype(float)
+
+    summary = pd.DataFrame(
+        {
+            "dtype": dtype_series,
+            "missing": missing,
+            "missing_%": missing_pct.round(2),
+            "n_unique": df.nunique(dropna=True),
+        }
+    ).sort_values(["missing", "n_unique"], ascending=[False, False])
+
+    pd.set_option("display.max_rows", min(200, max(30, len(summary))))
+    pd.set_option("display.max_columns", 20)
+    pd.set_option("display.width", 140)
+    print(summary)
+
+    print_header("DESCRIBE (NUMERIC)")
+    numeric_cols = df.select_dtypes(include=["number"]).columns
+    if len(numeric_cols) == 0:
+        print("No numeric columns detected.")
+    else:
+        print(df[numeric_cols].describe().transpose())
+
+    print_header("DESCRIBE (NON-NUMERIC / ALL)")
+    print(df.describe(include="all").transpose())
+
+    print_header("CONTENT (SAMPLE ROWS)")
+    pd.set_option("display.max_columns", min(MAX_COLS_TO_PRINT, df.shape[1]))
+    pd.set_option("display.max_colwidth", 200)
+    pd.set_option("display.width", 180)
+
+    if len(df) <= MAX_ROWS_TO_PRINT:
+        print(df)
+    else:
+        print(df.head(MAX_ROWS_TO_PRINT))
+        print(f"\n...[showing first {MAX_ROWS_TO_PRINT} rows out of {len(df):,}]...")
+
+    print_header("LOW-CARDINALITY VALUE COUNTS (TOP 10)")
+    low_card_cols = [c for c in df.columns if df[c].nunique(dropna=True) <= 20]
+    if not low_card_cols:
+        print("No low-cardinality columns (<=20 unique values) found.")
+    else:
+        for c in low_card_cols[:20]:
+            print(f"\nColumn: {c} (unique={df[c].nunique(dropna=True)}, missing={df[c].isna().sum()})")
+            print(df[c].value_counts(dropna=False).head(10))
+
+    print_header("FULL CONTENT (STRUCTURED PRINT)")
+    if df.shape[0] <= 200 and df.shape[1] <= 50:
+        print(df.to_string(index=False))
+    else:
+        print(
+            f"Dataset is large ({df.shape[0]:,}x{df.shape[1]:,}). "
+            f"Printed sample above. To print everything, consider:\n"
+            f"  - df.to_csv(sys.stdout, index=False)\n"
+            f"  - increasing limits in this script\n"
+        )
+
+
+if __name__ == "__main__":
+    main()

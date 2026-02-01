@@ -1,22 +1,18 @@
-"""Example: run DS-Star to answer a question using data in examples/example_1/data/."""
-
+"""
+Runs DSStar pipeline on a toy example.
+"""
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-
-# Load .env from project root
-def _load_env() -> None:
-    root = Path(__file__).resolve()
-    for _ in range(5):
-        root = root.parent
-        env_file = root / ".env"
-        if env_file.is_file():
-            load_dotenv(env_file)
-            break
-
-_load_env()
-
 from ds_star import DSStar, DSStarConfig
+
+# Load .env from project root (walk up from this file)
+_root = Path(__file__).resolve().parent
+for _ in range(5):
+    _root = _root.parent
+    if (_root / ".env").is_file():
+        load_dotenv(_root / ".env")
+        break
 
 # Path to data directory (relative to this script)
 DATA_DIR = Path(__file__).resolve().parent / "data"
@@ -24,12 +20,9 @@ OUTPUT_DIR = Path(__file__).resolve().parent / "output"
 
 def main() -> None:
     config = DSStarConfig(
-        # llm_provider="gemini",
-        # llm_model="gemini-2.5-pro",
-        # llm_api_key=os.environ.get("GEMINI_API_KEY"),
-        llm_provider="openai",
+        llm_provider="openai",                        # openai or gemini
         llm_model="gpt-5.2",
-        llm_api_key=os.environ.get("OPENAI_API_KEY"),
+        llm_api_key=os.environ.get("OPENAI_API_KEY"), # OPENAI_API_KEY or GEMINI_API_KEY
         max_iterations = 5,
         max_debug_attempts = 3,
         execution_timeout_seconds = 600,
@@ -45,14 +38,12 @@ def main() -> None:
         data_directory=str(DATA_DIR),
         output_directory=str(OUTPUT_DIR),
         guidelines="Print only the final numeric answer (total discounted value), no explanation.",
+        reuse_data_summaries=False,
     )
 
     print("Question:", question)
-    print("\nFinal code:\n")
-    print(code)
     print("\nOutput:\n")
     print(output)
-
 
 if __name__ == "__main__":
     main()

@@ -135,3 +135,7 @@ poetry.lock
 # OS
 .DS_Store
 Thumbs.db
+
+# DABstep example data (downloaded by setup script); keep directory via .gitkeep
+examples/dabstep/data/*
+!examples/dabstep/data/.gitkeep
