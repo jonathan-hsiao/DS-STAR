@@ -1,0 +1,179 @@
+run_id: 20260201-054704-32ae6e18
+
+--- Initial plan ---
+
+Plan:
+Step #1: Filter `fees.json` to the rows where `card_scheme == "GlobalCard"` and `account_type` contains `"H"`, then further narrow to those whose `merchant_category_code` list includes the MCC for “Eating Places and Restaurants” (i.e., 5812).
+
+Code:
+import json
+from pathlib import Path
+
+# Paths
+fees_path = Path("data/fees.json")
+
+# Load fees.json
+with fees_path.open("r", encoding="utf-8") as f:
+    fees = json.load(f)
+
+print(f"Loaded fees.json records: {len(fees)}")
+
+TARGET_SCHEME = "GlobalCard"
+TARGET_ACCOUNT_TYPE = "H"
+TARGET_MCC = 5812  # Eating Places and Restaurants
+
+# Step #1: Filter per plan
+filtered = []
+for row in fees:
+    if row.get("card_scheme") != TARGET_SCHEME:
+        continue
+
+    account_types = row.get("account_type") or []
+    if TARGET_ACCOUNT_TYPE not in account_types:
+        continue
+
+    mcc_list = row.get("merchant_category_code") or []
+    if TARGET_MCC not in mcc_list:
+        continue
+
+    filtered.append(row)
+
+print(f"Filtered records (scheme={TARGET_SCHEME}, account_type contains '{TARGET_ACCOUNT_TYPE}', MCC includes {TARGET_MCC}): {len(filtered)}")
+
+# Show key fields for quick verification
+if filtered:
+    print("First 10 matching IDs and key fields:")
+    for r in filtered[:10]:
+        print(
+            {
+                "ID": r.get("ID"),
+                "card_scheme": r.get("card_scheme"),
+                "account_type": r.get("account_type"),
+                "merchant_category_code": r.get("merchant_category_code"),
+                "is_credit": r.get("is_credit"),
+                "aci": r.get("aci"),
+                "capture_delay": r.get("capture_delay"),
+                "monthly_fraud_level": r.get("monthly_fraud_level"),
+                "monthly_volume": r.get("monthly_volume"),
+                "rate": r.get("rate"),
+                "fixed_amount": r.get("fixed_amount"),
+                "intracountry": r.get("intracountry"),
+            }
+        )
+else:
+    print("No matches found. (This can happen if the fee rules don't include that exact combination.)")
+
+Results:
+Loaded fees.json records: 1000
+Filtered records (scheme=GlobalCard, account_type contains 'H', MCC includes 5812): 3
+First 10 matching IDs and key fields:
+{'ID': 204, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': True, 'aci': ['E'], 'capture_delay': 'immediate', 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 71, 'fixed_amount': 0.0, 'intracountry': None}
+{'ID': 612, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': False, 'aci': ['A'], 'capture_delay': None, 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 89, 'fixed_amount': 0.0, 'intracountry': 1.0}
+{'ID': 921, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': True, 'aci': ['C'], 'capture_delay': None, 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 12, 'fixed_amount': 0.02, 'intracountry': 0.0}
+
+
+--- Iteration 1 ---
+
+Plan:
+Step #1: Filter `fees.json` to the rows where `card_scheme == "GlobalCard"` and `account_type` contains `"H"`, then further narrow to those whose `merchant_category_code` list includes the MCC for “Eating Places and Restaurants” (i.e., 5812).
+
+Step #2: For the 3 matching fee rules, compute each fee for a 10 EUR transaction as `fixed_amount + (rate / 10000) * 10`, then take the mean of these three fees.
+
+Code:
+import json
+from pathlib import Path
+
+# Paths
+fees_path = Path("data/fees.json")
+
+# Load fees.json
+with fees_path.open("r", encoding="utf-8") as f:
+    fees = json.load(f)
+
+print(f"Loaded fees.json records: {len(fees)}")
+
+TARGET_SCHEME = "GlobalCard"
+TARGET_ACCOUNT_TYPE = "H"
+TARGET_MCC = 5812  # Eating Places and Restaurants
+
+# Step #1: Filter per plan
+filtered = []
+for row in fees:
+    if row.get("card_scheme") != TARGET_SCHEME:
+        continue
+
+    account_types = row.get("account_type") or []
+    if TARGET_ACCOUNT_TYPE not in account_types:
+        continue
+
+    mcc_list = row.get("merchant_category_code") or []
+    if TARGET_MCC not in mcc_list:
+        continue
+
+    filtered.append(row)
+
+print(
+    f"Filtered records (scheme={TARGET_SCHEME}, account_type contains '{TARGET_ACCOUNT_TYPE}', MCC includes {TARGET_MCC}): {len(filtered)}"
+)
+
+# Show key fields for quick verification
+if filtered:
+    print("Matching IDs and key fields:")
+    for r in filtered:
+        print(
+            {
+                "ID": r.get("ID"),
+                "card_scheme": r.get("card_scheme"),
+                "account_type": r.get("account_type"),
+                "merchant_category_code": r.get("merchant_category_code"),
+                "is_credit": r.get("is_credit"),
+                "aci": r.get("aci"),
+                "capture_delay": r.get("capture_delay"),
+                "monthly_fraud_level": r.get("monthly_fraud_level"),
+                "monthly_volume": r.get("monthly_volume"),
+                "rate": r.get("rate"),
+                "fixed_amount": r.get("fixed_amount"),
+                "intracountry": r.get("intracountry"),
+            }
+        )
+else:
+    print("No matches found. (This can happen if the fee rules don't include that exact combination.)")
+
+# Step #2: Compute each fee for a 10 EUR transaction, then take the mean
+TX_EUR = 10.0
+
+if len(filtered) != 3:
+    print(
+        f"WARNING: Expected 3 matching fee rules per plan step, but found {len(filtered)}. Proceeding with available matches."
+    )
+
+fees_for_tx = []
+for r in filtered:
+    fixed_amount = float(r.get("fixed_amount") or 0.0)
+    rate = float(r.get("rate") or 0.0)  # rate is in basis points where 10000 = 100%
+    fee = fixed_amount + (rate / 10000.0) * TX_EUR
+    fees_for_tx.append(fee)
+
+    print(
+        f"Rule ID={r.get('ID')}: fixed_amount={fixed_amount:.4f}, rate={rate:.4f} -> fee_for_{TX_EUR:.2f}_EUR={fee:.6f}"
+    )
+
+if fees_for_tx:
+    mean_fee = sum(fees_for_tx) / len(fees_for_tx)
+    print(f"Mean fee across {len(fees_for_tx)} rule(s) for {TX_EUR:.2f} EUR: {mean_fee:.6f}")
+else:
+    print("No fees to compute mean from (no matching rules).")
+
+Results:
+Loaded fees.json records: 1000
+Filtered records (scheme=GlobalCard, account_type contains 'H', MCC includes 5812): 3
+Matching IDs and key fields:
+{'ID': 204, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': True, 'aci': ['E'], 'capture_delay': 'immediate', 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 71, 'fixed_amount': 0.0, 'intracountry': None}
+{'ID': 612, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': False, 'aci': ['A'], 'capture_delay': None, 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 89, 'fixed_amount': 0.0, 'intracountry': 1.0}
+{'ID': 921, 'card_scheme': 'GlobalCard', 'account_type': ['H', 'D'], 'merchant_category_code': [5411, 5412, 5499, 5912, 5812, 5813, 5911, 5983], 'is_credit': True, 'aci': ['C'], 'capture_delay': None, 'monthly_fraud_level': None, 'monthly_volume': None, 'rate': 12, 'fixed_amount': 0.02, 'intracountry': 0.0}
+Rule ID=204: fixed_amount=0.0000, rate=71.0000 -> fee_for_10.00_EUR=0.071000
+Rule ID=612: fixed_amount=0.0000, rate=89.0000 -> fee_for_10.00_EUR=0.089000
+Rule ID=921: fixed_amount=0.0200, rate=12.0000 -> fee_for_10.00_EUR=0.032000
+Mean fee across 3 rule(s) for 10.00 EUR: 0.064000
+
+

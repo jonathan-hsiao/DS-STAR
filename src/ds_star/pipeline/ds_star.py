@@ -96,7 +96,7 @@ class DSStar:
         try:
             data_files = [
                 p for p in data_path.iterdir()
-                if p.is_file()
+                if p.is_file() and not p.name.startswith(".")
             ]
         except PermissionError as e:
             raise PermissionError(f"Cannot read data directory: {data_directory}") from e

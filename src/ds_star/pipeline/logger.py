@@ -31,7 +31,7 @@ class PipelineLogger:
 
         self._data_summaries_log = self.output_dir / "data_summaries_log"
         self._plan_log = self.output_dir / "plan_log"
-        self._final_solution = self.output_dir / "final_solution"
+        self._final_solution = self.output_dir / "final_solution.md"
         self._metadata = self.output_dir / "metadata"
 
         # Start each run with a fresh plan_log
@@ -58,7 +58,7 @@ class PipelineLogger:
     def log_plan(self, plan: list[str], code: str, results: str, iteration: int) -> None:
         """Append plan and code to plan_log. iteration=0 for initial plan, else iteration number."""
         header = self._run_id_header if iteration == 0 else ""
-        section = "Initial plan" if iteration == 0 else f"--- Iteration {iteration} ---"
+        section = "--- Initial plan ---" if iteration == 0 else f"--- Iteration {iteration} ---"
         plan_str, _ = format_plan_for_prompt(plan)
         block = f"{header}{section}\n\nPlan:\n{plan_str}\n\nCode:\n{code}\n\nResults:\n{results}\n\n"
         with self._plan_log.open("a", encoding="utf-8") as f:
@@ -71,16 +71,18 @@ class PipelineLogger:
         code: str,
         output: str,
     ) -> None:
-        """Write question, plan, final code, and output to final_solution."""
+        """Write question, plan, final code, and output to final_solution.md as markdown."""
         plan_str, _ = format_plan_for_prompt(plan)
-        content = (
-            self._run_id_header
-            + f"Question:\n{question}\n\n"
-            + f"Plan:\n{plan_str}\n\n"
-            + f"Code:\n{code}\n\n"
-            + f"Output:\n{output}"
-        )
-        self._final_solution.write_text(content, encoding="utf-8")
+        # Build markdown with headers and fenced code blocks
+        sections = [
+            f"# Final solution\n",
+            f"**Run ID:** `{self.run_id}`\n",
+            f"## Question\n\n{question}\n",
+            f"## Plan\n\n{plan_str}\n",
+            f"## Code\n\n```python\n{code.strip()}\n```\n",
+            f"## Output\n\n```\n{output}\n```",
+        ]
+        self._final_solution.write_text("\n".join(sections), encoding="utf-8")
 
     def log_run_end(self) -> None:
         """Update metadata with end timestamp."""
@@ -94,7 +96,7 @@ class PipelineLogger:
         """Write analyzer failure (error + code) for a data file to the output directory."""
         # Sanitize filename for the log file name (e.g. payments-readme.md -> payments-readme_md)
         safe_name = data_file_name.replace(".", "_")
-        path = self.output_dir / f"analyzer_failure_{safe_name}.txt"
+        path = self.output_dir / f"analyzer_failure_{safe_name}"
         path.write_text(
             f"{self._run_id_header}Data file: {data_file_name}\n\nError:\n{error}\n\nCode:\n{code}",
             encoding="utf-8",

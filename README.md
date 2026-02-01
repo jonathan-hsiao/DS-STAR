@@ -23,7 +23,7 @@ Generated code runs with **cwd = parent of your data folder**, so it expects fil
 ```
 your_project/
 ├── data/          # All data files in this folder are analyzed
-└── output/        # Outputs: final_solution, plan_log, data_summaries_log, metadata
+└── output/        # Outputs: final_solution.md, plan_log, data_summaries_log, metadata
 ```
 
 ### Minimal Python script
