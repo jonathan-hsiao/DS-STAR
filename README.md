@@ -49,10 +49,10 @@ pipeline = DSStar(config=config)
 
 code, output = pipeline.run_analysis(
     question="Your question about the data",
-    data_directory="/path/to/data",
-    output_directory="/path/to/output",
+    data_directory="/path/to/data",      # see directory layout example above
+    output_directory="/path/to/output",  # see directory layout example above
     guidelines="Optional format instructions for the final answer.",
-    reuse_data_summaries=True, # skip summary generation for questions using same data
+    reuse_data_summaries=True,           # skip analyzer step for questions using same data
 )
 ```
 
