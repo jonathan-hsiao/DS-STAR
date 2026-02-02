@@ -1,4 +1,4 @@
-# DS-Star
+# DS-STAR
 
 Implementation of Google's paper "DS-STAR: Data Science Agent via Iterative Planning and Verification" ([arXiv](https://arxiv.org/pdf/2509.21825)).
 
