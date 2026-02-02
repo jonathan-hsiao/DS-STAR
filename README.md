@@ -22,17 +22,18 @@ Generated code runs with **cwd = parent of your data folder**, so it expects fil
 
 ```
 your_project/
-├── data/          # All files in this folder are analyzed
+├── run_analysis.py  # Main analysis script; see example below
+├── data/            # All files in this folder are analyzed
 │   └── ...
 └── output/
-    └── <run_id>/  # e.g. 20260201-052732-a682a54f
+    └── <run_id>/    # e.g. 20260201-052732-a682a54f
         ├── final_solution.md
         ├── plan_log
         ├── data_summaries_log
         └── metadata
 ```
 
-### Minimal Python script
+### Minimal `run_analysis.py` script
 
 ```python
 from ds_star import DSStar, DSStarConfig
