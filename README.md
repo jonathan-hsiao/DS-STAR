@@ -4,9 +4,9 @@ Implementation of Google's paper "DS-STAR: Data Science Agent via Iterative Plan
 
 ### TL;DR
 Answers factoid questions over structured or unstructured data (CSV, JSON, Markdown, etc.) using an iterative process:
-- Analyzer agent first explores and summarizes data files.
-- Five agents in a loop: Planner → Coder → execute code → Debugger → Verifier (exit loop on success) → Router → loop.
-- Finalizer agent produces final answer under specified guidelines.
+- `Analyzer` agent first explores and summarizes data files.
+- Five agents in a loop: `Planner` → `Coder` → execute code → `Debugger` → `Verifier` (exit loop on success) → `Router` → loop.
+- `Finalizer` agent produces final answer under specified guidelines.
 
 ## Install
 
