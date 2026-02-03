@@ -36,9 +36,9 @@ your_project/
 ### Minimal `run_analysis.py` script
 
 ```python
-from ds_star import DSStar, DSStarConfig
+from ds_star import DSSTAR, DSSTARConfig
 
-config = DSStarConfig(
+config = DSSTARConfig(
     llm_provider="gemini",       # or "openai"
     llm_model="gemini-2.5-pro",
     llm_api_key="your-api-key",  # or set GEMINI_API_KEY / OPENAI_API_KEY env var
@@ -46,7 +46,7 @@ config = DSStarConfig(
     max_debug_attempts=3,
     execution_timeout_seconds=600,
 )
-pipeline = DSStar(config=config)
+pipeline = DSSTAR(config=config)
 
 code, output = pipeline.run_analysis(
     question="Your question about the data",

@@ -29,7 +29,7 @@ from ds_star.models.models import (
 
 
 @dataclass
-class DSStarConfig:
+class DSSTARConfig:
     """Config for DS-Star pipeline."""
     llm_provider: str = "gemini"
     llm_model: str = "gemini-2.5-pro"
@@ -40,7 +40,7 @@ class DSStarConfig:
 
 
 @dataclass
-class DSStarAgents:
+class DSSTARAgents:
     analyzer: AnalyzerAgent
     coder: CoderAgent
     debugger: DebuggerAgent
@@ -50,8 +50,8 @@ class DSStarAgents:
     verifier: VerifierAgent
 
 
-class DSStar:
-    def __init__(self, config: DSStarConfig):
+class DSSTAR:
+    def __init__(self, config: DSSTARConfig):
         self.config = config
         self.llm_provider = self._initialize_llm_provider()
         self.code_runner = CodeRunner(timeout_seconds=self.config.execution_timeout_seconds)
@@ -69,8 +69,8 @@ class DSStar:
         else:
             raise ValueError(f"Invalid provider: {self.config.llm_provider}")
         
-    def _initialize_agents(self) -> DSStarAgents:
-        return DSStarAgents(
+    def _initialize_agents(self) -> DSSTARAgents:
+        return DSSTARAgents(
             analyzer=AnalyzerAgent(llm_provider=self.llm_provider, code_runner=self.code_runner),
             coder=CoderAgent(self.llm_provider),
             debugger=DebuggerAgent(self.llm_provider),

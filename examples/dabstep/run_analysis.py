@@ -1,12 +1,12 @@
 """
-Runs DSStar pipeline on DABstep dev tasks dataset (two easy and two hard tasks).
+Runs DSSTAR pipeline on DABstep dev tasks dataset (two easy and two hard tasks).
 Run the get_dabstep_data.py script first to download the data and tasks for analysis.
 """
 import os
 from pathlib import Path
 import pandas as pd
 from dotenv import load_dotenv
-from ds_star import DSStar, DSStarConfig
+from ds_star import DSSTAR, DSSTARConfig
 
 # Load .env from project root (walk up from this file)
 _root = Path(__file__).resolve().parent
@@ -36,8 +36,8 @@ def main() -> None:
     easy_tasks = tasks[tasks["level"] == "easy"].iloc[:2]
     hard_tasks = tasks[tasks["level"] == "hard"].iloc[:2]
 
-    # configure and initialize DSStar pipeline
-    config = DSStarConfig(
+    # configure and initialize DSSTAR pipeline
+    config = DSSTARConfig(
         llm_provider="openai",                        # openai or gemini
         llm_model="gpt-5.2",
         llm_api_key=os.environ.get("OPENAI_API_KEY"), # OPENAI_API_KEY or GEMINI_API_KEY
@@ -45,9 +45,9 @@ def main() -> None:
         max_debug_attempts = 3,
         execution_timeout_seconds = 600,
     )
-    dsstar_pipeline = DSStar(config=config)
+    dsstar_pipeline = DSSTAR(config=config)
 
-    # run DSStar pipeline on two easy and two hard tasks
+    # run DSSTAR pipeline on two easy and two hard tasks
     for label, subset in [("easy", easy_tasks), ("hard", hard_tasks)]:
         for _, row in subset.iterrows():
             question = row["question"]
